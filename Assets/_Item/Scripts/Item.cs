@@ -7,5 +7,10 @@ namespace Item
     public abstract class Item : MonoBehaviour
     {
         public abstract void Use();
+
+        private void OnMouseDown()
+        {
+            Use();
+        }
     }
 }

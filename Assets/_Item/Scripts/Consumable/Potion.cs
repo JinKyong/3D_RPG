@@ -1,3 +1,4 @@
+using Item.Enum;
 using UnityEngine;
 
 namespace Item
@@ -7,7 +8,7 @@ namespace Item
         public override void Consume()
         {
             float value = data.value;
-
+            Debug.Log(data.itemName + " »ç¿ë(¼·Ãë)");
         }
     }
 }

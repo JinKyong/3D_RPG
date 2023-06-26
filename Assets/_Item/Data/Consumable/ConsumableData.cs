@@ -8,6 +8,8 @@ namespace Item.Data
            menuName = "ScriptableObjects/Item/Consumable")]
     public class ConsumableData : ItemData
     {
+        [Space]
+        [Header("Fixed Value")]
         public float duration;
         public float value;
     }

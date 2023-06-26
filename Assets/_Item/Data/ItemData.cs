@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Item.Data
 {
-    public class ItemData : ScriptableObject
+    public abstract class ItemData : ScriptableObject
     {
         [Header("Info")]
         public Sprite image;

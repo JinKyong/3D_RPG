@@ -9,4 +9,13 @@ namespace Item.Enum
         Shield,
         Boots,
     }
+
+    public enum EPotionType
+    {
+        Health,
+        Mana,
+        AttackBuff,
+        SAttackBuff,
+        SpeedBuff,
+    }
 }

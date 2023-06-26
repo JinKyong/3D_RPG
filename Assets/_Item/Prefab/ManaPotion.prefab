@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4649351884673181915}
   m_Layer: 0
-  m_Name: ItemSample
+  m_Name: ManaPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5295404622319696992}
   - component: {fileID: 354140711567330459}
   - component: {fileID: 8094664359346967694}
+  - component: {fileID: 6577823052906982506}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -129,3 +130,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6577823052906982506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810093786979607534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0368093588dcd44afa94e449be2d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 316fe668d30bdf64ca7011f03ace314a, type: 2}
