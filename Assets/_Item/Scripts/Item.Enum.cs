@@ -1,21 +1,23 @@
 
 namespace Item.Enum
 {
-    public enum EEquipType
+    public enum EWeaponType
+    {
+        Sword,
+    }
+
+    public enum EArmorType
     {
         Helmet,
-        Armor,
-        Weapon,
-        Shield,
-        Boots,
+        Body,
+        Pants,
+        Glove,
+        Shoes,
     }
 
     public enum EPotionType
     {
         Health,
         Mana,
-        AttackBuff,
-        SAttackBuff,
-        SpeedBuff,
     }
 }

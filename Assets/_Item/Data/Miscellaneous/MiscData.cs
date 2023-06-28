@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using Item.Enum;
 using UnityEngine;
 
 namespace Item.Data
 {
     [CreateAssetMenu(fileName = "MiscData",
-              menuName = "ScriptableObjects/Item/Misc")]
+              menuName = "ScriptableObjects/Item/Miscellaneous")]
     public class MiscData : ItemData
     {
 
