@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Poolable : MonoBehaviour
+namespace Public
 {
-    public bool IsUsing { get; set; }
+    public class Poolable : MonoBehaviour
+    {
+        public bool IsUsing { get; set; }
+    }
 }
