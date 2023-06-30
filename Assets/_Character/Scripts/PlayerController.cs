@@ -13,9 +13,9 @@ namespace Player.Controller
 
         public Transform followCam;
 
-        private bool bJumping;
+        [SerializeField] bool bJumping;
 
-        private float jumpPower = 300f;
+        float jumpPower = 300f;
 
         [SerializeField] float moveSpeed;
 
@@ -31,7 +31,7 @@ namespace Player.Controller
             if (dInput != null)
             {
                 // Inputsystem으로 Vector3값을 받아서 blendTree에 parameter값에 대입
-                dir = followCam.forward * dInput.z + followCam.right * dInput.x;
+                dir = Camera.main.transform.forward * dInput.z + followCam.right * dInput.x;
                 transform.forward = new Vector3(followCam.forward.x, 0, followCam.forward.z);
 
                 ani.SetFloat("VelocityX", dInput.x);

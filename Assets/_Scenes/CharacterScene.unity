@@ -700,6 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCam: {fileID: 1138828900}
+  bJumping: 0
   moveSpeed: 8
 --- !u!114 &560045815
 MonoBehaviour:

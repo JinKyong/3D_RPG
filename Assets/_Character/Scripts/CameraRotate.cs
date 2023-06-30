@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player.Controller;
 
 public class CameraRotate : MonoBehaviour
 {
-    public Transform player;
+    //감도조절 변수 하나 추가
+    //타임 델타타임 곱해줄것
+    public PlayerController player;
 
     private void Update()
     {
         LookAround();
-        transform.position = player.position;
+        transform.position = player.transform.position;
     }
 
     private void LookAround()
@@ -20,7 +23,7 @@ public class CameraRotate : MonoBehaviour
 
         // 현재 좌우제한은 불필요 - 카메라 이동 범위 제한 (상하: 350도 ~ 20도 , 좌우: 300도 ~ 60도)
         float limitAngleX = camAngle.x - mouse_Y;
-/*        float limitAngleY = camAngle.y + mouse_X;*/
+
 
         if (limitAngleX > 180)
         {
@@ -31,16 +34,7 @@ public class CameraRotate : MonoBehaviour
             limitAngleX = Mathf.Clamp(limitAngleX, -1, 20);
         }
 
-/*
-        if (limitAngleY > 180)
-        {
-            limitAngleY = Mathf.Clamp(limitAngleY, 300, 360);
-        }
-        else
-        {
-            limitAngleY = Mathf.Clamp(limitAngleY, -1, 60);
-        }
-*/
+
         transform.rotation = Quaternion.Euler(limitAngleX, camAngle.y + mouse_X, camAngle.z);
     }
 }
