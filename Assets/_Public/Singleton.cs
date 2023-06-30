@@ -39,6 +39,7 @@ namespace Public
         {
             // Make instance persistent.
             DontDestroyOnLoad(Instance);
+            
         }
     }
 }
