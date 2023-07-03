@@ -1,6 +1,13 @@
 
 namespace Item.Enum
 {
+    public enum EItemType
+    {
+        Equipment = 0,
+        Consumable,
+        Miscellaneous
+    }
+
     public enum EWeaponType
     {
         Sword,

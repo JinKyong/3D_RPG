@@ -8,6 +8,10 @@ namespace Item
     {
         [SerializeField] PotionData data;
 
+        public override Sprite GetItemImage()
+        {
+            return data.image;
+        }
         public override void Consume()
         {
             float value = data.value;

@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Item
 {
-    public abstract class Item : MonoBehaviour
+    public abstract class Item : MonoBehaviour, IPointerClickHandler
     {
-        public abstract void Use();
-
-        private void OnMouseDown()
+        public void OnPointerClick(PointerEventData eventData)
         {
-            Use();
+            Debug.Log("Pointer Click");
+            GetItem();
         }
+
+        public abstract void Use();
+        public abstract void GetItem();
+        public abstract Sprite GetItemImage();
     }
 }

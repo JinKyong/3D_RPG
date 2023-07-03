@@ -8,6 +8,10 @@ namespace Item
     {
         [SerializeField] WeaponData data;
 
+        public override Sprite GetItemImage()
+        {
+            return data.image;
+        }
         public override void Equip()
         {
 
