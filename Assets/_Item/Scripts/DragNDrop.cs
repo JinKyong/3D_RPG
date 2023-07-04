@@ -9,12 +9,12 @@ namespace Item.Event
         IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         RectTransform rectTransform;
-        CanvasGroup canvasGroup;
+        //CanvasGroup canvasGroup;
         [SerializeField] Canvas canvas;
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
-            canvasGroup = GetComponent<CanvasGroup>();
+            //canvasGroup = GetComponent<CanvasGroup>();
         }
 
 
