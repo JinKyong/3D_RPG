@@ -21,6 +21,7 @@ namespace Item.Inven
             activeIndex = itemListUI.Count - 1;
             for (int i = 0; i < itemListUI.Count; i++)
             {
+                itemListUI[i].Init();
                 if (i == activeIndex) itemListUI[i].gameObject.SetActive(true);
                 else itemListUI[i].gameObject.SetActive(false);
             }
@@ -43,6 +44,10 @@ namespace Item.Inven
                 if (i == num) itemListUI[i].gameObject.SetActive(true);
                 else itemListUI[i].gameObject.SetActive(false);
             }
+        }
+        public void OnExitInventory()
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }
