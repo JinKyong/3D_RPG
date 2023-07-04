@@ -1,3 +1,5 @@
+
+using Item.Data;
 using Item.Enum;
 using Public;
 using System.Collections;
@@ -10,31 +12,19 @@ namespace Item.Inven
     {
         [SerializeField] InventoryUI inventoryUI;
 
-        List<Item> equipList;
-        List<Item> consumeList;
-        List<Item> miscList;
+        List<List<Item>> itemList;
 
         private void Start()
         {
-            equipList = new List<Item>();
-            consumeList = new List<Item>();
-            miscList = new List<Item>();
+            itemList = new List<List<Item>>(3);
+            for (int i = 0; i < 3; i++)
+                itemList.Add(new List<Item>());
         }
 
-        public void AddEquipment(Item item)
+        public void AddItem(Item item)
         {
-            equipList.Add(item);
-            inventoryUI.AddItem(EItemType.Equipment, item.GetItemImage());
-        }
-        public void AddConsumable(Item item)
-        {
-            consumeList.Add(item);
-            inventoryUI.AddItem(EItemType.Consumable, item.GetItemImage());
-        }
-        public void AddMiscellaneous(Item item)
-        {
-            miscList.Add(item);
-            inventoryUI.AddItem(EItemType.Miscellaneous, item.GetItemImage());
+            itemList[(int)item.Data.itemType].Add(item);
+            inventoryUI.AddItem(item);
         }
     }
 }

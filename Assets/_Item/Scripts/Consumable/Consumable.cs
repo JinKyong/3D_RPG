@@ -10,10 +10,6 @@ namespace Item
         {
             Consume();
         }
-        public override void GetItem()
-        {
-            Inventory.Instance.AddConsumable(this);
-        }
         public abstract void Consume();
     }
 }

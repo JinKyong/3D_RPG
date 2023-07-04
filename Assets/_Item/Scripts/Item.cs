@@ -1,3 +1,5 @@
+using Item.Data;
+using Item.Inven;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +9,19 @@ namespace Item
 {
     public abstract class Item : MonoBehaviour, IPointerClickHandler
     {
+        public ItemData Data { get; protected set; }
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Pointer Click");
-            GetItem();
+            Inventory.Instance.AddItem(this);
         }
 
+        private void Start()
+        {
+            Init();
+        }
+
+        public abstract void Init();
         public abstract void Use();
-        public abstract void GetItem();
-        public abstract Sprite GetItemImage();
     }
 }

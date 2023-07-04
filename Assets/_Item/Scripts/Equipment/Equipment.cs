@@ -9,10 +9,6 @@ namespace Item
         {
             Equip();
         }
-        public override void GetItem()
-        {
-            Inventory.Instance.AddEquipment(this);
-        }
 
         public abstract void Equip();
     }

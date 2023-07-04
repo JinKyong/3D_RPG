@@ -15,7 +15,6 @@ namespace Public
             {
                 if (instance == null)
                 {
-                    Debug.Log("No Instance");
                     // Search for existing instance.
                     instance = (T)FindObjectOfType(typeof(T));
 

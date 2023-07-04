@@ -31,15 +31,15 @@ namespace Item.Inven
                 else itemListUI[i].SetActive(false);
             }
         }
-        public void AddItem(EItemType iType, Sprite image)
+        public void AddItem(Item item)
         {
-            InventoryInfo info = itemListUI[(int)iType].GetComponent<InventoryInfo>();
+            InventoryInfo info = itemListUI[(int)item.Data.itemType].GetComponent<InventoryInfo>();
             foreach (var b in info.Contents)
             {
                 if (b.interactable) continue;
 
                 b.interactable = true;
-                b.image.sprite = image;
+                b.image.sprite = item.Data.image;
                 break;
             }
         }

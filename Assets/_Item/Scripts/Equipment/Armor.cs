@@ -8,9 +8,9 @@ namespace Item
     {
         [SerializeField] ArmorData data;
 
-        public override Sprite GetItemImage()
+        public override void Init()
         {
-            return data.image;
+            Data = data;
         }
         public override void Equip()
         {

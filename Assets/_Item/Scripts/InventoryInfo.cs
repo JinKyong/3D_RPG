@@ -14,7 +14,7 @@ namespace Item.Inven
 
         [SerializeField] Transform contentTR;
 
-        private void Start()
+        private void Awake()
         {
             Count = 0;
             Capacity = transform.childCount;
