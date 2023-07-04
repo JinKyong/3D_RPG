@@ -13,7 +13,7 @@ namespace Item
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Inventory.Instance.AddItem(this);
+            Inven.Inventory.Instance.AddItem(this);
         }
 
         private void Start()
