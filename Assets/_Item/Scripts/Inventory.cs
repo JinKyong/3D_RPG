@@ -11,6 +11,7 @@ namespace Item.Inven
         //UI
         int activeIndex;
         [SerializeField] List<InventoryList> itemListUI;
+        [SerializeField] ToolTip tooltip;
 
         private void Start()
         {
@@ -21,19 +22,50 @@ namespace Item.Inven
             activeIndex = itemListUI.Count - 1;
             for (int i = 0; i < itemListUI.Count; i++)
             {
-                itemListUI[i].Init();
-                if (i == activeIndex) itemListUI[i].gameObject.SetActive(true);
-                else itemListUI[i].gameObject.SetActive(false);
+                if (i == activeIndex) itemListUI[i].SelectList();
+                else itemListUI[i].UnSelectList();
             }
         }
 
         public void AddItem(Item item)
         {
             int index = (int)item.Data.itemType;
+            Stackable stb = item.GetComponent<Stackable>();
 
-            itemListUI[index].AddItem(item, itemList[index].Count);
-            itemList[index].Add(item);
+            //Stackable 여부
+            if (stb == null)
+            {
+                itemListUI[index].AddItem(item, itemList[index].Count);
+                itemList[index].Add(item);
+            }
+            else
+            {
+                //인벤토리 서치(이미 있는 아이템인지)
+
+            }
         }
+        public void PopItem(int invenNum, int index)
+        {
+            Stackable stb = itemList[invenNum][index].GetComponent<Stackable>();
+
+            //Stackable 여부
+            if (stb == null)
+            {
+                itemListUI[invenNum].PopItem(index);
+                itemList[invenNum].RemoveAt(index);
+            }
+            else
+            {
+                
+            }
+        }
+
+        public void OnTooltip(int listNum, int itemNum)
+        {
+            tooltip.Init(itemList[listNum][itemNum], listNum, itemNum);
+            tooltip.gameObject.SetActive(true);
+        }
+
         public void OnChangeCategory(int num)
         {
             if (activeIndex == num) return;
@@ -41,8 +73,8 @@ namespace Item.Inven
             activeIndex = num;
             for (int i = 0; i < itemListUI.Count; i++)
             {
-                if (i == num) itemListUI[i].gameObject.SetActive(true);
-                else itemListUI[i].gameObject.SetActive(false);
+                if (i == activeIndex) itemListUI[i].SelectList();
+                else itemListUI[i].UnSelectList();
             }
         }
         public void OnExitInventory()

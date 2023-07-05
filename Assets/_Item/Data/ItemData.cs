@@ -14,8 +14,10 @@ namespace Item.Data
         public string itemDesc;
 
         [Space]
-        [Header("Cost")]
+        [Header("Stat")]
         public int buyCost;
         public int sellCost;
+        public bool bStackable;
+        public int maxStack;
     }
 }

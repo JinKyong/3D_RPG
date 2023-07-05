@@ -7,40 +7,44 @@ namespace Item.Inven
 {
     public class InventoryList : MonoBehaviour
     {
-        public List<Button> Contents { get; private set; }
-        public int Count { get; private set; }
-        public int Capacity { get; private set; }
+        private static class ButtonColor
+        {
+            public static Color Select = new Color(1f, 1f, 1f, 1f);
+            public static Color UnSelect = new Color(1f, 1f, 1f, 0.5f);
+        }
 
+        int invenNum;
+        [SerializeField] Button categoryBtn;
         [SerializeField] Transform contentTR;
 
-        public void Init()
+        public void SelectList()
         {
-            Count = 0;
-            Capacity = contentTR.childCount;
-            Contents = new List<Button>();
-            for (int i = 0; i < Capacity; i++)
-            {
-                Button btn = contentTR.GetChild(i).GetComponent<Button>();
-                int index = i;
-                btn.onClick.AddListener(() =>
-               {
-                   PopItem(index);
-               });
-                Contents.Add(btn);
-            }
+            gameObject.SetActive(true);
+            categoryBtn.image.color = ButtonColor.Select;
+        }
+        public void UnSelectList()
+        {
+            gameObject.SetActive(false);
+            categoryBtn.image.color = ButtonColor.UnSelect;
         }
 
         public void AddItem(Item item, int index)
         {
-            Contents[index].interactable = true;
-            Contents[index].image.sprite = item.Data.image;
+            ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
+            box.FillBoxWithItem(item);
+        }
+        public void AddStackableItem(Item item, int index)
+        {
+
         }
         public void PopItem(int index)
         {
-            Contents[index].interactable = false;
-            Contents[index].image.sprite = null;
-            Contents[index].transform.SetAsLastSibling();
-            //앞으로 떙기기
+            ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
+            box.ClearBox();
+        }
+        public void PopStackbleItem(Item item, int index)
+        {
+
         }
     }
 }

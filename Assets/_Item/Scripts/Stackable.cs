@@ -10,8 +10,12 @@ public class Stackable : MonoBehaviour
     [SerializeField] int maxStack;
     int count = 0;
 
-    public void Add()
+    public void Plus()
     {
         count++;
+    }
+    public void Minus()
+    {
+        count--;
     }
 }

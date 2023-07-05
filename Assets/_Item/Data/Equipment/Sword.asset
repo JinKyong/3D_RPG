@@ -18,4 +18,6 @@ MonoBehaviour:
   itemDesc: "\uC0D8\uD50C \uAC80\uC774\uB2E4"
   buyCost: 0
   sellCost: 0
+  bStackable: 0
+  maxStack: 0
   type: 0

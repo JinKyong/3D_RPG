@@ -8,12 +8,12 @@ namespace Item.Event
     public class DragNDrop : MonoBehaviour,
         IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        RectTransform rectTransform;
+        [SerializeField] RectTransform targetTransform;
         //CanvasGroup canvasGroup;
         [SerializeField] Canvas canvas;
         private void Awake()
         {
-            rectTransform = GetComponent<RectTransform>();
+            //rectTransform = GetComponent<RectTransform>();
             //canvasGroup = GetComponent<CanvasGroup>();
         }
 
@@ -27,7 +27,7 @@ namespace Item.Event
         {
             // 이전 이동과 비교해서 얼마나 이동했는지를 보여줌
             // 캔버스의 스케일과 맞춰야 하기 때문에
-            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            targetTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)

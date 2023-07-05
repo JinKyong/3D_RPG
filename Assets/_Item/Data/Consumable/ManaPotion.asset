@@ -18,6 +18,8 @@ MonoBehaviour:
   itemDesc: "\uC0AC\uC6A9 \uC989\uC2DC, MP\uB97C 100 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
   buyCost: 400
   sellCost: 50
+  bStackable: 1
+  maxStack: 20
   type: 1
   duration: 0
   value: 100
