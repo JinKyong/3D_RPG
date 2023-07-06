@@ -6,19 +6,58 @@ public class PreferencesSetting : MonoBehaviour
 {
     Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    
-    public void VolumeSettingOnClick()
+    public void PreferencesSettingClick()
     {
-        anim.SetBool("PreferencesBtn", true);
+       bool btn = anim.GetBool("PreferencesBtn");
+
+        anim.SetBool("PreferencesBtn", !btn);
+
+        // 추가: Back 상태일 때 파라미터 초기화
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Back"))
+        {
+            anim.SetBool("Side", false);
+            anim.SetBool("SideBack", false);
+        }
     }
-    public void VolumeCloseOnclick()
+
+    public void PreferencesSideOnclick()
     {
+        bool sideBtn = anim.GetBool("Side");
+
+        anim.SetBool("Side", !sideBtn);
+
+        // 추가: Back 상태일 때 파라미터 초기화
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Back"))
+        {
+            anim.SetBool("PreferencesBtn", false);
+            anim.SetBool("SideBack", false);
+        }
+    }
+
+    public void PreferencesSideBackOnclick()
+    {
+        bool sideBackBtn = anim.GetBool("SideBack");
+
+        anim.SetBool("SideBack", !sideBackBtn);
+
+        // 추가: Back 상태일 때 파라미터 초기화
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Back"))
+        {
+            anim.SetBool("PreferencesBtn", false);
+            anim.SetBool("Side", false);
+        }
+    }
+
+    public void ResetParameters()
+    {
+        // 추가: 모든 파라미터 초기화
         anim.SetBool("PreferencesBtn", false);
+        anim.SetBool("Side", false);
+        anim.SetBool("SideBack", false);
     }
 }

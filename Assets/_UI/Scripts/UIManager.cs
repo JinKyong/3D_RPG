@@ -8,15 +8,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animator PreferencesSetting;
     [SerializeField] Animator VolumeSetting;
 
-    private bool PreferencesBtn = false;
-   
 
-    private bool VolumeBtn = false;
 
     
     public void VolumeCloseOnclick()
-    {
-        VolumeSetting.SetBool("VolumeBtn", false);
+    {   
+        VolumeSetting.SetBool("VolumeBtn", true);
     }
 
     public void PreferencesSettingOnClick()
