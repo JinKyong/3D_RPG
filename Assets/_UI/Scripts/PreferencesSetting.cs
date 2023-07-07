@@ -5,16 +5,23 @@ using UnityEngine;
 public class PreferencesSetting : MonoBehaviour
 {
     Animator anim;
+    
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        // 추가: PreferencesSetting 게임 오브젝트 활성화
+        gameObject.SetActive(true);
     }
 
-    public void PreferencesSettingClick()
-    {
-       bool btn = anim.GetBool("PreferencesBtn");
 
+  
+
+    public void PreferencesSettingClick()
+    {   
+        
+
+        bool btn = anim.GetBool("PreferencesBtn");
         anim.SetBool("PreferencesBtn", !btn);
 
         // 추가: Back 상태일 때 파라미터 초기화
@@ -23,6 +30,8 @@ public class PreferencesSetting : MonoBehaviour
             anim.SetBool("Side", false);
             anim.SetBool("SideBack", false);
         }
+
+      
     }
 
     public void PreferencesSideOnclick()

@@ -39,17 +39,20 @@ namespace Main.UI
         }
         public void CheckUserData()                                   // 로그인 을 위해 확인을 필요로한 함수.
         {
-            if (CheckInput())                                          // 만일 입력 검사에 문제가 있으면 함수를 종료. 
+            Debug.Log("1");
+            if (!CheckInput())                                          // 만일 입력 검사에 문제가 있으면 함수를 종료. 
                 return;
             string pass = PlayerPrefs.GetString(id.text);           //  사용자가 입력한 아이디를 키로 사용해 시스템에 저장된 값을 불러온다.
 
             if (password.text == pass)                                   // 만일, 사용자가 입력한 패스워드와 시스템에서 불러오 ㄴ값을 비교해서 동일하다면!
             {
                 SceneManager.LoadScene("CharacterSceneStatus");                 // 다음 씬 "" 을 로드한다.
+                Debug.Log("2");
             }
             else
             {
                 notify.text = "일력하신 아이디와 패스워드가 일치하지 않습니다.!";    // 그렇지 않고 두 데이터 값이 다르면 , 유저 정보가 일치하지 않아 메시지를 남김.
+                Debug.Log("3");
             }
 
         }

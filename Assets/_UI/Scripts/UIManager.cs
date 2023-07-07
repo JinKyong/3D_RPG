@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    
+   
     public void VolumeCloseOnclick()
     {   
         VolumeSetting.SetBool("VolumeBtn", true);
