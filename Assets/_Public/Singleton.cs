@@ -22,11 +22,11 @@ namespace Public
                     // Create new instance if one doesn't alreay exist.
                     if (instance == null)
                     {
-                        Debug.Log("Can't Find Instance");
+                        //Debug.Log("Can't Find Instance");
                         // Need to create a new GameObject to attach the singleton to.
                         var singletonObject = new GameObject();
                         instance = singletonObject.AddComponent<T>();
-                        Debug.Log("Create New Instance");
+                        //Debug.Log("Create New Instance");
                     }
 
                     instance.name = typeof(T).ToString() + " (Singleton)";
