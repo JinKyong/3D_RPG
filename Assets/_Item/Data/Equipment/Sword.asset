@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962a9bae5f02ded4fa76f5b0651c0805, type: 3}
-  m_Name: ManaPotion
+  m_Script: {fileID: 11500000, guid: 091cb7f99b83ce94e840b910d245b945, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: ad87efbba567ba244ac74a3181b9a94e, type: 3}
-  itemType: 1
-  itemNumber: 1
-  itemName: "\uCD08\uAE09 \uB9C8\uB098 \uC601\uC57D"
-  itemDesc: "\uC0AC\uC6A9 \uC989\uC2DC, MP\uB97C 100 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
-  buyCost: 400
-  sellCost: 50
-  bStackable: 1
-  maxStack: 20
-  type: 1
-  duration: 0
-  value: 100
+  itemType: 0
+  itemName: "\uAC80 (\uC0D8\uD50C)"
+  itemDesc: "\uC0D8\uD50C \uAC80\uC774\uB2E4"
+  buyCost: 0
+  sellCost: 0
+  bStackable: 0
+  maxStack: 0
+  type: 0

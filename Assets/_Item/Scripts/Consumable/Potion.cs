@@ -8,6 +8,10 @@ namespace Item
     {
         [SerializeField] PotionData data;
 
+        public override void Init()
+        {
+            Data = data;
+        }
         public override void Consume()
         {
             float value = data.value;

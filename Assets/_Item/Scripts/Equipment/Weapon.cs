@@ -8,6 +8,10 @@ namespace Item
     {
         [SerializeField] WeaponData data;
 
+        public override void Init()
+        {
+            Data = data;
+        }
         public override void Equip()
         {
 

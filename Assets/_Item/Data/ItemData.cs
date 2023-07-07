@@ -1,3 +1,4 @@
+using Item.Enum;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -8,12 +9,16 @@ namespace Item.Data
     {
         [Header("Info")]
         public Sprite image;
+        public EItemType itemType;
+        public int itemNumber;
         public string itemName;
         public string itemDesc;
 
         [Space]
-        [Header("Cost")]
+        [Header("Stat")]
         public int buyCost;
         public int sellCost;
+        public bool bStackable;
+        public int maxStack;
     }
 }

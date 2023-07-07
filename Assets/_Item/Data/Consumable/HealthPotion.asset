@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962a9bae5f02ded4fa76f5b0651c0805, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: eb653b8437fa10a4a8d4e73df72074ac, type: 3}
+  itemType: 1
   itemName: "\uCD08\uAE09 \uBE68\uAC04 \uC601\uC57D"
   itemDesc: "\uC0AC\uC6A9 \uC989\uC2DC, HP\uB97C 100 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
   buyCost: 200
   sellCost: 30
+  bStackable: 1
+  maxStack: 20
+  type: 0
   duration: 0
   value: 100

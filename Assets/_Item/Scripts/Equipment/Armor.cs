@@ -1,5 +1,4 @@
-using System.Collections;
-using Item.Enum;
+
 using Item.Data;
 using UnityEngine;
 
@@ -9,6 +8,10 @@ namespace Item
     {
         [SerializeField] ArmorData data;
 
+        public override void Init()
+        {
+            Data = data;
+        }
         public override void Equip()
         {
 

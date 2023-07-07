@@ -15,9 +15,9 @@ namespace Public
             {
                 if (instance == null)
                 {
-                    Debug.Log("No Instance");
                     // Search for existing instance.
-                    instance = (T)FindObjectOfType(typeof(T));
+                    //instance = (T)FindObjectOfType(typeof(T));
+                    instance = GameObject.FindObjectOfType<T>();
 
                     // Create new instance if one doesn't alreay exist.
                     if (instance == null)
