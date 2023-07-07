@@ -10,6 +10,7 @@ namespace Item.Data
         [Header("Info")]
         public Sprite image;
         public EItemType itemType;
+        public int itemNumber;
         public string itemName;
         public string itemDesc;
 

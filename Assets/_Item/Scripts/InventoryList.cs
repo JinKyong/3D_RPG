@@ -31,20 +31,38 @@ namespace Item.Inven
         public void AddItem(Item item, int index)
         {
             ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
+
             box.FillBoxWithItem(item);
         }
         public void AddStackableItem(Item item, int index)
         {
+            Stackable stb = item.GetComponent<Stackable>();
+            ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
 
+            stb.Plus();
+            box.FillBoxWithStackableItem(item, stb.Count);
         }
+        public void AddStackToItem(Item item, int index)
+        {
+            Stackable stb = item.GetComponent<Stackable>();
+            ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
+
+            stb.Plus();
+            box.UpdateCount(stb.Count);
+        }
+
+
         public void PopItem(int index)
         {
             ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
+
             box.ClearBox();
         }
-        public void PopStackbleItem(Item item, int index)
+        public void PopStackFromItem(int index, int count)
         {
+            ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
 
+            box.UpdateCount(count);
         }
     }
 }
