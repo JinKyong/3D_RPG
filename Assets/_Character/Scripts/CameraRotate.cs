@@ -1,40 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Player.Controller;
+using Player.State;
 
-public class CameraRotate : MonoBehaviour
+
+namespace Player.CamRotate
 {
-    //감도조절 변수 하나 추가
-    //타임 델타타임 곱해줄것
-    public PlayerController player;
-
-    private void Update()
+    public class CameraRotate : MonoBehaviour
     {
-        LookAround();
-        transform.position = player.transform.position;
-    }
-
-    private void LookAround()
-    {
-        float mouse_X = Input.GetAxis("Mouse X");
-        float mouse_Y = Input.GetAxis("Mouse Y");
-        Vector3 camAngle = transform.rotation.eulerAngles;
-
-        // 현재 좌우제한은 불필요 - 카메라 이동 범위 제한 (상하: 350도 ~ 20도 , 좌우: 300도 ~ 60도)
-        float limitAngleX = camAngle.x - mouse_Y;
+        public PlayerController player;
+        [SerializeField] float SensitivityX;
+        [SerializeField] float SensitivityY;
 
 
-        if (limitAngleX > 180)
+        private void Start()
         {
-            limitAngleX = Mathf.Clamp(limitAngleX, 350, 360);
-        }
-        else
-        {
-            limitAngleX = Mathf.Clamp(limitAngleX, -1, 20);
+            SensitivityX = 1.5f;
+            SensitivityY = 1f;
         }
 
+        private void Update()
+        {
+            LookAround();
+        }
 
-        transform.rotation = Quaternion.Euler(limitAngleX, camAngle.y + mouse_X, camAngle.z);
+        private void LateUpdate()
+        {
+            transform.position = player.transform.position;        
+        }
+
+        private void LookAround()
+        {
+            float mouseX = Input.GetAxis("Mouse X") * SensitivityX;
+            float mouseY = Input.GetAxis("Mouse Y") * SensitivityY; 
+            Vector3 camAngle = transform.rotation.eulerAngles;
+
+            // 카메라 이동 범위 제한 (상하: 350도 ~ 20도 )
+            float limitAngleX = (camAngle.x - mouseY);
+
+
+            if (limitAngleX > 180)
+            {
+                limitAngleX = Mathf.Clamp(limitAngleX, 350f, 360f);
+            }
+            else
+            {
+                limitAngleX = Mathf.Clamp(limitAngleX, -1f, 20f);
+            }
+
+            transform.rotation = Quaternion.Euler(limitAngleX, camAngle.y + mouseX, camAngle.z);
+        }
     }
+
 }
+
