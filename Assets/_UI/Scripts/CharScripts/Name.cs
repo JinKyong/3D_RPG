@@ -4,58 +4,81 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Name : MonoBehaviour
+namespace Name
 {
-    [SerializeField] TMP_InputField nicknameInput;
-    [SerializeField] TMP_Text notify;
-
-    private void Start()
+    public class Name : MonoBehaviour
     {
-        notify.text = "";
-    }
+        [SerializeField] GameObject nickNameBar;
+        [SerializeField] GameObject playerGameObj;
+        [SerializeField] GameObject playerInfoObj;
 
-    public void SaveUserData()
-    {
-        string nickname = nicknameInput.text;
+        [SerializeField] TMP_InputField nicknameInput;
+        [SerializeField] TMP_Text notify;
+        [SerializeField] TMP_Text nickNameText;
 
-        if (!CheckInput(nickname))
-            return;
 
-        if (!PlayerPrefs.HasKey(nickname))
+        private void Start()
         {
-            PlayerPrefs.SetString(nickname, "");
-            PlayerPrefs.Save();
-            notify.text = "OK"; 
+            notify.text = "";
         }
-        else
+
+        public void SaveUserData()
         {
-            notify.text = "NO.";
+            string nickname = nicknameInput.text;
+
+
+            if (!CheckInput(nickname))
+                return;
+
+            if (!PlayerPrefs.HasKey(nickname))
+            {
+                PlayerPrefs.SetString(nickname, "");
+                PlayerPrefs.Save();
+                notify.text = "OK";
+                nickNameText.text = nickname; // 닉네임 표시
+            }
+            else
+            {
+                notify.text = "NO.";
+            }
         }
-    }
 
-    public void CheckUserData()
-    {
-        string nickname = nicknameInput.text;
-
-        if (!CheckInput(nickname))
-            return;
-
-        if (PlayerPrefs.HasKey(nickname))
-        { }
-        else
-            notify.text = "Check OK.";
-    }
-
-    bool CheckInput(string nickname)
-    {
-        if (nickname == "")
+        public void CheckUserData()
         {
-            notify.text = "Name Plz.";
-            return false;
+            string nickname = nicknameInput.text;
+
+            if (!CheckInput(nickname))
+                return;
+
+            if (PlayerPrefs.HasKey(nickname))
+            {
+                CheckButton();
+            }
+            else
+                notify.text = "Check OK.";
         }
-        else
+
+        bool CheckInput(string nickname)
         {
-            return true;
+            if (nickname == "")
+            {
+                notify.text = "Name Plz.";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
+
+        private void CheckButton()
+        {
+            playerGameObj.SetActive(true);
+            nickNameBar.SetActive(false);
+            playerInfoObj.SetActive(true);
+
+        }
+
+
     }
 }

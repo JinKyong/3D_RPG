@@ -2,19 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UnLock : MonoBehaviour
-{
-    [SerializeField] GameObject objectToDeactivate;
-    [SerializeField] Button charBtn;
+namespace UnLock
+{ 
 
-    private void Start()
+    public class UnLock : MonoBehaviour
     {
-        charBtn.onClick.AddListener(OnCreateChar);
+        [SerializeField] TextMeshProUGUI asdfadsf;
+        [SerializeField] GameObject objectToDeactivate;
+        [SerializeField] Button charBtn;
+        [SerializeField] GameObject SelectImage;
+
+        bool Selectimage = false;
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+
+                if (!SelectImage)
+                {
+                    SelectImage.SetActive(true);
+                }
+            }
+        }
+        private void Start()
+        {
+            charBtn.onClick.AddListener(OnCreateChar);
+        }
+
+        public void OnCreateChar()
+        {
+            objectToDeactivate.SetActive(false);
+           
+        }
     }
 
-    public void OnCreateChar()
-    {
-        objectToDeactivate.SetActive(false);
-    }
 }

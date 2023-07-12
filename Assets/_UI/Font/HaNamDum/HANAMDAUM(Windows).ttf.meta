@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a65bf741b32ae8441a860a62653b2e95
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - HANAMDAUM
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 706602ab669027e40a088f2fc1469849, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
