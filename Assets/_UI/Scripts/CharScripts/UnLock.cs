@@ -14,7 +14,7 @@ namespace UnLock
         [SerializeField] Button charBtn;
         [SerializeField] GameObject SelectImage;
 
-        bool Selectimage = false;
+       /* bool Selectimage = false;*/
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))

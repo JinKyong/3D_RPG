@@ -14,8 +14,15 @@ namespace Main.UI
 
         [SerializeField] Text notify;         // 중복이 있는지 검사.
 
+        [SerializeField] CanvasGroup canvasGroup;
+
+        [SerializeField] GameObject loginObject;
+
+        [SerializeField] Image logInBtn;
         private void Start()
         {
+            logInBtn.raycastTarget = false;
+            
             notify.text = "";       // 검사 텍스트 창을 비워준다.
         }
 
@@ -29,10 +36,13 @@ namespace Main.UI
                 PlayerPrefs.SetString(id.text, password.text);  // 사용자의 아이디 키 로 패스워드를 값(value)으로 설정하여 저장.
                 PlayerPrefs.Save();                             // 사용자의 정보를 저장한다.
                 notify.text = "아이디 생성이 완료됐습니다.!";
+                logInBtn.raycastTarget = true;
             }
             else                                                // 그렇지 않으면, 이미 존재한다는 메시지를 출력함.
             {
+
                 notify.text = "이미 존재하는 아이디입니다.!";
+                logInBtn.raycastTarget = true;
             }
 
 
@@ -46,8 +56,11 @@ namespace Main.UI
 
             if (password.text == pass)                                   // 만일, 사용자가 입력한 패스워드와 시스템에서 불러오 ㄴ값을 비교해서 동일하다면!
             {
-                SceneManager.LoadScene("CharacterSceneStatus");                 // 다음 씬 "" 을 로드한다.
+                
+                StartCoroutine(FadeOutCoroutine());
+               /* SceneManager.LoadScene("CharacterSceneStatus");   */              // 다음 씬 "" 을 로드한다.
                 Debug.Log("2");
+                
             }
             else
             {
@@ -70,6 +83,19 @@ namespace Main.UI
             }
 
         }
+        private IEnumerator FadeOutCoroutine()
+        {
+            float duration = 2f; // 페이드 아웃에 걸리는 시간 설정
+
+            while (canvasGroup.alpha > 0)
+            {
+                canvasGroup.alpha -= Time.deltaTime / duration;
+                yield return null;
+            }
+
+            loginObject.SetActive(false);
+        }
+
     }
 }
 
