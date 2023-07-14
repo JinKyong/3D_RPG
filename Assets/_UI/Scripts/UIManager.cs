@@ -9,7 +9,13 @@ namespace UIManager
     {
         [SerializeField] Animator PreferencesSetting;
         [SerializeField] Animator VolumeSetting;
-        
+        [SerializeField] GameObject CharChoose;
+
+
+        public void OnCharChoose()
+        {
+            CharChoose.SetActive(true);
+        }
 
         public void VolumeCloseOnclick()
         {

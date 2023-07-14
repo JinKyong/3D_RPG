@@ -2,34 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
 
 namespace LodingUi
-{ 
+{
     public class LodingUi : MonoBehaviour
     {
-        [SerializeField] Image backGround;
-        [SerializeField] GameObject button;
+        [SerializeField] GameObject lodinUi;
+        [SerializeField] GameObject bg;
+        [SerializeField] GameObject lodingBar;
+        [SerializeField] CanvasGroup lodingCan;
+        [SerializeField] CanvasGroup bgCan;
 
-        public void Padebutton()
+    /*    private void Start()
         {
-            Debug.Log("버튼클릭");
-            button.SetActive(false);
-            StartCoroutine(FadeCrootrine());
+            StartCoroutine(FadeInCoroutine());
+        }*/
+
+        public void PadeInButton()
+        {
+            /*lodinUi.SetActive(true);*/
+            StartCoroutine(FadeInCoroutine());
         }
-        IEnumerator FadeCrootrine()
+
+        private IEnumerator FadeInCoroutine()
         {
-            float fadeCount = 0;
-            while (fadeCount < 1f)
+            float duration = 3f; // 페이드 아웃에 걸리는 시간 설정
+
+            // 로딩 UI 페이드 아웃 애니메이션
+            while (lodingCan.alpha < 1)
             {
-                fadeCount += 0.01f;
-                yield return new WaitForSeconds(0.01f);
-                backGround.color = new Color(0, 0, 0, fadeCount);
-            
-            }
+                    lodingCan.alpha += Time.deltaTime / duration;
+                bg.SetActive(true);
+                yield return null;
+                }
+                if (lodingCan.alpha == 1)
+                { 
+                    // 배경 페이드 인 애니메이션
+                    while (bgCan.alpha < 1)
+                {
+                    
+                    bgCan.alpha += Time.deltaTime / duration;
+                   
+                    yield return null;
+                }
+
+               }
+
+            // 로딩 바 활성화
+            lodingBar.SetActive(true);
         }
-
-
     }
 }

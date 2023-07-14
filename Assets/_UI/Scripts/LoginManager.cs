@@ -58,6 +58,7 @@ namespace Main.UI
             {
                 
                 StartCoroutine(FadeOutCoroutine());
+                
                /* SceneManager.LoadScene("CharacterSceneStatus");   */              // 다음 씬 "" 을 로드한다.
                 Debug.Log("2");
                 

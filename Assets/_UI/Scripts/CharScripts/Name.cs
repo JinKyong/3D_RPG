@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 namespace Name
 {
     public class Name : MonoBehaviour
@@ -11,17 +12,22 @@ namespace Name
         [SerializeField] GameObject nickNameBar;
         [SerializeField] GameObject playerGameObj;
         [SerializeField] GameObject playerInfoObj;
+        [SerializeField] GameObject testObj;
 
         [SerializeField] TMP_InputField nicknameInput;
         [SerializeField] TMP_Text notify;
         [SerializeField] TMP_Text nickNameText;
-
+        
 
         private void Start()
         {
             notify.text = "";
         }
 
+        private void OnMouseDown()
+        {
+            
+        }
         public void SaveUserData()
         {
             string nickname = nicknameInput.text;
@@ -73,6 +79,7 @@ namespace Name
 
         private void CheckButton()
         {
+            testObj.SetActive(true);
             playerGameObj.SetActive(true);
             nickNameBar.SetActive(false);
             playerInfoObj.SetActive(true);

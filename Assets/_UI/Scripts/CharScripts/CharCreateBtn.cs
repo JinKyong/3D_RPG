@@ -17,7 +17,10 @@ namespace CharCreateBtn
         {
         createBtn.onClick.AddListener(OnCreateBtnClicked);
 
-            }
+        }
+
+
+        
         public void OnCreateBtnClicked()
         {   
 

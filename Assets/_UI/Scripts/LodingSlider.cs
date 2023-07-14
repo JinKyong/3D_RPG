@@ -4,24 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LodingSlider : MonoBehaviour
+
+
+public class LodingSlider : MonoBehaviour 
 {
     [SerializeField] Slider progressBar;
     [SerializeField] Image Image;    // 검은화면
-    
+    [SerializeField] GameObject mainGame;
+    [SerializeField] GameObject lodingUi;
+    [SerializeField] CanvasGroup lodingCanEnD;
 
     private float loadingProgress = 0f;
     private float fillSpeed = 0.4f;
     private bool isPaused = false;
 
+
+    
+    
     private void Start()
     {
         StartCoroutine(RandomPauseCoroutine());
         StartCoroutine(StartLoadingCoroutine());
+       
     }
 
     private IEnumerator StartLoadingCoroutine()
     {
+        
         yield return new WaitForSeconds(2f); // 2초 대기
 
         while (loadingProgress < 1f)
@@ -38,10 +47,23 @@ public class LodingSlider : MonoBehaviour
 
         if (loadingProgress >= 1f)
         {
+            float duration = 2f;
+            // 다음 ui로 전환
+            mainGame.SetActive(true);
+            while (lodingCanEnD.alpha >= 0)
+            {
+                lodingCanEnD.alpha -= Time.deltaTime / duration;
+                if (progressBar.value > 1)
+                {
+                    lodingUi.SetActive(false);
+                }
+                
+                yield return null;
+            }
             yield return new WaitForSeconds(0.5f); // 0.5초 대기
 
-            // 다음 씬으로 전환
-            SceneManager.LoadScene("Lobby");
+         
+           
         }
     }
 

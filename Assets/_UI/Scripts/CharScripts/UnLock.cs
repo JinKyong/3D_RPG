@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Name;
 
 namespace UnLock
 { 
 
     public class UnLock : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI asdfadsf;
+      
         [SerializeField] GameObject objectToDeactivate;
         [SerializeField] Button charBtn;
         [SerializeField] GameObject SelectImage;
+       
+        
 
        /* bool Selectimage = false;*/
         private void Update()
@@ -33,7 +36,9 @@ namespace UnLock
 
         public void OnCreateChar()
         {
+            
             objectToDeactivate.SetActive(false);
+            
            
         }
     }
