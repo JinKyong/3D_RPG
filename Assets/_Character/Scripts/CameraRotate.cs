@@ -35,7 +35,7 @@ namespace Player.CamRotate
             float mouseY = Input.GetAxis("Mouse Y") * SensitivityY; 
             Vector3 camAngle = transform.rotation.eulerAngles;
 
-            // 카메라 이동 범위 제한 (상하: 350도 ~ 20도 )
+            // 카메라 이동 범위 제한 (상하: 350도 ~ 10도 )
             float limitAngleX = (camAngle.x - mouseY);
 
 
@@ -45,7 +45,7 @@ namespace Player.CamRotate
             }
             else
             {
-                limitAngleX = Mathf.Clamp(limitAngleX, -1f, 20f);
+                limitAngleX = Mathf.Clamp(limitAngleX, -0.1f, 10f);
             }
 
             transform.rotation = Quaternion.Euler(limitAngleX, camAngle.y + mouseX, camAngle.z);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using TMPro;
 
 namespace Player.State
@@ -10,11 +11,20 @@ namespace Player.State
     {
         Vector3 dir;
         public Rigidbody rb;
-        public Animator ani;
+        public Animator anim;
         public AnimationClip atkClip;
+        public AnimationClip dmgClip;
 
-        [SerializeField] bool bGround;
-        [SerializeField] TMP_Text stateText;
+        [SerializeField] TMP_Text pStateText;
+        public Slider hpSlider;
+        bool bDamaged;
+
+        #region 캐릭터 스탯
+        [SerializeField] int maxHp = 100;
+        [SerializeField] int hp = 100;
+        #endregion
+
+
 
         private enum PlayerState
         {
@@ -23,6 +33,7 @@ namespace Player.State
             Jump,
             Fall,
             Attack,
+            Damaged,
             Dead,
         }
 
@@ -34,12 +45,16 @@ namespace Player.State
 
         private void Start()
         {
+            rb = GetComponent<Rigidbody>();
+            anim = GetComponentInChildren<Animator>();
+
             // 상태 생성
             IState idle = new StateIdle();
             IState run = new StateRun();
             IState jump = new StateJump();
             IState fall = new StateFall();
             IState attack = new StateAttack();
+            IState damaged = new StateDamaged();
             IState dead = new StateDead();
 
             dicState.Add(PlayerState.Idle, idle);
@@ -47,18 +62,17 @@ namespace Player.State
             dicState.Add(PlayerState.Jump, jump);
             dicState.Add(PlayerState.Fall, fall);
             dicState.Add(PlayerState.Attack, attack);
+            dicState.Add(PlayerState.Damaged, damaged);
             dicState.Add(PlayerState.Dead, dead);
 
             // 기본 상태 설정
             state = idle;
-
-            rb = GetComponent<Rigidbody>();
-            ani = GetComponentInChildren<Animator>();
+            hpSlider.value = (float)hp / (float)maxHp;
         }
 
         private void Update()
         {
-            stateText.text = state.ToString(); 
+            pStateText.text = state.ToString();
             IState newState = state.InputHandle(this);
             if (newState == state )
             {
@@ -68,6 +82,8 @@ namespace Player.State
             state.OperateExit(this);
             state = newState;
             state.OperateEnter(this);
+
+            hpSlider.value = (float)hp / (float)maxHp;
         }
 
         private void FixedUpdate()
@@ -75,6 +91,14 @@ namespace Player.State
             state.OperateUpdate(this);
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("데미지 입음");
+                bDamaged = true;
+            }
+        }
 
         private bool moveInput()
         {
@@ -82,8 +106,8 @@ namespace Player.State
             float v = Input.GetAxis("Vertical");
             dir = new Vector3(h, 0, v);
 
-            ani.SetFloat("VelocityX", h);
-            ani.SetFloat("VelocityZ", v);
+            anim.SetFloat("VelocityX", h);
+            anim.SetFloat("VelocityZ", v);
 
             return dir != Vector3.zero;
         }
