@@ -15,16 +15,32 @@ namespace Player.State
         public AnimationClip atkClip;
         public AnimationClip dmgClip;
 
+        public AnimationClip sk1Clip;
+        [SerializeField] ParticleSystem skill1;
+
+        public AnimationClip sk2Clip;
+        [SerializeField] ParticleSystem skill2;
+
+        public AnimationClip sk3Clip;
+        [SerializeField] ParticleSystem skill3;
+
         [SerializeField] TMP_Text pStateText;
-        public Slider hpSlider;
+        [SerializeField] TMP_Text HpText;
+        [SerializeField] TMP_Text MpText;
+
+        [SerializeField] Slider hpSlider;
+        [SerializeField] Slider mpSlider;
         bool bDamaged;
 
         #region 캐릭터 스탯
-        [SerializeField] int maxHp = 100;
-        [SerializeField] int hp = 100;
+        int maxHp = 100;
+        int hp = 100;
+        int maxMp = 100;
+        int mp = 100;
+
+        // 공격받은 데미지
+        int damaged;
         #endregion
-
-
 
         private enum PlayerState
         {
@@ -33,6 +49,9 @@ namespace Player.State
             Jump,
             Fall,
             Attack,
+            Skill1,
+            Skill2,
+            Skill3,
             Damaged,
             Dead,
         }
@@ -54,6 +73,9 @@ namespace Player.State
             IState jump = new StateJump();
             IState fall = new StateFall();
             IState attack = new StateAttack();
+            IState skill1 = new StateSkill1();
+            IState skill2 = new StateSkill2();
+            IState skill3 = new StateSkill3();
             IState damaged = new StateDamaged();
             IState dead = new StateDead();
 
@@ -62,12 +84,16 @@ namespace Player.State
             dicState.Add(PlayerState.Jump, jump);
             dicState.Add(PlayerState.Fall, fall);
             dicState.Add(PlayerState.Attack, attack);
+            dicState.Add(PlayerState.Skill1, skill1);
+            dicState.Add(PlayerState.Skill2, skill2);
+            dicState.Add(PlayerState.Skill3, skill3);
             dicState.Add(PlayerState.Damaged, damaged);
             dicState.Add(PlayerState.Dead, dead);
 
             // 기본 상태 설정
             state = idle;
             hpSlider.value = (float)hp / (float)maxHp;
+            mpSlider.value = (float)mp / (float)maxMp;
         }
 
         private void Update()
@@ -84,6 +110,9 @@ namespace Player.State
             state.OperateEnter(this);
 
             hpSlider.value = (float)hp / (float)maxHp;
+            mpSlider.value = (float)mp / (float)maxMp;
+            HpText.text = $"Hp : {hp} / {maxHp}";
+            MpText.text = $"Mp : {mp} / {maxMp}";
         }
 
         private void FixedUpdate()
@@ -95,8 +124,8 @@ namespace Player.State
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("데미지 입음");
                 bDamaged = true;
+                damaged = collision.gameObject.GetComponent<Enemy.State.EnemyController>().damage;
             }
         }
 
@@ -111,6 +140,8 @@ namespace Player.State
 
             return dir != Vector3.zero;
         }
+
+
 
         private bool jumpInput()
         {

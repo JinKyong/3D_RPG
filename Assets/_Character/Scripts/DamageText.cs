@@ -8,8 +8,6 @@ public class DamageText : MonoBehaviour
 {
     TMP_Text dmgText;
     [SerializeField] float transparencySpeed;
-    [SerializeField] float timeCount;
-    [SerializeField] float removeTime;
     Color txtColor;
 
 
@@ -28,17 +26,14 @@ public class DamageText : MonoBehaviour
         txtColor.a = Mathf.Lerp(txtColor.a, 0, transparencySpeed * Time.deltaTime);
         dmgText.color = txtColor;
 
-        TextIntoPool();
+        StartCoroutine(TextIntoPool());
     }
 
     // 일정시간 지나면 오브젝트 풀에 넣기 - 코루틴으로
-    private void TextIntoPool()
+    IEnumerator TextIntoPool()    
     {
-        timeCount += Time.deltaTime;
-        if (timeCount > removeTime)
-        {
-            PoolManager.Instance.Push(gameObject);
-            timeCount = 0;
-        }
-    }
+        yield return new WaitForSeconds(4f);
+        PoolManager.Instance.Push(gameObject);        
+    }    
+
 }

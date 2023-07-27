@@ -2,29 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : MonoBehaviour
+namespace Item.Data
 {
-    public Transform rightHand;
-
-    MeshCollider colliderSword;
-    private GameObject weaponSword;
-    public int weaponDamage = 25;
-
-    private void Start()
+    public class SwordAttack : MonoBehaviour
     {
-        weaponSword = rightHand.GetChild(5).gameObject;
-        colliderSword = weaponSword.GetComponent<MeshCollider>();
+        public Transform rightHand;
 
-        colliderSword.enabled = false;
-    }
+        MeshCollider colliderSword;
+        private GameObject weaponSword;
+        public int weaponDamage = 25;
 
-    public void activateSword()
-    {
-        colliderSword.enabled = true;
-    }
+        private void Start()
+        {
+            weaponSword = rightHand.GetChild(5).gameObject;
+            colliderSword = weaponSword.GetComponent<MeshCollider>();
 
-    public void inactiveSword()
-    {
-        colliderSword.enabled = false;
+            colliderSword.enabled = false;
+        }
+
+        public void activateSword()
+        {
+            colliderSword.enabled = true;
+        }
+
+        public void inactiveSword()
+        {
+            colliderSword.enabled = false;
+        }
     }
 }
+

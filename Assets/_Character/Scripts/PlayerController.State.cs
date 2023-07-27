@@ -1,3 +1,4 @@
+using Public;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,18 @@ namespace Player.State
                 else if (p.bDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    return p.dicState[PlayerState.Skill1];
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    return p.dicState[PlayerState.Skill2];
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    return p.dicState[PlayerState.Skill3];
                 }
 
                 return this;
@@ -148,7 +161,6 @@ namespace Player.State
             float fallMoveSpeed = 6f;
             public void OperateEnter(PlayerController p)
             {
-                Debug.Log(p.rb.velocity);
                 p.anim.SetBool("Fall", true);
                 Vector3 v = p.rb.velocity;
                 v.y = -0.05f;
@@ -228,6 +240,142 @@ namespace Player.State
             }
         }
 
+        public class StateSkill1 : IState
+        {
+            float sk1AnimDuration;
+            float elapsedTime;
+            bool bsk1Finish; 
+
+            public void OperateEnter(PlayerController p)
+            {
+                p.rb.velocity = Vector3.zero;
+                p.anim.SetTrigger("Skill1");
+                elapsedTime = 0f;
+                sk1AnimDuration = p.sk1Clip.length;
+                p.mp -= 20;
+            }
+
+            public void OperateUpdate(PlayerController p)
+            {
+                elapsedTime += Time.deltaTime;
+                // 애니메이션 끝나면 particleSystem 위치시키기
+                if (elapsedTime >= sk1AnimDuration + 0.3f)
+                {
+                    // 얘는 setactive 말고 풀에다가 넣고 2개는 써야할듯
+                    p.skill1.gameObject.SetActive(true);
+                    p.skill1.transform.position = new Vector3
+                        (p.transform.position.x + Camera.main.transform.forward.x * 20f,
+                        0,
+                        p.transform.position.z + Camera.main.transform.forward.z * 20f);
+                    bsk1Finish = true;
+                }
+            }
+
+            public void OperateExit(PlayerController p)
+            {
+                
+            }
+
+            public IState InputHandle(PlayerController p)
+            {
+                if (p.bDamaged)
+                {
+                    return p.dicState[PlayerState.Damaged];
+                }
+                else if (bsk1Finish)
+                {
+                    bsk1Finish = false;
+                    return p.dicState[PlayerState.Idle];
+                }
+
+                return this;
+            }
+        }
+
+        public class StateSkill2 : IState
+        {
+            float sk2AnimDuration;
+            float elapsedTime;
+
+            // Character.Ability.Data.SkillData 에서 데미지 받아서
+            public void OperateEnter(PlayerController p)
+            {
+                p.rb.velocity = Vector3.zero;
+                p.anim.SetTrigger("Skill2");
+                elapsedTime = 0f;
+                sk2AnimDuration = p.sk2Clip.length;
+                p.mp -= 10;
+            }
+
+            public void OperateUpdate(PlayerController p)
+            {
+                elapsedTime += Time.deltaTime;
+                // 검 휘두르자 마자 생성되도록
+                if (elapsedTime >= sk2AnimDuration - 2f)
+                {
+                    p.skill2.gameObject.SetActive(true);
+                    p.skill2.transform.position = p.transform.position + Camera.main.transform.forward * 2f;
+                }
+    }
+
+            public void OperateExit(PlayerController p)
+            {
+                p.skill2.gameObject.SetActive(false);
+            }
+
+            public IState InputHandle(PlayerController p)
+            {
+                if (elapsedTime >= sk2AnimDuration)
+                {
+                    return p.dicState[PlayerState.Idle];
+                }
+
+                return this;
+            }
+        }
+
+
+        public class StateSkill3 : IState
+        {
+            float sk3AnimDuration;
+            float elapsedTime;
+            float moveSpeed = 3f;
+
+            public void OperateEnter(PlayerController p)
+            {
+                p.anim.SetTrigger("Skill3");
+                elapsedTime = 0f;
+                sk3AnimDuration = p.sk3Clip.length;
+                p.mp -= 10;
+            }
+
+            public void OperateUpdate(PlayerController p)
+            {
+                elapsedTime += Time.deltaTime;
+
+                // 애니메이션이 끝나기 1.3초 전까지 앞으로 움직임
+                if (sk3AnimDuration - 1.3f > elapsedTime)
+                {
+                    p.rb.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                }
+            }
+
+            public void OperateExit(PlayerController p)
+            {
+                p.skill3.gameObject.SetActive(false);
+            }
+
+            public IState InputHandle(PlayerController p)
+            {
+                if (elapsedTime >= sk3AnimDuration)
+                {
+                    return p.dicState[PlayerState.Idle];
+                }
+
+                return this;
+            }
+        }
+
         public class StateDamaged : IState
         {
             float dmgAnimDuration;
@@ -236,6 +384,7 @@ namespace Player.State
             public void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
+                p.hp -= p.damaged;
                 p.anim.SetTrigger("Damaged");
                 elapsedTime = 0f;
                 dmgAnimDuration = p.dmgClip.length;
