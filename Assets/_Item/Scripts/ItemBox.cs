@@ -17,14 +17,14 @@ namespace Item.Inven
         [SerializeField] Image front;
         [SerializeField] Text count;
 
-        public void FillBoxWithItem(Item item)
+        public void FillBoxWithItem(InvenItem item)
         {
             box.interactable = true;
             back.enabled = true;
             front.enabled = true;
-            front.sprite = item.Data.image;
+            front.sprite = item.Data.itemImage;
         }
-        public void FillBoxWithStackableItem(Item item, int num)
+        public void FillBoxWithStackableItem(InvenItem item, int num)
         {
             FillBoxWithItem(item);
 

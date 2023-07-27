@@ -8,7 +8,7 @@ namespace Item.Data
     public abstract class ItemData : ScriptableObject
     {
         [Header("Info")]
-        public Sprite image;
+        public Sprite itemImage;
         public EItemType itemType;
         public int itemNumber;
         public string itemName;

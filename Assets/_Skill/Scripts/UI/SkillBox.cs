@@ -2,21 +2,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Character.Ability.Data;
+using Public;
 
 namespace Character.Ability.UI
 {
     public class SkillBox : MonoBehaviour
     {
+        Skill skill;
+        [SerializeField] GameEvent clickEvent;
+        [SerializeField] SkillDTO dto;
+
         [Header("Component")]
         [SerializeField] Button box;
         [SerializeField] Image skillImage;
         [SerializeField] TMP_Text nameTMP;
         [SerializeField] TMP_Text levelTMP;
 
-        public void FillBoxWithSkill(SkillData data, int level)
+        public void FillBoxWithSkill(Skill skill, int level)
         {
-            skillImage.sprite = data.skillImage;
-            nameTMP.text = data.skillName;
+            this.skill = skill;
+
+            skillImage.sprite = skill.Data.skillImage;
+            nameTMP.text = skill.Data.skillName;
             levelTMP.text = level.ToString();
         }
         public void UpdateLevel(int level)
@@ -30,7 +37,8 @@ namespace Character.Ability.UI
 
         public void OnClick()
         {
-
+            dto.data = skill;
+            clickEvent.Raise();
         }
     }
 }
