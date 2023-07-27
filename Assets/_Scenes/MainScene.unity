@@ -1663,11 +1663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea31ddabb2fa7724788a9b383e7bf207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNumber: 0
   progressBar: {fileID: 561402610}
+  progressBarText: {fileID: 0}
   Image: {fileID: 0}
-  mainGame: {fileID: 2065585036}
-  lodingUi: {fileID: 251510838}
-  lodingCanEnD: {fileID: 251510839}
+  loadingUi: {fileID: 0}
+  loadingCanEnd: {fileID: 0}
 --- !u!1 &567458248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,9 +2157,9 @@ AudioSource:
   m_GameObject: {fileID: 627915269}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6331660097063008909, guid: 46c02bea2a24fae4fadcfe9a5739d0bc, type: 2}
   m_audioClip: {fileID: 8300000, guid: d9c525124eca8ef44b72add98c0f5bbb, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2250,13 +2251,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627915269}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38b5391bcccde0b479549240fa44ff35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSound: {fileID: 0}
-  bgList: []
+  effectSounds: []
+  bgmSounds:
+  - name: Login
+    clip: {fileID: 8300000, guid: d9c525124eca8ef44b72add98c0f5bbb, type: 3}
+  audioSourceBFM: {fileID: 627915270}
+  audioSourceEffects: []
+  playSoundName: []
 --- !u!4 &627915272
 Transform:
   m_ObjectHideFlags: 0
@@ -3806,11 +3812,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7274278088549793455, guid: 46c02bea2a24fae4fadcfe9a5739d0bc, type: 2}
+  OutputAudioMixerGroup: {fileID: 6331660097063008909, guid: 46c02bea2a24fae4fadcfe9a5739d0bc, type: 2}
   m_audioClip: {fileID: 8300000, guid: d9c525124eca8ef44b72add98c0f5bbb, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 1
