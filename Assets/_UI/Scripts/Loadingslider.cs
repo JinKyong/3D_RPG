@@ -12,10 +12,7 @@ namespace LoadingSlider
         [SerializeField] int sceneNumber = 0;
         [SerializeField] Slider progressBar;
         [SerializeField] TMP_Text progressBarText;
-        [SerializeField] Image Image;    // 검은화면
-
-        [SerializeField] GameObject loadingUi;
-        [SerializeField] CanvasGroup loadingCanEnd;
+        
 
    /*     private float loadingProgress = 0f;
         private float fillSpeed = 0.4f;
