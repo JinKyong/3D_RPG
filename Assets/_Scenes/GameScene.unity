@@ -41170,7 +41170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b5391bcccde0b479549240fa44ff35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiomixer: {fileID: 0}
+  audiomixer: {fileID: 24100000, guid: 46c02bea2a24fae4fadcfe9a5739d0bc, type: 2}
   volumeSlider: {fileID: 0}
   effectSounds: []
   bgmSounds:
