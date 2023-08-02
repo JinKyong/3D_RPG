@@ -22,8 +22,9 @@ namespace PlayerDataManager
 {
     public class PlayerData
     {
-        public string name;     // 플레이어 닉네임
-        public int level;       // 플레이어 레벨
+        public string name;       // 플레이어 닉네임
+        public int level = 1;     // 플레이어 레벨
+        public int coin = 100;    // 돈
     }
     
 
