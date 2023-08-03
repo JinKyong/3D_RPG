@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Ground
   - CloseBtn
-  - Enemy
-  - Weapon
-  - Skill1
   layers:
   - Default
   - TransparentFX

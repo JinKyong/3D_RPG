@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1623f54b59e4add4f8affe1dd09fd9b8
+=======
+guid: ea31ddabb2fa7724788a9b383e7bf207
+>>>>>>> parent of 6697833e (Merge pull request #11 from JinKyong/merge)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

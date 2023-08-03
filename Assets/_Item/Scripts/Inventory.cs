@@ -8,7 +8,7 @@ namespace Item.Inven
     {
         [Header("GameObject")]
         [SerializeField] Transform inventoryTR;
-        List<List<Item>> itemList;
+        List<List<InvenItem>> itemList;
 
         [Space]
         [Header("UI")]
@@ -18,9 +18,9 @@ namespace Item.Inven
 
         private void Start()
         {
-            itemList = new List<List<Item>>(3);
+            itemList = new List<List<InvenItem>>(3);
             for (int i = 0; i < 3; i++)
-                itemList.Add(new List<Item>()); 
+                itemList.Add(new List<InvenItem>()); 
             
             activeIndex = itemListUI.Count - 1;
             for (int i = 0; i < itemListUI.Count; i++)
@@ -29,7 +29,7 @@ namespace Item.Inven
                 else itemListUI[i].UnSelectList();
             }
         }
-        private int getIndexByItem(Item item, int index)
+        private int getIndexByItem(InvenItem item, int index)
         {
             for (int i = 0; i < itemList[index].Count; i++)
             {
@@ -45,13 +45,13 @@ namespace Item.Inven
 
             return -1;
         }
-        private void addItemToInventory(Item item, int invenNum)
+        private void addItemToInventory(InvenItem item, int invenNum)
         {
             //물리적 이동(GameObject)
             itemList[invenNum].Add(item);
             item.transform.SetParent(inventoryTR);
         }
-        public void AddItem(Item item)
+        public void AddItem(InvenItem item)
         {
             int invenNum = (int)item.Data.itemType;
             Stackable stb = item.GetComponent<Stackable>();

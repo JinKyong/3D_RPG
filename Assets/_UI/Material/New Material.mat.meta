@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: a651eeb89ed00184da7a98be73c24cf3
 NativeFormatImporter:
   externalObjects: {}
+<<<<<<< HEAD
   mainObjectFileID: 0
+=======
+  mainObjectFileID: 2100000
+>>>>>>> parent of 6697833e (Merge pull request #11 from JinKyong/merge)
   userData: 
   assetBundleName: 
   assetBundleVariant: 

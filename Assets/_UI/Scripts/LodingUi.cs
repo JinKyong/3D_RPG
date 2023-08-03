@@ -13,10 +13,10 @@ namespace LodingUi
         [SerializeField] CanvasGroup lodingCan;
         [SerializeField] CanvasGroup bgCan;
 
-    /*    private void Start()
+        private void Start()
         {
             StartCoroutine(FadeInCoroutine());
-        }*/
+        }
 
         public void PadeInButton()
         {
