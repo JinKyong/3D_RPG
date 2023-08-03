@@ -4,7 +4,7 @@ using Item.Inven;
 
 namespace Item
 {
-    public abstract class Consumable : InvenItem, IConsumable
+    public abstract class Consumable : Item, IConsumable
     {
         public override void Use()
         {
