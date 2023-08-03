@@ -3,7 +3,7 @@ using Item.Inven;
 
 namespace Item
 {
-    public abstract class Equipment : InvenItem, IEquiptable
+    public abstract class Equipment : Item, IEquiptable
     {
         public override void Use()
         {

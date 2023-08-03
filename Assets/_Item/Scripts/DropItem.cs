@@ -8,7 +8,7 @@ namespace Item
 {
     public class DropItem : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] InvenItem item;
+        [SerializeField] Item item;
         public void OnPointerClick(PointerEventData eventData)
         {
             Inventory.Instance.AddItem(item);
