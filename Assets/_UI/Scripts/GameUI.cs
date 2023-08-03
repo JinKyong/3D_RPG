@@ -4,33 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameUI : MonoBehaviour
+namespace gameUI
 {
-    [SerializeField] TMP_Text name;
-    [SerializeField] TMP_Text level;
-    [SerializeField] TMP_Text coin;
-
-
-    private void Start()
+    public class GameUI : MonoBehaviour
     {
-        name.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.name;
-        level.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
-        coin.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
-    }
-    public void LevelUp()
-    {
-        level.text = "레벨 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
-    }
-
-    public void CoinUp()
-    {
-        level.text = "코인 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
-    }
-    public void Save()
-    {
-
-        PlayerDataManager.PlayerDataManager.Instance.SaveData();
-    }
+        [SerializeField] TMP_Text name;
+        [SerializeField] TMP_Text level;
+        [SerializeField] TMP_Text coin;
 
 
-}
+        private void Start()
+        {
+            name.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.name;
+            level.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
+            coin.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
+        }
+        public void LevelUp()
+        {
+            level.text = "레벨 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
+        }
+
+        public void CoinUp()
+        {
+            level.text = "코인 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
+        }
+        public void Save()
+        {
+
+            PlayerDataManager.PlayerDataManager.Instance.SaveData();
+        }
+    }
+}    
