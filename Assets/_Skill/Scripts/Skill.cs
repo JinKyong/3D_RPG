@@ -20,7 +20,6 @@ namespace Character.Ability
             this.data = data;
         }
         public abstract void Use();
-        public abstract string GetDesc();
 
         public virtual bool LevelUp()
         {

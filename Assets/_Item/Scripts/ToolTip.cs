@@ -13,9 +13,9 @@ namespace Item.Inven
         int listNum;
         int itemNum;
 
-        public void Init(InvenItem item, int listNum, int itemNum)
+        public void Init(Item item, int listNum, int itemNum)
         {
-            itemImage.sprite = item.Data.itemImage;
+            itemImage.sprite = item.Data.image;
             itemDesc.text = item.Data.itemDesc;
 
             this.listNum = listNum;

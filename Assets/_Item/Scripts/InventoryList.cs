@@ -28,13 +28,13 @@ namespace Item.Inven
             categoryBtn.image.color = ButtonColor.UnSelect;
         }
 
-        public void AddItem(InvenItem item, int index)
+        public void AddItem(Item item, int index)
         {
             ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
 
             box.FillBoxWithItem(item);
         }
-        public void AddStackableItem(InvenItem item, int index)
+        public void AddStackableItem(Item item, int index)
         {
             Stackable stb = item.GetComponent<Stackable>();
             ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();
@@ -42,7 +42,7 @@ namespace Item.Inven
             stb.Plus();
             box.FillBoxWithStackableItem(item, stb.Count);
         }
-        public void AddStackToItem(InvenItem item, int index)
+        public void AddStackToItem(Item item, int index)
         {
             Stackable stb = item.GetComponent<Stackable>();
             ItemBox box = contentTR.GetChild(index).GetComponent<ItemBox>();

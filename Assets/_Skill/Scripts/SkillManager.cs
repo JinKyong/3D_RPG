@@ -6,54 +6,35 @@ using UnityEditor;
 using Character.Ability.Data;
 using Character.Ability.UI;
 using System.Linq;
-using Utils.Drag;
 
 namespace Character.Ability
 {
     public class SkillManager : Singleton<SkillManager>
     {
         [SerializeField] SkillList list;
-
-        [SerializeField] string dataPath;
-        [SerializeField] string namespaceName;
-        [SerializeField] string skillName;
+        public string dataPath;
 
         Dictionary<int, int> skillDict;
         int skillPoint;
         public int Point { get { return skillPoint; } }
 
+
         void Start()
         {
             skillDict = new Dictionary<int, int>();
             skillPoint = 0;
+            UpdateDataToDict(0, 5);
+            UpdateDataToDict(1, 2);
+            UpdateDataToDict(2, 5);
+            UpdateDataToDict(3, 8);
+            ResetData();
 
-
-            AddSkill(0);
-            AddSkill(1);
-
-            list.AddSkillData(transform.GetChild(0).GetComponent<Skill>(), 0);
+            list.AddSkillData(GetSkillDataByNum(0), skillDict[0]);
+            list.AddSkillData(GetSkillDataByNum(0), skillDict[0]);
+            list.AddSkillData(GetSkillDataByNum(0), skillDict[0]);
+            list.AddSkillData(GetSkillDataByNum(0), skillDict[0]);
         }
 
-        public void AddSkill(int num)
-        { 
-            //네임스페이스.이름 으로 해야 찾음
-            string componentName = namespaceName + skillName + num;
-            System.Type componentType = System.Type.GetType(componentName);
-
-            GameObject skillObj = new GameObject();
-            skillObj.name = skillName + num;
-            skillObj.transform.SetParent(transform);
-            skillObj.AddComponent(componentType);
-
-            Skill skill = skillObj.GetComponent<Skill>();
-            skill.Init(GetSkillDataByNum(num));
-        }
-
-        public SkillData GetSkillDataByNum(int num)
-        {
-            string path = dataPath + $"/SkillData{num}.asset";
-            return AssetDatabase.LoadAssetAtPath<SkillData>(path);
-        }
         public int GetLevelBySkillNum(int num)
         {
             if (skillDict.ContainsKey(num))
@@ -80,5 +61,10 @@ namespace Character.Ability
             }
         }
 
+        public SkillData GetSkillDataByNum(int num)
+        {
+            string path = dataPath + $"/SkillData{num}.asset";
+            return AssetDatabase.LoadAssetAtPath<SkillData>(path);
+        }
     }
 }
