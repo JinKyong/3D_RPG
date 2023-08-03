@@ -20,7 +20,7 @@ namespace LodingUi
 
         public void PadeInButton()
         {
-            /*lodinUi.SetActive(true);*/
+            lodinUi.SetActive(true);
             StartCoroutine(FadeInCoroutine());
         }
 
