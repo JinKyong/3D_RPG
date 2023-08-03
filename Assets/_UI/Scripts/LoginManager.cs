@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace Main.UI
+namespace LoginManager.UI
 {
     public class LoginManager : MonoBehaviour
     {
