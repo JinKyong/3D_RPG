@@ -18,7 +18,6 @@ namespace CharMove
         private Vector3 dir = Vector3.zero;
 
         private bool ground = false;
-        
 
         private void Start()
         {
@@ -27,13 +26,20 @@ namespace CharMove
         }
         private void Update()
         {
+        /*    Debug.DrawRay(transform.position, transform.forward * 10, Color.red);
+            if (Physics.Raycast(transform.position, transform.forward))
+            {
+                Debug.Log("Ãæµ¹");
+            }    */
+
             dir.x = Input.GetAxis("Horizontal");
             dir.z = Input.GetAxis("Vertical");
             dir.Normalize();
-            CheckGround();
+             CheckGround();
 
             if (Input.GetButtonDown("Jump") && ground) 
-            { 
+            {
+                Debug.Log("Á¡ÇÁ!");
                 Vector3 jumpPower = Vector3.up * jumpHeight;
                 rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
             }
@@ -51,8 +57,11 @@ namespace CharMove
 
             if (dir != Vector3.zero)
             {
-                if(Mathf.Sign(transform.forward.x) != Mathf.Sign(dir.x) || Mathf.Sign(transform.forward.z) != Mathf.Sign(dir.z))
+                if (Mathf.Sign(transform.forward.x) != Mathf.Sign(dir.x) || Mathf.Sign(transform.forward.z) != Mathf.Sign(dir.z))
 
+                {
+                    transform.Rotate(0, 1, 0);
+                }
                 transform.forward = Vector3.Lerp(transform.forward, dir, rotSpeed * Time.deltaTime);
             }
 
@@ -61,6 +70,7 @@ namespace CharMove
 
         void CheckGround()
         {
+            Debug.Log("¶¥!");
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, 0.4f, layer))
@@ -72,5 +82,6 @@ namespace CharMove
                 ground = false;
             }
         }
+        
     }
 }
