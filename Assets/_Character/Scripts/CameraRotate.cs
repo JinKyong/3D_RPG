@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Player.State;
 
-
-namespace Player.CamRotate
+namespace CamRotate
 {
     public class CameraRotate : MonoBehaviour
     {
-        public PlayerController player;
+        public State.PlayerController player;
         [SerializeField] float SensitivityX;
         [SerializeField] float SensitivityY;
 

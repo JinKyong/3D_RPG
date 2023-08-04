@@ -120,7 +120,7 @@ namespace Enemy.State
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Damage.DamageFactory.Instance.CreateTMP(pos, damage);
+                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
         }
 
@@ -135,7 +135,7 @@ namespace Enemy.State
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Damage.DamageFactory.Instance.CreateTMP(pos, damage);
+                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
 
         }

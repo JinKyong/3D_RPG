@@ -6,4 +6,5 @@ public class Skill1 : MonoBehaviour
 {
     public int weaponDamage = 40;
 
+
 }

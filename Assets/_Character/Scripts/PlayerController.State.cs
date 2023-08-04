@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.State
+namespace State
 {
     public partial class PlayerController : MonoBehaviour
     {
-        public class StateIdle : IState
+        public class IdleState : IState<PlayerController>
         {
             public void OperateEnter(PlayerController p)
             {
@@ -26,8 +26,13 @@ namespace Player.State
             {                
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    return p.dicState[PlayerState.test];
+                }
+
                 if (p.moveInput())
                 {
                     return p.dicState[PlayerState.Run];
@@ -59,10 +64,9 @@ namespace Player.State
 
                 return this;
             }
-
         }
 
-        public class StateRun : IState
+        public class RunState : IState<PlayerController>
         {
             float moveSpeed = 10f;
 
@@ -81,7 +85,7 @@ namespace Player.State
 
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 float h = Input.GetAxis("Horizontal");
                 float v = Input.GetAxis("Vertical");
@@ -113,7 +117,7 @@ namespace Player.State
             }
         }
 
-        public class StateJump : IState
+        public class JumpState : IState<PlayerController>
         {
             float jumpPower = 6f;
             float jumpMoveSpeed = 6f;
@@ -135,7 +139,7 @@ namespace Player.State
    
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {  
                 float v = Input.GetAxis("Vertical");
 
@@ -156,7 +160,7 @@ namespace Player.State
             }
         }
 
-        public class StateFall : IState
+        public class FallState : IState<PlayerController>
         {
             float fallMoveSpeed = 6f;
             public void OperateEnter(PlayerController p)
@@ -178,7 +182,7 @@ namespace Player.State
                 p.anim.SetBool("Fall", false);
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 float v = Input.GetAxis("Vertical");
 
@@ -199,7 +203,7 @@ namespace Player.State
             }
         }
 
-        public class StateAttack : IState
+        public class AttackState : IState<PlayerController>
         {    
             float atkAnimDuration;
             float elapsedTime;
@@ -224,7 +228,7 @@ namespace Player.State
 
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.bDamaged)
                 {
@@ -240,11 +244,34 @@ namespace Player.State
             }
         }
 
-        public class StateSkill1 : IState
+        public class TestSkillState : IState<PlayerController>
+        {
+            public IState<PlayerController> InputHandle(PlayerController t)
+            {
+                return this;
+            }
+
+            public void OperateEnter(PlayerController t)
+            {
+                Debug.Log(t.testState.name);
+                Debug.Log(t.testClip);
+                t.controller.SetStateEffectiveMotion(t.testState, t.testClip);
+                t.anim.SetBool("testSkill", true);
+            }
+
+            public void OperateExit(PlayerController t)
+            {
+            }
+
+            public void OperateUpdate(PlayerController t)
+            {
+            }
+        }
+
+        public class Skill1State : IState<PlayerController>
         {
             float sk1AnimDuration;
             float elapsedTime;
-            bool bsk1Finish; 
 
             public void OperateEnter(PlayerController p)
             {
@@ -258,17 +285,6 @@ namespace Player.State
             public void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
-                // 애니메이션 끝나면 particleSystem 위치시키기
-                if (elapsedTime >= sk1AnimDuration + 0.3f)
-                {
-                    // 얘는 setactive 말고 풀에다가 넣고 2개는 써야할듯
-                    p.skill1.gameObject.SetActive(true);
-                    p.skill1.transform.position = new Vector3
-                        (p.transform.position.x + Camera.main.transform.forward.x * 20f,
-                        0,
-                        p.transform.position.z + Camera.main.transform.forward.z * 20f);
-                    bsk1Finish = true;
-                }
             }
 
             public void OperateExit(PlayerController p)
@@ -276,15 +292,20 @@ namespace Player.State
                 
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.bDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                else if (bsk1Finish)
+                // 주문 소환 애니메이션 끝나면 particleSystem 위치시키기
+                else if (elapsedTime >= sk1AnimDuration)
                 {
-                    bsk1Finish = false;
+                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
+                        0f,
+                        p.transform.position.z + Camera.main.transform.forward.z * 20f);
+
+                    Player.Skill.MeteorFactory.Instance.CreateMeteor(pos);
                     return p.dicState[PlayerState.Idle];
                 }
 
@@ -292,7 +313,7 @@ namespace Player.State
             }
         }
 
-        public class StateSkill2 : IState
+        public class Skill2State : IState<PlayerController>
         {
             float sk2AnimDuration;
             float elapsedTime;
@@ -323,7 +344,7 @@ namespace Player.State
                 p.skill2.gameObject.SetActive(false);
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 if (elapsedTime >= sk2AnimDuration)
                 {
@@ -335,11 +356,11 @@ namespace Player.State
         }
 
 
-        public class StateSkill3 : IState
+        public class Skill3State : IState<PlayerController>
         {
             float sk3AnimDuration;
             float elapsedTime;
-            float moveSpeed = 3f;
+            float moveSpeed = 2f;
 
             public void OperateEnter(PlayerController p)
             {
@@ -365,9 +386,10 @@ namespace Player.State
                 p.skill3.gameObject.SetActive(false);
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
-                if (elapsedTime >= sk3AnimDuration)
+                // 스킬 시전을 조금 빠르게 조절해서 0.5f 정도 뺐음
+                if (elapsedTime >= sk3AnimDuration - 0.7f)
                 {
                     return p.dicState[PlayerState.Idle];
                 }
@@ -376,7 +398,7 @@ namespace Player.State
             }
         }
 
-        public class StateDamaged : IState
+        public class DamagedState : IState<PlayerController>
         {
             float dmgAnimDuration;
             float elapsedTime;
@@ -399,7 +421,7 @@ namespace Player.State
             {
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.hpSlider.value <= 0)
                 {
@@ -414,10 +436,11 @@ namespace Player.State
                 return this;
             }
         }
-        public class StateDead : IState
+        public class DeadState : IState<PlayerController>
         {
             public void OperateEnter(PlayerController p)
             {
+                p.anim.SetBool("Dead", true);
                 p.rb.velocity = Vector3.zero;
             }
 
@@ -429,7 +452,7 @@ namespace Player.State
             {
             }
 
-            public IState InputHandle(PlayerController p)
+            public IState<PlayerController> InputHandle(PlayerController p)
             {
                 return this;
             }

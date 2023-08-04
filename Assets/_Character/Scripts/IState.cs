@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.State
+namespace State
 {
-    public interface IState
+    public interface IState<T>
     {
-        void OperateEnter(PlayerController p);
-        void OperateUpdate(PlayerController p);
-        void OperateExit(PlayerController p);
-        IState InputHandle(PlayerController p);
+        void OperateEnter(T t);
+        void OperateUpdate(T t);
+        void OperateExit(T t);
+        IState<T> InputHandle(T t);
     }
+
+/*    public abstract class State<T>
+    {
+        public abstract State<T> InputHandle(T t);
+        public virtual void OperateEnter(T t) { }
+        public virtual void OperateUpdate(T t) { }
+        public virtual void OperateExit(T t) { }
+    }*/
 }

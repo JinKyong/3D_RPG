@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Animations;
+using System.Linq;
+using Public;
 
-namespace Player.State
+namespace State
 {
     public partial class PlayerController : MonoBehaviour
     {
         Vector3 dir;
-        public Rigidbody rb;
-        public Animator anim;
+        Rigidbody rb;
+        Animator anim;
         public AnimationClip atkClip;
         public AnimationClip dmgClip;
 
         public AnimationClip sk1Clip;
-        [SerializeField] ParticleSystem skill1;
 
         public AnimationClip sk2Clip;
         [SerializeField] ParticleSystem skill2;
@@ -32,6 +33,7 @@ namespace Player.State
         [SerializeField] Slider mpSlider;
         bool bDamaged;
 
+
         #region 캐릭터 스탯
         int maxHp = 100;
         int hp = 100;
@@ -41,6 +43,12 @@ namespace Player.State
         // 공격받은 데미지
         int damaged;
         #endregion
+
+
+        //test
+        AnimatorController controller;
+        AnimatorState testState;
+        public AnimationClip testClip;
 
         private enum PlayerState
         {
@@ -54,13 +62,14 @@ namespace Player.State
             Skill3,
             Damaged,
             Dead,
+            test
         }
 
-        IState state;
+       IState<PlayerController> state;
 
         // state들을 보관하는 딕셔너리 생성
-        private Dictionary<PlayerState, IState> dicState =
-            new Dictionary<PlayerState, IState>();
+        private Dictionary<PlayerState, IState<PlayerController>> dicState =
+            new Dictionary<PlayerState, IState<PlayerController>>();
 
         private void Start()
         {
@@ -68,16 +77,16 @@ namespace Player.State
             anim = GetComponentInChildren<Animator>();
 
             // 상태 생성
-            IState idle = new StateIdle();
-            IState run = new StateRun();
-            IState jump = new StateJump();
-            IState fall = new StateFall();
-            IState attack = new StateAttack();
-            IState skill1 = new StateSkill1();
-            IState skill2 = new StateSkill2();
-            IState skill3 = new StateSkill3();
-            IState damaged = new StateDamaged();
-            IState dead = new StateDead();
+            IState<PlayerController> idle = new IdleState();
+            IState<PlayerController> run = new RunState();
+            IState<PlayerController> jump = new JumpState();
+            IState<PlayerController> fall = new FallState();
+            IState<PlayerController> attack = new AttackState();
+            IState<PlayerController> skill1 = new Skill1State();
+            IState<PlayerController> skill2 = new Skill2State();
+            IState<PlayerController> skill3 = new Skill3State();
+            IState<PlayerController> damaged = new DamagedState();
+            IState<PlayerController> dead = new DeadState();
 
             dicState.Add(PlayerState.Idle, idle);
             dicState.Add(PlayerState.Run, run);
@@ -94,17 +103,22 @@ namespace Player.State
             state = idle;
             hpSlider.value = (float)hp / (float)maxHp;
             mpSlider.value = (float)mp / (float)maxMp;
+
+            //test
+            controller = anim.runtimeAnimatorController as AnimatorController;
+            testState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("testSkill")).state;
+            IState<PlayerController> skill = new TestSkillState();
+            dicState.Add(PlayerState.test, skill);
         }
 
         private void Update()
         {
             pStateText.text = state.ToString();
-            IState newState = state.InputHandle(this);
+            IState<PlayerController> newState = state.InputHandle(this);
             if (newState == state )
             {
                 return;
             }
-
             state.OperateExit(this);
             state = newState;
             state.OperateEnter(this);
@@ -120,12 +134,31 @@ namespace Player.State
             state.OperateUpdate(this);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy0"))
             {
                 bDamaged = true;
-                damaged = collision.gameObject.GetComponent<Enemy.State.EnemyController>().damage;
+                damaged = other.GetComponentInParent<Enemy0>().damage;
+            }
+            else if (other.CompareTag("EnemyBoss"))
+            {
+                bDamaged = true;
+                damaged = other.GetComponentInParent<EnemyBoss>().axeDamage;
+            }
+        }
+
+        private void OnParticleCollision(GameObject other)
+        {
+            if (other.CompareTag("Flame"))
+            {
+                bDamaged = true;
+                damaged = other.GetComponentInParent<EnemyBoss>().flameDamage;
+            }
+            else if (other.CompareTag("Tornado"))
+            {
+                bDamaged = true;
+                damaged = other.GetComponentInParent<EnemyBoss>().tornadoDamage;
             }
         }
 
