@@ -19,11 +19,16 @@ namespace Character.Ability
         {
             this.data = data;
         }
-        public abstract void Use();
+        public abstract bool Use();
         public abstract string GetDesc();
 
         public virtual bool LevelUp()
         {
+            if(level < Data.maxLevel)
+            {
+                level++;
+                return true;
+            }
             return false;
         }
     }

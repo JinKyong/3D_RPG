@@ -31,6 +31,7 @@ MonoBehaviour:
   - 20
   - 50
   - 100
+  range: 0
   precast: 0
   postcast: 1.5
-  effect: {fileID: 0}
+  effect: {fileID: 8293749634076057715, guid: 89a07901d677d0445a92031dbde98c17, type: 3}

@@ -22,12 +22,14 @@ namespace Character.Ability.Data
         public float[] value;
         public float[] duration;
         public float[] mana;
+        public float range;
         public float precast;
         public float postcast;
 
         [Header("Component")]
         [Space]
         public GameObject effect;
+        public AnimationClip animClip;
     }
 }
 

@@ -6,9 +6,11 @@ namespace Character.Ability
 {
     public class Skill1 : ActiveSkill
     {
-        public override void Use()
+        public override bool Use()
         {
             Debug.Log("Hello");
+
+            return false;
         }
         public override string GetDesc()
         {
