@@ -7,7 +7,7 @@ using UnityEditor.Animations;
 using System.Linq;
 using Public;
 
-namespace State
+namespace Character.State
 {
     public partial class PlayerController : MonoBehaviour
     {
@@ -32,6 +32,7 @@ namespace State
         [SerializeField] Slider hpSlider;
         [SerializeField] Slider mpSlider;
         bool bDamaged;
+        public bool IsDamaged { get; set; }
 
 
         #region 캐릭터 스탯
@@ -65,11 +66,11 @@ namespace State
             test
         }
 
-       IState<PlayerController> state;
+       State<PlayerController> state;
 
         // state들을 보관하는 딕셔너리 생성
-        private Dictionary<PlayerState, IState<PlayerController>> dicState =
-            new Dictionary<PlayerState, IState<PlayerController>>();
+        private Dictionary<PlayerState, State<PlayerController>> dicState =
+            new Dictionary<PlayerState, State<PlayerController>>();
 
         private void Start()
         {
@@ -77,16 +78,16 @@ namespace State
             anim = GetComponentInChildren<Animator>();
 
             // 상태 생성
-            IState<PlayerController> idle = new IdleState();
-            IState<PlayerController> run = new RunState();
-            IState<PlayerController> jump = new JumpState();
-            IState<PlayerController> fall = new FallState();
-            IState<PlayerController> attack = new AttackState();
-            IState<PlayerController> skill1 = new Skill1State();
-            IState<PlayerController> skill2 = new Skill2State();
-            IState<PlayerController> skill3 = new Skill3State();
-            IState<PlayerController> damaged = new DamagedState();
-            IState<PlayerController> dead = new DeadState();
+            State<PlayerController> idle = new IdleState();
+            State<PlayerController> run = new RunState();
+            State<PlayerController> jump = new JumpState();
+            State<PlayerController> fall = new FallState();
+            State<PlayerController> attack = new AttackState();
+            State<PlayerController> skill1 = new Skill1State();
+            State<PlayerController> skill2 = new Skill2State();
+            State<PlayerController> skill3 = new Skill3State();
+            State<PlayerController> damaged = new DamagedState();
+            State<PlayerController> dead = new DeadState();
 
             dicState.Add(PlayerState.Idle, idle);
             dicState.Add(PlayerState.Run, run);
@@ -107,14 +108,14 @@ namespace State
             //test
             controller = anim.runtimeAnimatorController as AnimatorController;
             testState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("testSkill")).state;
-            IState<PlayerController> skill = new TestSkillState();
+            State<PlayerController> skill = new TestSkillState();
             dicState.Add(PlayerState.test, skill);
         }
 
         private void Update()
         {
             pStateText.text = state.ToString();
-            IState<PlayerController> newState = state.InputHandle(this);
+            State<PlayerController> newState = state.InputHandle(this);
             if (newState == state )
             {
                 return;

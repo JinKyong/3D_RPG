@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace State
+namespace Character.State
 {
     public partial class PlayerController : MonoBehaviour
     {
-        public class IdleState : IState<PlayerController>
+        public class IdleState : State<PlayerController>
         {
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
 
@@ -17,16 +17,16 @@ namespace State
                 p.anim.SetFloat("VelocityZ", 0);
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {                
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -66,26 +66,26 @@ namespace State
             }
         }
 
-        public class RunState : IState<PlayerController>
+        public class RunState : State<PlayerController>
         {
             float moveSpeed = 10f;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
 
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 p.rb.transform.Translate(p.dir * moveSpeed * Time.deltaTime);
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
 
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 float h = Input.GetAxis("Horizontal");
                 float v = Input.GetAxis("Vertical");
@@ -117,29 +117,29 @@ namespace State
             }
         }
 
-        public class JumpState : IState<PlayerController>
+        public class JumpState : State<PlayerController>
         {
             float jumpPower = 6f;
             float jumpMoveSpeed = 6f;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetBool("Jump", true);
                 // Forcemode.Impulse 는 순간적으로 힘을 주어 점프가 약간 더 자연스럽다고는 함
                 p.rb.AddForce(new Vector3(0 , jumpPower, 0), ForceMode.Impulse);
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 p.rb.transform.Translate(p.dir * jumpMoveSpeed * Time.deltaTime);
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
    
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {  
                 float v = Input.GetAxis("Vertical");
 
@@ -160,10 +160,10 @@ namespace State
             }
         }
 
-        public class FallState : IState<PlayerController>
+        public class FallState : State<PlayerController>
         {
             float fallMoveSpeed = 6f;
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetBool("Fall", true);
                 Vector3 v = p.rb.velocity;
@@ -171,18 +171,18 @@ namespace State
                 p.rb.velocity = v;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 p.rb.transform.Translate(p.dir * fallMoveSpeed * Time.deltaTime);
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
                 p.anim.SetBool("Jump", false);
                 p.anim.SetBool("Fall", false);
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 float v = Input.GetAxis("Vertical");
 
@@ -203,12 +203,12 @@ namespace State
             }
         }
 
-        public class AttackState : IState<PlayerController>
+        public class AttackState : State<PlayerController>
         {    
             float atkAnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetFloat("VelocityX", 0);
@@ -218,17 +218,17 @@ namespace State
                 atkAnimDuration = p.atkClip.length;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
 
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.bDamaged)
                 {
@@ -244,14 +244,14 @@ namespace State
             }
         }
 
-        public class TestSkillState : IState<PlayerController>
+        public class TestSkillState : State<PlayerController>
         {
-            public IState<PlayerController> InputHandle(PlayerController t)
+            public override State<PlayerController> InputHandle(PlayerController t)
             {
                 return this;
             }
 
-            public void OperateEnter(PlayerController t)
+            public override void OperateEnter(PlayerController t)
             {
                 Debug.Log(t.testState.name);
                 Debug.Log(t.testClip);
@@ -259,21 +259,21 @@ namespace State
                 t.anim.SetBool("testSkill", true);
             }
 
-            public void OperateExit(PlayerController t)
+            public override void OperateExit(PlayerController t)
             {
             }
 
-            public void OperateUpdate(PlayerController t)
+            public override void OperateUpdate(PlayerController t)
             {
             }
         }
 
-        public class Skill1State : IState<PlayerController>
+        public class Skill1State : State<PlayerController>
         {
             float sk1AnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill1");
@@ -282,17 +282,17 @@ namespace State
                 p.mp -= 20;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
                 
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.bDamaged)
                 {
@@ -305,7 +305,6 @@ namespace State
                         0f,
                         p.transform.position.z + Camera.main.transform.forward.z * 20f);
 
-                    Player.Skill.MeteorFactory.Instance.CreateMeteor(pos);
                     return p.dicState[PlayerState.Idle];
                 }
 
@@ -313,13 +312,13 @@ namespace State
             }
         }
 
-        public class Skill2State : IState<PlayerController>
+        public class Skill2State : State<PlayerController>
         {
             float sk2AnimDuration;
             float elapsedTime;
 
             // Character.Ability.Data.SkillData 에서 데미지 받아서
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill2");
@@ -328,7 +327,7 @@ namespace State
                 p.mp -= 10;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
                 // 검 휘두르자 마자 생성되도록
@@ -339,12 +338,12 @@ namespace State
                 }
     }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
                 p.skill2.gameObject.SetActive(false);
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 if (elapsedTime >= sk2AnimDuration)
                 {
@@ -356,13 +355,13 @@ namespace State
         }
 
 
-        public class Skill3State : IState<PlayerController>
+        public class Skill3State : State<PlayerController>
         {
             float sk3AnimDuration;
             float elapsedTime;
             float moveSpeed = 2f;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetTrigger("Skill3");
                 elapsedTime = 0f;
@@ -370,7 +369,7 @@ namespace State
                 p.mp -= 10;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
 
@@ -381,12 +380,12 @@ namespace State
                 }
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
                 p.skill3.gameObject.SetActive(false);
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 // 스킬 시전을 조금 빠르게 조절해서 0.5f 정도 뺐음
                 if (elapsedTime >= sk3AnimDuration - 0.7f)
@@ -398,12 +397,12 @@ namespace State
             }
         }
 
-        public class DamagedState : IState<PlayerController>
+        public class DamagedState : State<PlayerController>
         {
             float dmgAnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.hp -= p.damaged;
@@ -412,16 +411,16 @@ namespace State
                 dmgAnimDuration = p.dmgClip.length;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 if (p.hpSlider.value <= 0)
                 {
@@ -436,23 +435,23 @@ namespace State
                 return this;
             }
         }
-        public class DeadState : IState<PlayerController>
+        public class DeadState : State<PlayerController>
         {
-            public void OperateEnter(PlayerController p)
+            public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetBool("Dead", true);
                 p.rb.velocity = Vector3.zero;
             }
 
-            public void OperateUpdate(PlayerController p)
+            public override void OperateUpdate(PlayerController p)
             {
             }
 
-            public void OperateExit(PlayerController p)
+            public override void OperateExit(PlayerController p)
             {
             }
 
-            public IState<PlayerController> InputHandle(PlayerController p)
+            public override State<PlayerController> InputHandle(PlayerController p)
             {
                 return this;
             }

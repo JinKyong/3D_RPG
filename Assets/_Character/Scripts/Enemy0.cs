@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-namespace State
+namespace Character
 {
     public partial class Enemy0 : MonoBehaviour
     {
@@ -43,12 +43,12 @@ namespace State
             Dead,
         }
 
-        IState<Enemy0> eState;
+        State<Enemy0> eState;
 
 
         // state들을 보관하는 딕셔너리 생성
-        private Dictionary<EnemyState, IState<Enemy0>> dicState =
-            new Dictionary<EnemyState, IState<Enemy0>>();
+        private Dictionary<EnemyState, State<Enemy0>> dicState =
+            new Dictionary<EnemyState, State<Enemy0>>();
 
 
         private void Start()
@@ -61,12 +61,12 @@ namespace State
             hpSlider = GetComponentInChildren<Slider>();
 
             // 상태 생성
-            IState<Enemy0> idle = new IdleState();
-            IState<Enemy0> move = new ChaseState();
-            IState<Enemy0> attack = new AttackState();
-            IState<Enemy0> damaged = new DamagedState();
-            IState<Enemy0> getReturn = new ReturnState();
-            IState<Enemy0> dead = new DeadState();
+            State<Enemy0> idle = new IdleState();
+            State<Enemy0> move = new ChaseState();
+            State<Enemy0> attack = new AttackState();
+            State<Enemy0> damaged = new DamagedState();
+            State<Enemy0> getReturn = new ReturnState();
+            State<Enemy0> dead = new DeadState();
 
             dicState.Add(EnemyState.Idle, idle);
             dicState.Add(EnemyState.Move, move);
@@ -88,7 +88,7 @@ namespace State
         private void Update()
         {
             eStateText.text = eState.ToString();
-            IState<Enemy0> newState = eState.InputHandle(this);
+            State<Enemy0> newState = eState.InputHandle(this);
             if (newState == eState)
             {
                 return;
@@ -126,7 +126,7 @@ namespace State
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
+                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
         }
 
@@ -139,13 +139,11 @@ namespace State
             else if (other.CompareTag("Skill1"))
             {
                 bDamaged = true;
-                int damage = other.GetComponent<Skill1>().weaponDamage;
-                hp -= damage;
 
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
+                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
             
         }

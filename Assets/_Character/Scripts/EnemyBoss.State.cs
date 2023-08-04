@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Public;
 
-namespace State
+namespace Character
 {
     public partial class EnemyBoss : MonoBehaviour
     {
-        public class IdleState : IState<EnemyBoss>
+        public class IdleState : State<EnemyBoss>
         {
             float findDistance = 16f;
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.bDamaged)
                 {
@@ -37,7 +37,7 @@ namespace State
             }
         }
 
-        public class ChaseState : IState<EnemyBoss>
+        public class ChaseState : State<EnemyBoss>
         {
             float AxeAtkDist = 2f;
             float roarAtkDist = 12f;
@@ -46,12 +46,24 @@ namespace State
             float moveSpeed = 7f;
             Vector3 dir;
 
-            public void OperateEnter(EnemyBoss b)
+            AnimationClip clip;
+
+            public override void OperateEnter(EnemyBoss b)
             {
+                if (clip == null)
+                {
+
+                }
+
                 b.anim.SetBool("Move", true);
+                foreach (var c in b.anim.GetCurrentAnimatorClipInfo(0))
+                    Debug.Log(c);
+
+                
+
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 // 플레이어 쪽으로 방향 틀고 이동(플레이어와 보스의 y축 높이값이 다르므로 맞춰줌)
                 // dir은 월드 좌표고 translate은 로컬 좌표 기준으로 앞으로 움직이므로 같이 사용 불가
@@ -60,11 +72,11 @@ namespace State
                 b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             { 
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.bDamaged)
                 {
@@ -92,28 +104,28 @@ namespace State
             }
         }
 
-        public class AxeAtkState : IState<EnemyBoss>
+        public class AxeAtkState : State<EnemyBoss>
         {
             float atkAnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("AxeAttack");
                 elapsedTime = 0f;
                 atkAnimDuration = b.axeAtkClip.length;
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.bDamaged)
                 {
@@ -130,13 +142,13 @@ namespace State
             }
         }
 
-        public class RoarAtkState : IState<EnemyBoss>
+        public class RoarAtkState : State<EnemyBoss>
         {
             float atkAnimDuration;
             float elapsedTime;
             Vector3 dir;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
                 atkAnimDuration = b.roarAtkClip.length;
                 elapsedTime = 0f;
@@ -145,22 +157,23 @@ namespace State
                 b.anim.SetTrigger("RoarAttack");
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime > atkAnimDuration / 3)
                 {
                     b.flame.SetActive(true);
+                    // Physics.OverlapBox
                 }
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
                 b.anim.SetBool("RoarAttack", false);
                 b.flame.SetActive(false);                    
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.bDamaged)
                 {
@@ -175,13 +188,13 @@ namespace State
             }
         }
 
-        public class TornadoAtkState : IState<EnemyBoss>
+        public class TornadoAtkState : State<EnemyBoss>
         {
             float elapsedTime;  
             float moveSpeed = 5f;
             Vector3 dir;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {             
                 b.anim.SetBool("TornadoAttack", true);
                 elapsedTime = 0f;                
@@ -189,7 +202,7 @@ namespace State
                 b.tornado.gameObject.SetActive(true);
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 elapsedTime += Time.deltaTime;
                 dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
@@ -197,13 +210,13 @@ namespace State
                 b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
                 b.anim.SetBool("TornadoAttack", false);
                 b.tornado.gameObject.SetActive(false);
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.bDamaged)
                 {
@@ -218,28 +231,28 @@ namespace State
             }
         }
 
-        public class DamagedState : IState<EnemyBoss>
+        public class DamagedState : State<EnemyBoss>
         {
             float dmgAnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("Damaged");
                 elapsedTime = 0f;
                 dmgAnimDuration = b.dmgClip.length;
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (b.hpSlider.value <= 0)
                 {
@@ -255,16 +268,16 @@ namespace State
             }
         }
 
-        public class ReturnState : IState<EnemyBoss>
+        public class ReturnState : State<EnemyBoss>
         {
             float moveSpeed = 7f;
             Vector3 dir;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 // 원래 위치로 방향 틀고 이동
                 if (Vector3.Distance(b.transform.position, b.originPos) > 1f)
@@ -275,14 +288,14 @@ namespace State
                 }
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
                 b.anim.SetBool("Move", false);
                 b.transform.position = b.originPos;
                 b.transform.rotation = b.originRot;
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (Vector3.Distance(b.transform.position, b.originPos) < 1f)
                 {
@@ -292,28 +305,28 @@ namespace State
             }
         }
 
-        public class DeadState : IState<EnemyBoss>
+        public class DeadState : State<EnemyBoss>
         {
             float deadAnimDuration;
             float elapsedTime;
 
-            public void OperateEnter(EnemyBoss b)
+            public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetBool("Dead", true);
                 elapsedTime = 0f;
                 deadAnimDuration = b.deadClip.length;
             }
 
-            public void OperateUpdate(EnemyBoss b)
+            public override void OperateUpdate(EnemyBoss b)
             {
                 elapsedTime += Time.deltaTime;
             }
 
-            public void OperateExit(EnemyBoss b)
+            public override void OperateExit(EnemyBoss b)
             {
             }
 
-            public IState<EnemyBoss> InputHandle(EnemyBoss b)
+            public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
                 if (elapsedTime >= deadAnimDuration)
                 {

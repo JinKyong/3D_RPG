@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Public;
 
-namespace Player.Skill
+namespace Damage
 {
     public class DamageFactory : Singleton<DamageFactory>
     {

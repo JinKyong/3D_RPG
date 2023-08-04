@@ -120,7 +120,7 @@ namespace Enemy.State
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
+                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
         }
 
@@ -129,13 +129,11 @@ namespace Enemy.State
             if (other.CompareTag("Skill1"))
             {
                 bDamaged = true;
-                int damage = other.GetComponent<Skill1>().weaponDamage;
-                hp -= damage;
 
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
                 pos.y += capsuleColider.height;
-                Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
+                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
             
         }
