@@ -89,7 +89,6 @@ namespace Character
             dicState.Add(EnemyBossState.Return, getReturn);
             dicState.Add(EnemyBossState.Dead, dead);
 
-            // 기본 상태 설정
             eState = idle;
             hpSlider.value = (float)hp / (float)maxHp;
 

@@ -7,7 +7,7 @@ namespace CamRotate
 {
     public class CameraRotate : MonoBehaviour
     {
-        public Character.Player player;
+        public Player player;
         [SerializeField] float SensitivityX;
         [SerializeField] float SensitivityY;
 

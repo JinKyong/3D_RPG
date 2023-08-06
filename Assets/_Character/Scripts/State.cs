@@ -6,8 +6,8 @@ namespace Character
 {
     public abstract class State<T>
     {
-        AnimationClip clip;
-        // public abstract void Init(T t);
+/*        AnimationClip clip;
+        public abstract void Init(T t);*/
 
         public abstract void OperateEnter(T t);
         public abstract void OperateUpdate(T t);

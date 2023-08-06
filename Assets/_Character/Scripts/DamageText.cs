@@ -29,7 +29,6 @@ public class DamageText : MonoBehaviour
         StartCoroutine(TextIntoPool());
     }
 
-    // 일정시간 지나면 오브젝트 풀에 넣기 - 코루틴으로
     IEnumerator TextIntoPool()    
     {
         yield return new WaitForSeconds(4f);
