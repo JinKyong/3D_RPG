@@ -114,7 +114,7 @@ namespace Character
                 }
                 else if (elapsedTime >= atkAnimDuration)
                 {
-                    return e.dicState[EnemyState.Move];
+                    return e.dicState[EnemyState.Idle];
                 }
 
                 return this;

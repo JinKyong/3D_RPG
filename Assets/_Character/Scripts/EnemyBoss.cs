@@ -12,7 +12,9 @@ namespace Character
         GameObject player;
         Rigidbody rb;
         Animator anim;
-        CapsuleCollider capsuleColider;
+        CapsuleCollider bodyColider;
+        [SerializeField] BoxCollider leftAxe;
+        [SerializeField] BoxCollider rightAxe;
 
         [SerializeField] TMP_Text eStateText;
         [SerializeField] AnimationClip axeAtkClip;
@@ -64,7 +66,7 @@ namespace Character
             player = GameObject.Find("Player");
             rb = GetComponent<Rigidbody>();
             anim = GetComponentInChildren<Animator>();
-            capsuleColider = GetComponent<CapsuleCollider>();
+            bodyColider = GetComponent<CapsuleCollider>();
 
             hpSlider = GetComponentInChildren<Slider>();
 
@@ -138,7 +140,7 @@ namespace Character
 
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
-                pos.y += capsuleColider.height;
+                pos.y += bodyColider.height;
             }
         }
 
@@ -154,7 +156,7 @@ namespace Character
 
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
                 Vector3 pos = transform.position;
-                pos.y += capsuleColider.height;
+                pos.y += bodyColider.height;
                 //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
             }
 

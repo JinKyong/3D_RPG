@@ -11,8 +11,6 @@ namespace Character.State
         {
             public override void OperateEnter(PlayerController p)
             {
-                p.rb.velocity = Vector3.zero;
-
                 p.anim.SetFloat("VelocityX", 0);
                 p.anim.SetFloat("VelocityZ", 0);
             }
@@ -407,6 +405,7 @@ namespace Character.State
                 p.rb.velocity = Vector3.zero;
                 p.hp -= p.damaged;
                 p.anim.SetTrigger("Damaged");
+                // p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
                 elapsedTime = 0f;
                 dmgAnimDuration = p.dmgClip.length;
             }
@@ -418,6 +417,7 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
+                // p.gameObject.layer = LayerMask.NameToLayer("Player");
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)

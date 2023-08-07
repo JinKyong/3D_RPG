@@ -112,6 +112,8 @@ namespace Character
             public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("AxeAttack");
+                b.leftAxe.enabled = true;
+                b.rightAxe.enabled = true;
                 elapsedTime = 0f;
                 atkAnimDuration = b.axeAtkClip.length;
             }
@@ -123,6 +125,8 @@ namespace Character
 
             public override void OperateExit(EnemyBoss b)
             {
+                b.leftAxe.enabled = false;
+                b.rightAxe.enabled = false;
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
@@ -134,9 +138,8 @@ namespace Character
                 // 애니메이션 너무 느려서 3배속 했으므로 클립의 시간/3
                 else if (elapsedTime > atkAnimDuration/3)
                 {
-                    return b.dicState[EnemyBossState.Chase];
+                    return b.dicState[EnemyBossState.Idle];
                 }
-
 
                 return this;
             }
@@ -181,7 +184,7 @@ namespace Character
                 }
                 else if (elapsedTime > atkAnimDuration)
                 {
-                    return b.dicState[EnemyBossState.Chase];
+                    return b.dicState[EnemyBossState.Idle];
                 }
 
                 return this;
@@ -224,7 +227,7 @@ namespace Character
                 }
                 else if (elapsedTime > 6f)
                 {
-                    return b.dicState[EnemyBossState.Chase];
+                    return b.dicState[EnemyBossState.Idle];
                 }
 
                 return this;
