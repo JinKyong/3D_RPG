@@ -1944,6 +1944,7 @@ GameObject:
   - component: {fileID: 385971895}
   - component: {fileID: 387844761}
   - component: {fileID: 114844658071678603}
+  - component: {fileID: 114844658071678604}
   m_Layer: 7
   m_Name: Spiral_01.1 Tornado Custom
   m_TagString: Untagged
@@ -21336,8 +21337,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7486420579589798341}
   - {fileID: 2145314520903616189}
+  - {fileID: 7486420579589798341}
   - {fileID: 738643854}
   - {fileID: 955286194}
   m_Father: {fileID: 0}
@@ -21720,9 +21721,6 @@ MonoBehaviour:
   hpSlider: {fileID: 696632616}
   maxHp: 100
   hp: 100
-  axeDamage: 5
-  flameDamage: 10
-  tornadoDamage: 5
 --- !u!1 &736719627
 GameObject:
   m_ObjectHideFlags: 0
@@ -21804,20 +21802,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
   m_PrefabInstance: {fileID: 349035570}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &738643858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362530208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b15bc932d6b7ac40ab8bac94933b6dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHand: {fileID: 931978900}
-  weaponDamage: 25
 --- !u!114 &738643860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22016,7 +22000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_TagString
-      value: Weapon
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1127450730860520516, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_RootOrder
@@ -22078,7 +22062,8 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2142021146967332986, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
 --- !u!1 &857160908
 GameObject:
@@ -23039,7 +23024,7 @@ GameObject:
   - component: {fileID: 476411014}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33684,6 +33669,19 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
+--- !u!114 &114844658071678604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371988977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!4 &127417883036076456
 Transform:
   m_ObjectHideFlags: 0
@@ -42457,6 +42455,7 @@ GameObject:
   - component: {fileID: 2145314520903616189}
   - component: {fileID: 2629628209194415401}
   - component: {fileID: 9159431107347760949}
+  - component: {fileID: 9159431107347760950}
   m_Layer: 0
   m_Name: Snow slash
   m_TagString: Untagged
@@ -42493,7 +42492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 560045813}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -30, y: -90, z: 180}
 --- !u!1 &2145706734194801522
 GameObject:
@@ -82270,7 +82269,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -85655,9 +85654,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -85832,7 +85831,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -85844,7 +85843,8 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -86836,9 +86836,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875809781067578949}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -0.128, y: -0.381, z: -0.35}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -9.313226e-10, y: 0.17364816, z: 2.3283064e-10, w: 0.9848078}
+  m_LocalPosition: {x: -0.12800014, y: -0.38099995, z: -0.3499998}
+  m_LocalScale: {x: 1.0000006, y: 0.99999994, z: 1.0000006}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6874306046304273137}
@@ -86907,6 +86907,7 @@ GameObject:
   - component: {fileID: 6874306046345982149}
   - component: {fileID: 6761920538024194351}
   - component: {fileID: 6749409735881933805}
+  - component: {fileID: 6875809780612848752}
   m_Layer: 7
   m_Name: Flames
   m_TagString: Flame
@@ -86914,6 +86915,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6875809780612848752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875809780612848751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &6875809780806618607
 GameObject:
   m_ObjectHideFlags: 0
@@ -87091,6 +87105,7 @@ GameObject:
   - component: {fileID: 7486420579589798341}
   - component: {fileID: 6800148490766518865}
   - component: {fileID: 377314984478996557}
+  - component: {fileID: 7486420579589798342}
   m_Layer: 0
   m_Name: Stone slash
   m_TagString: Untagged
@@ -87146,8 +87161,21 @@ Transform:
   - {fileID: 5604201304453428365}
   - {fileID: 7835755013813544714}
   m_Father: {fileID: 560045813}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 130}
+--- !u!114 &7486420579589798342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402055358796277872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
 --- !u!4 &7551399300801228745
 Transform:
   m_ObjectHideFlags: 0
@@ -92106,7 +92134,7 @@ GameObject:
   - component: {fileID: 1007503443}
   m_Layer: 7
   m_Name: Bear_4
-  m_TagString: Enemy0
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92454,6 +92482,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &9159431107347760950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060900178293495560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &9205307524059635095
 GameObject:
   m_ObjectHideFlags: 0

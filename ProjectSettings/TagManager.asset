@@ -7,10 +7,8 @@ TagManager:
   - Ground
   - Tornado
   - EnemyBoss
-  - Flame
   - Weapon
   - Enemy
-  - Enemy0
   layers:
   - Default
   - TransparentFX

@@ -30,7 +30,7 @@ namespace Character
                     return e.dicState[EnemyState.Move];
                 }
 
-                if (e.bDamaged)
+                if (e.IsDamaged)
                 {
                     return e.dicState[EnemyState.Damaged];
                 }
@@ -75,7 +75,7 @@ namespace Character
                     return e.dicState[EnemyState.Return];
                 }
 
-                if (e.bDamaged)
+                if (e.IsDamaged)
                 {
                     return e.dicState[EnemyState.Damaged];
                 }
@@ -102,7 +102,7 @@ namespace Character
 
             public override State<Enemy0> InputHandle(Enemy0 e)
             {
-                if (e.bDamaged)
+                if (e.IsDamaged)
                 {
                     return e.dicState[EnemyState.Damaged];
                 }
@@ -140,7 +140,7 @@ namespace Character
                 else if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_GetHit")
                     && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
                 {
-                    e.bDamaged = false;
+                    e.IsDamaged = false;
                     return e.dicState[EnemyState.Move];
                 }
 

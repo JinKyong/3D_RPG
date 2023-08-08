@@ -44,7 +44,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Attack];
                 }   
-                else if (p.bDamaged)
+                else if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -107,7 +107,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Attack];
                 }
-                else if (p.bDamaged)
+                else if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -146,7 +146,7 @@ namespace Character.State
                 dir.z = v;
                 p.dir = dir;
 
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -189,7 +189,7 @@ namespace Character.State
                 dir.z = v;
                 p.dir = dir;
 
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -223,7 +223,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -266,7 +266,6 @@ namespace Character.State
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill1");
-                p.mp -= 20;
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -279,7 +278,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -306,7 +305,6 @@ namespace Character.State
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill2");
-                p.mp -= 10;
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -341,7 +339,7 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetTrigger("Skill3");
-                p.mp -= 10;
+
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -374,7 +372,7 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
-                p.hp -= p.damaged;
+                // Player.Instance.Stat.runTimeHealth
                 p.anim.SetTrigger("Damaged");
                  p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
             }
@@ -396,7 +394,7 @@ namespace Character.State
                 }
                 else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
-                    p.bDamaged = false;
+                    p.IsDamaged = false;
                     return p.dicState[PlayerState.Idle];
                 }
 

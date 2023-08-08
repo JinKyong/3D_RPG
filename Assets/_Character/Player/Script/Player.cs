@@ -36,7 +36,7 @@ namespace Character
             MpText.text = $"Mp : {Stat.runTimeMana} / {Stat.runTimeMaxMana}";
         }
 
-        public void Hit()
+        public void Hurt()
         {
             playerController.IsDamaged = true;
         }

@@ -18,19 +18,7 @@ namespace Character.State
         [SerializeField] ParticleSystem skill2;
         [SerializeField] ParticleSystem skill3;
 
-        bool bDamaged;
         public bool IsDamaged { get; set; }
-
-
-        #region 캐릭터 스탯
-        int maxHp = 100;
-        int hp = 100;
-        int maxMp = 100;
-        int mp = 100;
-
-        // 공격받은 데미지
-        int damaged;
-        #endregion
 
         //test
         AnimatorController controller;
@@ -111,34 +99,6 @@ namespace Character.State
         private void FixedUpdate()
         {
             state.OperateUpdate(this);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Enemy0"))
-            {
-                bDamaged = true;
-                damaged = other.GetComponentInParent<Enemy0>().damage;
-            }
-            else if (other.CompareTag("EnemyBoss"))
-            {
-                bDamaged = true;
-                damaged = other.GetComponentInParent<EnemyBoss>().axeDamage;
-            }
-        }
-
-        private void OnParticleCollision(GameObject other)
-        {
-            if (other.CompareTag("Flame"))
-            {
-                bDamaged = true;
-                damaged = other.GetComponentInParent<EnemyBoss>().flameDamage;
-            }
-            else if (other.CompareTag("Tornado"))
-            {
-                bDamaged = true;
-                damaged = other.GetComponentInParent<EnemyBoss>().tornadoDamage;
-            }
         }
 
         private bool moveInput()

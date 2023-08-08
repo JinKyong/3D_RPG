@@ -25,14 +25,11 @@ namespace Character
 
         public Slider hpSlider;
 
-        bool bDamaged;
+        public bool IsDamaged { get; set; }
 
         #region Enemy 스탯
         [SerializeField] int maxHp = 100;
         [SerializeField] int hp = 100;
-        public int axeDamage = 5;
-        public int flameDamage = 10;
-        public int tornadoDamage = 5;
 
         #endregion
 
@@ -116,46 +113,15 @@ namespace Character
             eState.OperateUpdate(this);
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void GetDamage(int damage)
         {
             if (eState == dicState[EnemyBossState.Dead])
             {
                 return;
             }
 
-            if (other.CompareTag("Weapon"))
-            {
-                bDamaged = true;
-
-                // SwordAttack 스크립트는 애니메이터 때문에 unitychan 오브젝트에 있어야하는데
-                // 실제 trigger가 일어난 무기(손 자식 오브젝트에 위치되어 있음)보다 상위에 위치하므로
-                // GetComponentInParent 사용
-                int damage = other.GetComponentInParent<Item.Data.SwordAttack>().weaponDamage;
-                hp -= damage;
-
-                // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
-                Vector3 pos = transform.position;
-                pos.y += bodyColider.height;
-            }
+            IsDamaged = true;
+            hp -= damage;
         }
-
-        private void OnParticleCollision(GameObject other)
-        {
-            if (eState == dicState[EnemyBossState.Dead])
-            {
-                return;
-            }
-            else if (other.CompareTag("Skill1"))
-            {
-                bDamaged = true;                
-
-                // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
-                Vector3 pos = transform.position;
-                pos.y += bodyColider.height;
-                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
-            }
-
-        }
-
     }
 }

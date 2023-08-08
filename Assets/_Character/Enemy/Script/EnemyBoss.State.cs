@@ -24,7 +24,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -66,7 +66,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -114,7 +114,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -155,7 +155,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -198,7 +198,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -234,7 +234,7 @@ namespace Character
                 }
                 else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_GetHit") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f)
                 {
-                    b.bDamaged = false;
+                    b.IsDamaged = false;
                     return b.dicState[EnemyBossState.Chase];
                 }
 
