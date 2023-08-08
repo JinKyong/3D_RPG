@@ -4,6 +4,7 @@ using UnityEngine;
 using Public;
 using Character.State;
 
+
 namespace Character
 {
     public class Player : Singleton<Player>

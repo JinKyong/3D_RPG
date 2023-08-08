@@ -27,11 +27,12 @@ namespace Character.Ability
             skillDict = new Dictionary<int, int>();
             skillPoint = 0;
 
-
             AddSkill(0);
-            AddSkill(1);
+            //AddSkill(1);
 
-            list.AddSkillData(transform.GetChild(0).GetComponent<Skill>(), 0);
+            Skill skill = transform.GetChild(0).GetComponent<Skill>();
+            skill.LevelUp();
+            list.AddSkillData(skill);
         }
 
         public void AddSkill(int num)

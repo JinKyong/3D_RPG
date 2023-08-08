@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Character.Buff;
 
 namespace Character.Ability
 {
@@ -8,7 +6,7 @@ namespace Character.Ability
     {
         public override void Use()
         {
-            StartCoroutine(UseSkill());
+            BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Speed, this);
         }
         public override string GetDesc()
         {
@@ -16,14 +14,6 @@ namespace Character.Ability
                 data.mana[level],
                 data.duration[level],
                 data.value[level]);
-        }
-
-        IEnumerator UseSkill()
-        {
-            //player위치에 이펙트 생성
-            yield return new WaitForSeconds(data.precast);
-            //효과 발동
-            
         }
     }
 }

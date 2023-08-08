@@ -11,6 +11,11 @@ namespace Character.Ability.UI
         [SerializeField] GameObject skillBoxPrefab;
         [SerializeField] Transform contentTR;
 
+        public void AddSkillData(Skill skill)
+        {
+            SkillBox skillBox = Instantiate(skillBoxPrefab, contentTR).GetComponent<SkillBox>();
+            skillBox.FillBoxWithSkill(skill, skill.Level);
+        }
         public void AddSkillData(Skill skill, int level)
         {
             SkillBox skillBox = Instantiate(skillBoxPrefab, contentTR).GetComponent<SkillBox>();
