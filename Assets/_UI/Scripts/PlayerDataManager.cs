@@ -18,7 +18,7 @@ using System.IO;                 // ÀÎÇ² ¾Æ¿ôÇ²
 
 // ½½·Ôº°·Î ´Ù¸£°Ô ÀúÀå.
 
-namespace PlayerDataManager
+namespace DataManager
 {
     public class PlayerData
     {

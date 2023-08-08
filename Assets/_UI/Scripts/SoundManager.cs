@@ -9,6 +9,14 @@ namespace Soundmanager
 {
     public class SoundManager : Singleton<SoundManager>
     {
+        enum EScene
+        {
+            Main,
+            Game,
+            Village
+        }
+        EScene scene;
+
         [SerializeField] AudioMixer audiomixer;
         [SerializeField] Slider volumeSlider;
 
@@ -42,9 +50,26 @@ namespace Soundmanager
         }
         private void OnSceneChanged(Scene prevScene, Scene nextScene)
         {
-            switch (nextScene.buildIndex)
+            scene = EScene.Game;
+            switch (scene)
             {
-                case 0:
+                case EScene.Main:
+                case EScene.Game:
+                    PlayBGM("Login");
+                    break;
+                case EScene.Village:
+                    PlayBGM("Login");
+                    break;
+
+                default:
+                    //Debug.Log("잘못된 값이 들어왔습니다.");
+                    //예외처리
+                    break;
+            }
+
+           /* switch (nextScene.buildIndex)
+            {
+                case :
                     PlayBGM("Login");
                     break;
                 case 1:
@@ -56,7 +81,7 @@ namespace Soundmanager
                 case 3:
                     PlayBGM("Battle");
                     break;
-            }
+            }*/
         }
         private void OnDestroy()
         {

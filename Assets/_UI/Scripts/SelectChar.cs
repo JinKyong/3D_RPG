@@ -6,6 +6,10 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Public;
 using System.IO;
+using LodingUi;
+
+
+
 public class SelectChar : MonoBehaviour
 {
     [SerializeField] GameObject creat;    
@@ -18,13 +22,13 @@ public class SelectChar : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (File.Exists(PlayerDataManager.PlayerDataManager.Instance.path + $"{i}"))
+            if (File.Exists(DataManager.PlayerDataManager.Instance.path + $"{i}"))
             {
                 savefile[i] = true;
-                PlayerDataManager.PlayerDataManager.Instance.nowSlot = i;
-                PlayerDataManager.PlayerDataManager.Instance.LoadData();
-                slotText[i].text = PlayerDataManager.PlayerDataManager.Instance.nowPlayer.name;
-                PlayerDataManager.PlayerDataManager.Instance.DataClear();
+                DataManager.PlayerDataManager.Instance.nowSlot = i;
+                DataManager.PlayerDataManager.Instance.LoadData();
+                slotText[i].text = DataManager.PlayerDataManager.Instance.nowPlayer.name;
+                DataManager.PlayerDataManager.Instance.DataClear();
 
             }
             else
@@ -39,13 +43,14 @@ public class SelectChar : MonoBehaviour
     public void Slot(int number)
     {
         
-        PlayerDataManager.PlayerDataManager.Instance.nowSlot = number;
+        DataManager.PlayerDataManager.Instance.nowSlot = number;
         // 1. 저장된 데이터가 없을떄
 
         if (savefile[number])
         {
-            PlayerDataManager.PlayerDataManager.Instance.LoadData();
+            DataManager.PlayerDataManager.Instance.LoadData();
             GoGame();
+            
         }
         else
         {
@@ -61,14 +66,18 @@ public class SelectChar : MonoBehaviour
     }
     public void GoGame()
     {
-        if (!savefile[PlayerDataManager.PlayerDataManager.Instance.nowSlot])
+        if (!savefile[DataManager.PlayerDataManager.Instance.nowSlot])
         {
-            PlayerDataManager.PlayerDataManager.Instance.name = newPlyerName.text;
-            PlayerDataManager.PlayerDataManager.Instance.SaveData();
+            DataManager.PlayerDataManager.Instance.name = newPlyerName.text;
+            DataManager.PlayerDataManager.Instance.SaveData();
         }
         
-        SceneManager.LoadScene(2);
+        /*SceneManager.LoadScene(2);*/
     }
-
-  
+  /*  private void StartLoding()
+    {
+           Debug.Log("시작!");
+          GameObject.Find("LodingUI").GetComponent<LodingUi.LodingUi>().FadeInCoroutine();
+    }
+  */
 }

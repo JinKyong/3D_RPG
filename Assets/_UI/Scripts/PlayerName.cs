@@ -11,7 +11,7 @@ namespace PlayerName
         [SerializeField] TMP_Text name;
         private void Start()
         {
-            name.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.name;
+            name.text += DataManager.PlayerDataManager.Instance.nowPlayer.name;
             target = Camera.main.gameObject.transform;
         }
 
