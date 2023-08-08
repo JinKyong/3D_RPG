@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - CloseBtn
+  - Tornado
+  - EnemyBoss
+  - Flame
+  - Weapon
+  - Enemy
+  - Enemy0
   layers:
   - Default
   - TransparentFX
@@ -14,9 +19,9 @@ TagManager:
   - Water
   - UI
   - ground
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PlayerDamaged
   - 
   - 
   - 
