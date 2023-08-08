@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Public;
 using System.IO;
-using LodingUi;
+
 
 
 
@@ -28,7 +28,7 @@ public class SelectChar : MonoBehaviour
                 DataManager.PlayerDataManager.Instance.nowSlot = i;
                 DataManager.PlayerDataManager.Instance.LoadData();
                 slotText[i].text = DataManager.PlayerDataManager.Instance.nowPlayer.name;
-                DataManager.PlayerDataManager.Instance.DataClear();
+                
 
             }
             else
@@ -36,7 +36,7 @@ public class SelectChar : MonoBehaviour
                 slotText[i].text = "비어있음";
             }
         }
-        
+        DataManager.PlayerDataManager.Instance.DataClear();
     }
 
     // 슬롯이 4개. 그런데 어떻게 알맞은걸 가져올까?
@@ -49,7 +49,7 @@ public class SelectChar : MonoBehaviour
         if (savefile[number])
         {
             DataManager.PlayerDataManager.Instance.LoadData();
-            GoGame();
+            GoLoding();
             
         }
         else
@@ -64,15 +64,15 @@ public class SelectChar : MonoBehaviour
     {
         creat.gameObject.SetActive(true);
     }
-    public void GoGame()
+    public void GoLoding()
     {
         if (!savefile[DataManager.PlayerDataManager.Instance.nowSlot])
         {
-            DataManager.PlayerDataManager.Instance.name = newPlyerName.text;
+            DataManager.PlayerDataManager.Instance.nowPlayer.name = newPlyerName.text;
             DataManager.PlayerDataManager.Instance.SaveData();
         }
         
-        /*SceneManager.LoadScene(2);*/
+        SceneManager.LoadScene(1);
     }
   /*  private void StartLoding()
     {

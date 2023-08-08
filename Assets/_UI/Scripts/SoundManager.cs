@@ -12,13 +12,16 @@ namespace Soundmanager
         enum EScene
         {
             Main,
-            Game,
-            Village
+            loading,
+            Village,
+            Game
+           
         }
-        EScene scene;
+        /*EScene scene;*/
 
         [SerializeField] AudioMixer audiomixer;
         [SerializeField] Slider volumeSlider;
+        [SerializeField] Slider MasterSlider;
 
         [SerializeField] List<Sound> bgmSounds;
 
@@ -50,15 +53,21 @@ namespace Soundmanager
         }
         private void OnSceneChanged(Scene prevScene, Scene nextScene)
         {
-            scene = EScene.Game;
-            switch (scene)
-            {
-                case EScene.Main:
-                case EScene.Game:
+            
+            switch (nextScene.buildIndex)
+            {   
+                case (int)EScene.Main:
                     PlayBGM("Login");
                     break;
-                case EScene.Village:
-                    PlayBGM("Login");
+                case (int)EScene.loading:
+                    PlayBGM("Null");
+                    break;
+                   
+                case (int)EScene.Village:
+                    PlayBGM("Town");
+                    break;
+                case (int)EScene.Game:
+                    PlayBGM("Battle");
                     break;
 
                 default:
@@ -92,6 +101,12 @@ namespace Soundmanager
         {
             float value = volumeSlider.value;
             audiomixer.SetFloat("BGM", value);
+        }
+        public void SetMasterVolume()
+        {
+            float value = MasterSlider.value;
+            audiomixer.SetFloat("Master", value);
+
         }
 
         public void PlayBGM(string _name)

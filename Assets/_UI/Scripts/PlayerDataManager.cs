@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Public;
 using System.IO;                 // ¿Œ«≤ æ∆øÙ«≤
+using TMPro;
 
 
 

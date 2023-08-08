@@ -9,7 +9,7 @@ namespace Name
 {
     public class Name : MonoBehaviour
     {
-        [SerializeField] GameObject nickNameBar;
+        /*[SerializeField] GameObject nickNameBar;
         [SerializeField] GameObject playerGameObj;
         [SerializeField] GameObject playerInfoObj;
         [SerializeField] GameObject testObj;
@@ -87,5 +87,5 @@ namespace Name
         }
 
 
-    }
+    }*/}
 }
