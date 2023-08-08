@@ -6,5 +6,10 @@ namespace Character.Ability.Enum
         Passive = 0,
         Active,
     }
+    public enum EValueType
+    {
+        Absolute,
+        Multiple,
+    }
 
 }

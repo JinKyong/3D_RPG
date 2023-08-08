@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Character.Ability.Enum;
 
+
 namespace Character.Ability.Data
 {
     [CreateAssetMenu(fileName ="SkillData",
@@ -15,6 +16,7 @@ namespace Character.Ability.Data
         public string skillName;
         public string skillDesc;
         public ESkillType skillType;
+        public EValueType valueType;
 
         [Header("Stat")]
         [Space]

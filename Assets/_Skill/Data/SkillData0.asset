@@ -57,6 +57,6 @@ MonoBehaviour:
   - 55
   range: 0
   precast: 0
-  postcast: 1.5
+  postcast: 0
   effect: {fileID: 8293749634076057715, guid: 89a07901d677d0445a92031dbde98c17, type: 3}
   animClip: {fileID: 4243662151557984732, guid: 20349140a3cb83e4d883e1456c7783d5, type: 3}

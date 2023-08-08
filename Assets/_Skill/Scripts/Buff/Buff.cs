@@ -1,3 +1,4 @@
+using Character.Ability.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,13 @@ namespace Character.Buff
     {
         protected float duration;
         protected float value;
+        protected EValueType calType;
 
-        public void Init(float duration, float value)
+        public void Init(float duration, float value, EValueType calType)
         {
             this.duration = duration;
             this.value = value;
+            this.calType = calType;
 
             StartCoroutine(onUseBuff());
         }

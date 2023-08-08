@@ -19,7 +19,9 @@ namespace Character.Buff
         }
         private void Start()
         {
-            Buff buff = new BuffSpeed();
+            buffPrefabs = new Dictionary<EBuffType, Buff>();
+
+            Buff buff = GetComponentInChildren<BuffSpeed>();
             buffPrefabs.Add(EBuffType.Speed, buff);
         }
 
@@ -27,7 +29,7 @@ namespace Character.Buff
         {
             Buff buff = buffPrefabs[buffType];
             int level = skill.Level;
-            buff.Init(skill.Data.duration[level], skill.Data.value[level]);
+            buff.Init(skill.Data.duration[level], skill.Data.value[level], skill.Data.valueType);
         }
         //public void OnBuffByItem(EBuffType buffType, Item item)
     }

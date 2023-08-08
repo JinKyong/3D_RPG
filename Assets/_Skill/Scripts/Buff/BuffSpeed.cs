@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
+using Character.Ability.Enum;
 
 namespace Character.Buff
 {
@@ -8,11 +7,31 @@ namespace Character.Buff
     {
         protected override void onBuff()
         {
-            Player.Instance.Stat.runTimeSpeed += value;
+            switch (calType)
+            {
+                case EValueType.Absolute:
+                    Player.Instance.Stat.runTimeSpeed += value;
+                    break;
+                case EValueType.Multiple:
+                    Player.Instance.Stat.runTimeSpeed *= value;
+                    break;
+                default:
+                    break;
+            }
         }
         protected override void offBuff()
         {
-            Player.Instance.Stat.runTimeSpeed -= value;
+            switch (calType)
+            {
+                case EValueType.Absolute:
+                    Player.Instance.Stat.runTimeSpeed -= value;
+                    break;
+                case EValueType.Multiple:
+                    Player.Instance.Stat.runTimeSpeed *= 1 / value;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
