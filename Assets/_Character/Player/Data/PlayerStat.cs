@@ -9,10 +9,23 @@ namespace Character
     public class PlayerStat : ScriptableObject, ISerializationCallbackReceiver
     {
         //Initial Value
+        [Header("InitValue")]
         [SerializeField] float initHealth;
+        [SerializeField] float initMana;
+        [SerializeField] float initAttack;
+        [SerializeField] float initSpeed;
+
 
         //Runtime Value
+        [Space]
+        [Header("RuntimeValue")]
+        public float runTimeMaxHealth;
         public float runTimeHealth;
+        public float runTimeMaxMana;
+        public float runTimeMana;
+
+        public float runTimeAttack;
+        public float runTimeSpeed;
 
         public void OnBeforeSerialize()
         {
@@ -21,7 +34,13 @@ namespace Character
 
         public void OnAfterDeserialize()
         {
-            //runTimeHealth = initHealth;
+            runTimeMaxHealth = initHealth;
+            runTimeHealth = runTimeMaxHealth;
+            runTimeMaxMana = initMana;
+            runTimeMana = runTimeMaxMana;
+
+            runTimeAttack = initAttack;
+            runTimeSpeed = initSpeed;
         }
     }
 }

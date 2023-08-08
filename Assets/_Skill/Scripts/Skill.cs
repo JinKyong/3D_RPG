@@ -19,7 +19,7 @@ namespace Character.Ability
         {
             this.data = data;
         }
-        public abstract bool Use();
+        public abstract void Use();
         public abstract string GetDesc();
 
         public virtual bool LevelUp()

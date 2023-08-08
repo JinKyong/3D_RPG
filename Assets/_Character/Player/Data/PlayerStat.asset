@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0f14884a15d654ab1e09c2c592a1a8, type: 3}
   m_Name: PlayerStat
   m_EditorClassIdentifier: 
-  initHealth: 1000
-  runTimeHealth: 1000
+  initHealth: 300
+  initMana: 100
+  initAttack: 20
+  initSpeed: 5
+  runTimeMaxHealth: 300
+  runTimeHealth: 300
+  runTimeMaxMana: 100
+  runTimeMana: 100
+  runTimeAttack: 20
+  runTimeSpeed: 5
