@@ -202,28 +202,22 @@ namespace Character.State
         }
 
         public class AttackState : State<PlayerController>
-        {    
-            float atkAnimDuration;
-            float elapsedTime;
+        {        
 
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetFloat("VelocityX", 0);
                 p.anim.SetFloat("VelocityZ", 0);
-                p.anim.SetTrigger("Attack");
-                elapsedTime = 0f;
-                atkAnimDuration = p.atkClip.length;
+                p.anim.SetTrigger("Attack");    
             }
 
             public override void OperateUpdate(PlayerController p)
-            {
-                elapsedTime += Time.deltaTime;
+            { 
             }
 
             public override void OperateExit(PlayerController p)
             {
-
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -232,8 +226,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                // 공격 후 기본상태로 돌아가는 딜레이를 줄이기 위해 atkAnimDuration(1.9f) 에서 0.6f 정도 빼줌
-                else if (elapsedTime >= atkAnimDuration - 0.6f)
+                else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
                 {
                     return p.dicState[PlayerState.Idle];
                 }
@@ -268,26 +261,19 @@ namespace Character.State
 
         public class Skill1State : State<PlayerController>
         {
-            float sk1AnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill1");
-                elapsedTime = 0f;
-                sk1AnimDuration = p.sk1Clip.length;
                 p.mp -= 20;
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(PlayerController p)
-            {
-                
+            {                
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -296,12 +282,14 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                // 주문 소환 애니메이션 끝나면 particleSystem 위치시키기
-                else if (elapsedTime >= sk1AnimDuration)
+                // 소환 애니메이션 끝나면 particleSystem 위치시키기
+                // normalized 최대값이 1이 아니라 보간정도에 따라 다를 수 있다고함
+                else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill1")
+                    && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.75f)
                 {
-                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
+/*                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
                         0f,
-                        p.transform.position.z + Camera.main.transform.forward.z * 20f);
+                        p.transform.position.z + Camera.main.transform.forward.z * 20f);*/
 
                     return p.dicState[PlayerState.Idle];
                 }
@@ -312,29 +300,25 @@ namespace Character.State
 
         public class Skill2State : State<PlayerController>
         {
-            float sk2AnimDuration;
-            float elapsedTime;
-
             // Character.Ability.Data.SkillData 에서 데미지 받아서
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill2");
-                elapsedTime = 0f;
-                sk2AnimDuration = p.sk2Clip.length;
                 p.mp -= 10;
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                elapsedTime += Time.deltaTime;
-                // 검 휘두르자 마자 생성되도록
-                if (elapsedTime >= sk2AnimDuration - 2f)
+                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill2") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
                 {
                     p.skill2.gameObject.SetActive(true);
-                    p.skill2.transform.position = p.transform.position + Camera.main.transform.forward * 2f;
                 }
-    }
+
+
+                Debug.Log(p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+            }
 
             public override void OperateExit(PlayerController p)
             {
@@ -343,7 +327,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (elapsedTime >= sk2AnimDuration)
+                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill2") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
                     return p.dicState[PlayerState.Idle];
                 }
@@ -355,24 +339,17 @@ namespace Character.State
 
         public class Skill3State : State<PlayerController>
         {
-            float sk3AnimDuration;
-            float elapsedTime;
             float moveSpeed = 2f;
 
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetTrigger("Skill3");
-                elapsedTime = 0f;
-                sk3AnimDuration = p.sk3Clip.length;
                 p.mp -= 10;
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                elapsedTime += Time.deltaTime;
-
-                // 애니메이션이 끝나기 1.3초 전까지 앞으로 움직임
-                if (sk3AnimDuration - 1.3f > elapsedTime)
+                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill3") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.7f)
                 {
                     p.rb.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 }
@@ -385,8 +362,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                // 스킬 시전을 조금 빠르게 조절해서 0.5f 정도 뺐음
-                if (elapsedTime >= sk3AnimDuration - 0.7f)
+                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill3") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
                 {
                     return p.dicState[PlayerState.Idle];
                 }
@@ -397,8 +373,6 @@ namespace Character.State
 
         public class DamagedState : State<PlayerController>
         {
-            float dmgAnimDuration;
-            float elapsedTime;
 
             public override void OperateEnter(PlayerController p)
             {
@@ -406,13 +380,10 @@ namespace Character.State
                 p.hp -= p.damaged;
                 p.anim.SetTrigger("Damaged");
                 // p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
-                elapsedTime = 0f;
-                dmgAnimDuration = p.dmgClip.length;
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(PlayerController p)
@@ -426,7 +397,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Dead];
                 }
-                else if (elapsedTime >= dmgAnimDuration)
+                else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
                     p.bDamaged = false;
                     return p.dicState[PlayerState.Idle];
@@ -456,6 +427,5 @@ namespace Character.State
                 return this;
             }
         }
-
     }
 }

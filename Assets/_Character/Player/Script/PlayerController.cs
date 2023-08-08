@@ -14,15 +14,8 @@ namespace Character.State
         Vector3 dir;
         Rigidbody rb;
         Animator anim;
-        public AnimationClip atkClip;
-        public AnimationClip dmgClip;
-
-        public AnimationClip sk1Clip;
-
-        public AnimationClip sk2Clip;
+        
         [SerializeField] ParticleSystem skill2;
-
-        public AnimationClip sk3Clip;
         [SerializeField] ParticleSystem skill3;
 
         [SerializeField] TMP_Text pStateText;

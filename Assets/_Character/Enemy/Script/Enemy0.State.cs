@@ -87,19 +87,17 @@ namespace Character
 
         public class AttackState : State<Enemy0>
         {
-            float atkAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(Enemy0 e)
             {
                 e.anim.SetTrigger("Attack");
-                elapsedTime = 0f;
-                atkAnimDuration = e.atkClip.length;
             }
 
             public override void OperateUpdate(Enemy0 e)
             {
-                elapsedTime += Time.deltaTime;
+                if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_Attack5"))
+                {
+                    Debug.Log(e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+                }
             }
 
             public override void OperateExit(Enemy0 e)
@@ -112,7 +110,8 @@ namespace Character
                 {
                     return e.dicState[EnemyState.Damaged];
                 }
-                else if (elapsedTime >= atkAnimDuration)
+                else if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_Attack5")
+                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
                     return e.dicState[EnemyState.Idle];
                 }
@@ -123,19 +122,13 @@ namespace Character
 
         public class DamagedState : State<Enemy0>
         {
-            float dmgAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(Enemy0 e)
             {
                 e.anim.SetTrigger("Damaged");
-                elapsedTime = 0f;
-                dmgAnimDuration = e.dmgClip.length;
             }
 
             public override void OperateUpdate(Enemy0 e)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(Enemy0 e)
@@ -148,7 +141,8 @@ namespace Character
                 {
                     return e.dicState[EnemyState.Dead];
                 }
-                else if (elapsedTime >= dmgAnimDuration)
+                else if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_GetHit")
+                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
                     e.bDamaged = false;
                     return e.dicState[EnemyState.Move];
@@ -197,19 +191,13 @@ namespace Character
 
         public class DeadState : State<Enemy0>
         {
-            float deadAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(Enemy0 e)
             {
                 e.anim.SetBool("Dead", true);
-                elapsedTime = 0f;                
-                deadAnimDuration = e.deadClip.length;
             }
 
             public override void OperateUpdate(Enemy0 e)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(Enemy0 e)
@@ -219,7 +207,8 @@ namespace Character
 
             public override State<Enemy0> InputHandle(Enemy0 e)
             {
-                if (elapsedTime >= deadAnimDuration)
+                if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_Death")
+                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
                     PoolManager.Instance.Push(e.gameObject);
                 }

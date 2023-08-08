@@ -15,9 +15,6 @@ namespace Character
         CapsuleCollider capsuleColider;
 
         [SerializeField] TMP_Text eStateText;
-        [SerializeField] AnimationClip atkClip;
-        [SerializeField] AnimationClip dmgClip;
-        [SerializeField] AnimationClip deadClip;
 
         Vector3 originPos;
         Quaternion originRot;
@@ -108,46 +105,39 @@ namespace Character
 
         private void OnTriggerEnter(Collider other)
         {
-            // 죽은 상태면 공격 감지 안함
             if (eState == dicState[EnemyState.Dead])
             {
                 return;
             }
-            else if (other.CompareTag("Weapon"))
-            {
-                bDamaged = true;
+            
+            bDamaged = true;
 
                 // SwordAttack 스크립트는 실제 trigger가 일어난 무기(손 자식 오브젝트에 위치되어 있음)보다
                 // 상위에 오브젝트에 위치하므로 GetComponentInParent 사용
                 // 애니메이션 이벤트 때문에 unitychan 오브젝트에 할당해야함
-                int damage = other.GetComponentInParent<Item.Data.SwordAttack>().weaponDamage;
-                hp -= damage;
+            hp -= damage;
 
                 // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
-                Vector3 pos = transform.position;
-                pos.y += capsuleColider.height;
+            Vector3 pos = transform.position;
+            pos.y += capsuleColider.height;
                 //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
-            }
+
         }
 
         private void OnParticleCollision(GameObject other)
         {
+            Debug.Log(other.name);
             if (eState == dicState[EnemyState.Dead])
             {
                 return;
             }
-            else if (other.CompareTag("Skill1"))
-            {
-                bDamaged = true;
 
-                // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
-                Vector3 pos = transform.position;
-                pos.y += capsuleColider.height;
-                //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);
-            }
-            
+            bDamaged = true;
+            // 현재 enemy pos에서 콜라이더의 높이만큼 더한 위치에 데미지 text 생성
+            Vector3 pos = transform.position;
+            pos.y += capsuleColider.height;
+            //Player.Skill.DamageFactory.Instance.CreateTMP(pos, damage);            
         }
-
     }
 }
 
