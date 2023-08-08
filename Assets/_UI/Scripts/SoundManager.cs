@@ -22,6 +22,7 @@ namespace Soundmanager
         [SerializeField] AudioMixer audiomixer;
         [SerializeField] Slider volumeSlider;
         [SerializeField] Slider MasterSlider;
+        [SerializeField] Toggle Mute;
 
         [SerializeField] List<Sound> bgmSounds;
 
@@ -38,6 +39,7 @@ namespace Soundmanager
 
         private void Awake()
         {
+            
             RegisterInstance();
         }
 
@@ -96,16 +98,26 @@ namespace Soundmanager
         {
             SceneManager.activeSceneChanged -= OnSceneChanged;
         }
-
+        
         public void SetVolume()
         {
             float value = volumeSlider.value;
             audiomixer.SetFloat("BGM", value);
         }
         public void SetMasterVolume()
-        {
+        {   
             float value = MasterSlider.value;
             audiomixer.SetFloat("Master", value);
+
+        }
+        public void SetMute(bool isOn, bool isOff)
+        {
+            
+            isOn = Mute.isOn;
+
+
+            /*bool Btn = anim.GetBool("VolumeBtn");
+            anim.SetBool("VolumeBtn", !Btn);*/
 
         }
 
