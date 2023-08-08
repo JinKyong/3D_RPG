@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEditor.Animations;
 using System.Linq;
+using TMPro;
 using Public;
 
 namespace Character.State
@@ -14,16 +13,11 @@ namespace Character.State
         Vector3 dir;
         Rigidbody rb;
         Animator anim;
-        
+
+        [SerializeField] TMP_Text pStateText;
         [SerializeField] ParticleSystem skill2;
         [SerializeField] ParticleSystem skill3;
 
-        [SerializeField] TMP_Text pStateText;
-        [SerializeField] TMP_Text HpText;
-        [SerializeField] TMP_Text MpText;
-
-        [SerializeField] Slider hpSlider;
-        [SerializeField] Slider mpSlider;
         bool bDamaged;
         public bool IsDamaged { get; set; }
 
@@ -38,11 +32,16 @@ namespace Character.State
         int damaged;
         #endregion
 
-
         //test
         AnimatorController controller;
         AnimatorState testState;
         public AnimationClip testClip;
+
+        State<PlayerController> state;
+
+        // state들을 보관하는 딕셔너리 생성
+        private Dictionary<PlayerState, State<PlayerController>> dicState =
+            new Dictionary<PlayerState, State<PlayerController>>();
 
         private enum PlayerState
         {
@@ -58,12 +57,6 @@ namespace Character.State
             Dead,
             test
         }
-
-       State<PlayerController> state;
-
-        // state들을 보관하는 딕셔너리 생성
-        private Dictionary<PlayerState, State<PlayerController>> dicState =
-            new Dictionary<PlayerState, State<PlayerController>>();
 
         private void Start()
         {
@@ -93,10 +86,7 @@ namespace Character.State
             dicState.Add(PlayerState.Damaged, damaged);
             dicState.Add(PlayerState.Dead, dead);
 
-            // 기본 상태 설정
             state = idle;
-            hpSlider.value = (float)hp / (float)maxHp;
-            mpSlider.value = (float)mp / (float)maxMp;
 
             //test
             controller = anim.runtimeAnimatorController as AnimatorController;
@@ -116,11 +106,6 @@ namespace Character.State
             state.OperateExit(this);
             state = newState;
             state.OperateEnter(this);
-
-            hpSlider.value = (float)hp / (float)maxHp;
-            mpSlider.value = (float)mp / (float)maxMp;
-            HpText.text = $"Hp : {hp} / {maxHp}";
-            MpText.text = $"Mp : {mp} / {maxMp}";
         }
 
         private void FixedUpdate()
@@ -162,47 +147,7 @@ namespace Character.State
             float v = Input.GetAxis("Vertical");
             dir = new Vector3(h, 0, v);
 
-            anim.SetFloat("VelocityX", h);
-            anim.SetFloat("VelocityZ", v);
-
             return dir != Vector3.zero;
         }
-
-
-
-        private bool jumpInput()
-        {
-            return Input.GetKeyDown(KeyCode.Space);
-        }
-
-        /*        public void OnMove(InputAction.CallbackContext context)
-                {
-                    Vector3 dInput = context.ReadValue<Vector3>();
-                    if (dInput != null)
-                    {                
-                        dir = Camera.main.transform.forward * dInput.z + Camera.main.transform.right * dInput.x;
-                        transform.forward = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
-
-                        ani.SetFloat("VelocityX", dInput.x);
-                        ani.SetFloat("VelocityZ", dInput.z);
-                    }
-                }
-
-                public void OnJump(InputAction.CallbackContext context)
-                {
-                    // Space 버튼이 눌리고 점프상태가 아니면 점프할 수 있도록 함
-                    if (context.performed)
-                    {
-                        ani.SetTrigger("isJumping");
-                        rb.AddForce(Vector3.up);
-                        Debug.Log("Jump");
-                    }
-                }
-
-                private void LateUpdate()
-                {
-                    rb.transform.position += dir * moveSpeed * Time.deltaTime;
-                }*/
-
     }
 }

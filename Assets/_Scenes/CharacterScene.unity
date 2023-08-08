@@ -1599,7 +1599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21263,9 +21263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eStateText: {fileID: 300464636}
-  atkClip: {fileID: 7400000, guid: a46b047d5f82cc843aaabb6a0235c683, type: 2}
-  dmgClip: {fileID: -6384886267529585648, guid: e009b06e60bb7a34ab1c435503be5c01, type: 3}
-  deadClip: {fileID: 5314583516329828454, guid: d4e01fbfd601a224e83e1bafb2b0a0b7, type: 3}
   hpSlider: {fileID: 397106336}
   maxHp: 100
   hp: 100
@@ -21339,6 +21336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7486420579589798341}
   - {fileID: 2145314520903616189}
   - {fileID: 738643854}
   - {fileID: 955286194}
@@ -21357,18 +21355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9213f5c38063e824b9014c998875a6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkClip: {fileID: 2564530799510993286, guid: 337a802e1a50ad746827a890f372c41e, type: 3}
-  dmgClip: {fileID: 7400000, guid: 6dd5b57ca7c0d48e4b3e9061e1c88d18, type: 3}
-  sk1Clip: {fileID: -6453055994092711997, guid: afb2e0e8e5b867f49ad94f4e813c3570, type: 3}
-  sk2Clip: {fileID: 7400000, guid: 02baf01c5c638e8499fd2db8b611e89a, type: 2}
-  skill2: {fileID: 6800148490766518865}
-  sk3Clip: {fileID: 7400000, guid: ce78a7bf322ad774d8b972865cb25c28, type: 2}
-  skill3: {fileID: 1379504315796101638, guid: 3407e378c048bb5438424b28c7740b48, type: 3}
   pStateText: {fileID: 863720986}
-  HpText: {fileID: 597101162}
-  MpText: {fileID: 2029315846}
-  hpSlider: {fileID: 1061049350}
-  mpSlider: {fileID: 156305927}
+  skill2: {fileID: 6800148490766518865}
+  skill3: {fileID: 1379504315796101638, guid: 3407e378c048bb5438424b28c7740b48, type: 3}
   testClip: {fileID: 0}
 --- !u!54 &560045817
 Rigidbody:
@@ -21412,7 +21401,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c910a188fc0d31940923cffc5c535efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStat: {fileID: 0}
+  playerStat: {fileID: 11400000, guid: 6b5326fc36d982c4eba56a098293952c, type: 2}
+  hpSlider: {fileID: 1061049350}
+  mpSlider: {fileID: 156305927}
+  HpText: {fileID: 597101162}
+  MpText: {fileID: 2029315846}
   playerController: {fileID: 560045814}
 --- !u!1 &597101160
 GameObject:
@@ -21722,11 +21715,6 @@ MonoBehaviour:
   leftAxe: {fileID: 4424846224976358}
   rightAxe: {fileID: 4461816109993208}
   eStateText: {fileID: 1226086968}
-  axeAtkClip: {fileID: 7400000, guid: 4dcc436cbcab86a46911286b1f1af99f, type: 2}
-  roarAtkClip: {fileID: 7400000, guid: 9e1544603b6a3a040a695a559ee86093, type: 3}
-  tornadoAtkClip: {fileID: 7400000, guid: bdde88fa31013a8499a8a1ec682bae38, type: 2}
-  dmgClip: {fileID: 7400000, guid: 639d9c4afd2eea04f963723726524a2a, type: 3}
-  deadClip: {fileID: 7400000, guid: 38f019500eaeaf442b3f82ec1af58ae8, type: 3}
   tornado: {fileID: 385971895}
   flame: {fileID: 6875809781067578949}
   hpSlider: {fileID: 696632616}
@@ -22478,7 +22466,7 @@ RectTransform:
   m_Children:
   - {fileID: 863720985}
   m_Father: {fileID: 560045813}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23534,8 +23522,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7486420579589798341}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42476,7 +42463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2107151538735931895
 GameObject:
   m_ObjectHideFlags: 0
@@ -42506,7 +42493,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 560045813}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -30, y: -90, z: 180}
 --- !u!1 &2145706734194801522
 GameObject:
@@ -82283,7 +82270,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.5
+      scalar: 8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -87149,8 +87136,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7402055358796277872}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9063079, w: 0.42261827}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9063079, w: 0.42261827}
+  m_LocalPosition: {x: 0, y: -1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87158,7 +87145,7 @@ Transform:
   - {fileID: 7971773671341340700}
   - {fileID: 5604201304453428365}
   - {fileID: 7835755013813544714}
-  m_Father: {fileID: 1550563431}
+  m_Father: {fileID: 560045813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 130}
 --- !u!4 &7551399300801228745

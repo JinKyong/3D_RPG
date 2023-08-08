@@ -17,11 +17,6 @@ namespace Character
         [SerializeField] BoxCollider rightAxe;
 
         [SerializeField] TMP_Text eStateText;
-        [SerializeField] AnimationClip axeAtkClip;
-        [SerializeField] AnimationClip roarAtkClip;
-        [SerializeField] AnimationClip tornadoAtkClip;
-        [SerializeField] AnimationClip dmgClip;
-        [SerializeField] AnimationClip deadClip;
         [SerializeField] ParticleSystem tornado;
         [SerializeField] GameObject flame;
 

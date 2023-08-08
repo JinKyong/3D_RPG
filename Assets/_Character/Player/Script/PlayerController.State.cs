@@ -2,6 +2,7 @@ using Public;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Character;
 
 namespace Character.State
 {
@@ -26,7 +27,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.T))
                 {
                     return p.dicState[PlayerState.test];
                 }
@@ -35,7 +36,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Run];
                 }
-                else if (p.jumpInput())
+                else if (Input.GetKeyDown(KeyCode.Space))
                 {
                     return p.dicState[PlayerState.Jump];
                 }
@@ -314,10 +315,6 @@ namespace Character.State
                 {
                     p.skill2.gameObject.SetActive(true);
                 }
-
-
-                Debug.Log(p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
             }
 
             public override void OperateExit(PlayerController p)
@@ -379,7 +376,7 @@ namespace Character.State
                 p.rb.velocity = Vector3.zero;
                 p.hp -= p.damaged;
                 p.anim.SetTrigger("Damaged");
-                // p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
+                 p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -388,12 +385,12 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
-                // p.gameObject.layer = LayerMask.NameToLayer("Player");
+                p.gameObject.layer = LayerMask.NameToLayer("Player");
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.hpSlider.value <= 0)
+                if (Player.Instance.hpSlider.value <= 0)
                 {
                     return p.dicState[PlayerState.Dead];
                 }

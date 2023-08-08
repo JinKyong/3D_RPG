@@ -94,10 +94,6 @@ namespace Character
 
             public override void OperateUpdate(Enemy0 e)
             {
-                if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_Attack5"))
-                {
-                    Debug.Log(e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-                }
             }
 
             public override void OperateExit(Enemy0 e)
@@ -111,7 +107,7 @@ namespace Character
                     return e.dicState[EnemyState.Damaged];
                 }
                 else if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_Attack5")
-                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
                     return e.dicState[EnemyState.Idle];
                 }
@@ -142,7 +138,7 @@ namespace Character
                     return e.dicState[EnemyState.Dead];
                 }
                 else if (e.anim.GetCurrentAnimatorStateInfo(0).IsName("Bear_GetHit")
-                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+                    && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
                 {
                     e.bDamaged = false;
                     return e.dicState[EnemyState.Move];
