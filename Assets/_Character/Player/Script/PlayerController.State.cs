@@ -364,7 +364,7 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
-                p.anim.SetTrigger("Damaged");
+                p.anim.SetBool("Damaged", true);
                 p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
             }
 
@@ -375,6 +375,7 @@ namespace Character.State
             public override void OperateExit(PlayerController p)
             {
                 p.gameObject.layer = LayerMask.NameToLayer("Player");
+                p.anim.SetBool("Damaged", false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)

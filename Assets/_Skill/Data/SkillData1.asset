@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f58e626f2e1e545aaf231e891711fa, type: 3}
+  m_Name: SkillData1
+  m_EditorClassIdentifier: 
+  skillImage: {fileID: -1026124167, guid: 56352fffa9b52a846906aa338650a3ab, type: 3}
+  skillNumber: 0
+  skillName: "\uBC14\uB78C\uC758 \uAC00\uD638"
+  skillDesc: "{0}\uC758 \uB9C8\uB098\uB97C \uC0AC\uC6A9\uD558\uC5EC {1}\uCD08 \uB3D9\uC548
+    \uC774\uB3D9\uC18D\uB3C4 +{2} \uC99D\uAC00"
+  skillType: 1
+  maxLevel: 10
+  value:
+  - 0
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1
+  - 1.1
+  - 1.2
+  - 1.3
+  - 1.4
+  duration:
+  - 0
+  - 30
+  - 60
+  - 90
+  - 120
+  - 150
+  - 180
+  - 210
+  - 240
+  - 270
+  - 300
+  mana:
+  - 0
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  range: 0
+  precast: 0
+  postcast: 1.5
+  effect: {fileID: 8293749634076057715, guid: 89a07901d677d0445a92031dbde98c17, type: 3}
+  animClip: {fileID: 4243662151557984732, guid: 20349140a3cb83e4d883e1456c7783d5, type: 3}

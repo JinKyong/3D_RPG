@@ -1,18 +1,28 @@
+using Character.Ability;
 using System.Collections;
 using System.Collections.Generic;
+using UI.Slot;
 using UnityEngine;
 
 namespace Test
 {
     public class test : MonoBehaviour
     {
-        public GameObject prefab;
+        public KeySlot slot;
+        public Skill skill;
 
-        public void instance()
+        private void Update()
         {
-            testPrefab obj = Instantiate(prefab).GetComponent<testPrefab>();
-            Debug.Log("Create");
-            obj.GetAnim();
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                skill = FindObjectOfType<Skill>();
+                slot.FillWithSkill(skill);
+            }
+        }
+
+        public void TestInput()
+        {
+            slot.FillWithSkill(skill);
         }
     }
 }
