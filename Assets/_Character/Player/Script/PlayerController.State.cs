@@ -300,7 +300,6 @@ namespace Character.State
 
         public class Skill2State : State<PlayerController>
         {
-            // Character.Ability.Data.SkillData 에서 데미지 받아서
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
@@ -309,15 +308,10 @@ namespace Character.State
 
             public override void OperateUpdate(PlayerController p)
             {
-                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill2") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
-                {
-                    p.skill2.gameObject.SetActive(true);
-                }
             }
 
             public override void OperateExit(PlayerController p)
             {
-                p.skill2.gameObject.SetActive(false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -339,7 +333,6 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetTrigger("Skill3");
-
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -352,7 +345,6 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
-                p.skill3.gameObject.SetActive(false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -371,7 +363,6 @@ namespace Character.State
 
             public override void OperateEnter(PlayerController p)
             {
-                Debug.Log("피격상태 진입");
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Damaged");
                 p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");

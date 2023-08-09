@@ -15,8 +15,6 @@ namespace Character.State
         Animator anim;
 
         [SerializeField] TMP_Text pStateText;
-        [SerializeField] ParticleSystem skill2;
-        [SerializeField] ParticleSystem skill3;
 
         public bool IsDamaged { get; set; }
 

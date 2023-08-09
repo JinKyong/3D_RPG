@@ -96,12 +96,9 @@ namespace Character
 
         public class AxeAtkState : State<EnemyBoss>
         {
-
             public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("AxeAttack");
-                b.leftAxe.enabled = true;
-                b.rightAxe.enabled = true;
             }
 
             public override void OperateUpdate(EnemyBoss b)
@@ -110,8 +107,6 @@ namespace Character
 
             public override void OperateExit(EnemyBoss b)
             {
-                b.leftAxe.enabled = false;
-                b.rightAxe.enabled = false;
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
@@ -120,7 +115,7 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
-                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_AxeAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_AxeAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
                     return b.dicState[EnemyBossState.Chase];
                 }
@@ -135,23 +130,17 @@ namespace Character
 
             public override void OperateEnter(EnemyBoss b)
             {
-                dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
-                b.transform.forward = dir;
                 b.anim.SetTrigger("RoarAttack");
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
-                if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_RoarAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f)
-                {
-                    b.flame.SetActive(true);
-                    // Physics.OverlapBox
-                }
+                dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
+                b.transform.forward = dir;
             }
 
             public override void OperateExit(EnemyBoss b)
-            {
-                b.flame.SetActive(false);                    
+            {        
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
@@ -180,7 +169,6 @@ namespace Character
                 b.anim.SetBool("TornadoAttack", true);
                 elapsedTime = 0f;                
                 // 위치 변경
-                b.tornado.gameObject.SetActive(true);
             }
 
             public override void OperateUpdate(EnemyBoss b)
@@ -194,7 +182,6 @@ namespace Character
             public override void OperateExit(EnemyBoss b)
             {
                 b.anim.SetBool("TornadoAttack", false);
-                b.tornado.gameObject.SetActive(false);
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)

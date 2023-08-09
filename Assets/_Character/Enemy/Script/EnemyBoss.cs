@@ -12,12 +12,8 @@ namespace Character
         GameObject player;
         Rigidbody rb;
         Animator anim;
-        [SerializeField] BoxCollider leftAxe;
-        [SerializeField] BoxCollider rightAxe;
 
         [SerializeField] TMP_Text eStateText;
-        [SerializeField] ParticleSystem tornado;
-        [SerializeField] GameObject flame;
 
         Vector3 originPos;
         Quaternion originRot;
