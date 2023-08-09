@@ -17,9 +17,8 @@ namespace Damage
                 
                 Vector3 pos = other.transform.position;
                 pos.y += other.GetComponent<CapsuleCollider>().height;
-                DamageFactory.Instance.CreateTMP(pos, damage);
+                DamageFactory.Instance.CreateEdmgText(pos, damage);
             }
-
         }
     }
 }

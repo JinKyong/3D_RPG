@@ -13,7 +13,9 @@ namespace Damage
         public GameObject target;
         public int dmgValue;
 
-        [SerializeField] GameObject damageTxt;
+        [SerializeField] GameObject PdamageTxt;
+        [SerializeField] GameObject EdamageTxt;
+
         public int damagePoolSize = 10;
         public List<TMP_Text> damageTextPool = new List<TMP_Text>();
 
@@ -44,15 +46,26 @@ namespace Damage
             PlayerController.Instance.TakeDamage();
         }
 
-        public void CreateTMP(Vector3 pos, int damage)
+        public void CreatePdmgText(Vector3 pos, int damage)
         {
-            var obj = PoolManager.Instance.Pop(damageTxt);
+            var obj = PoolManager.Instance.Pop(PdamageTxt);
             obj.transform.position = pos;
 
             dmgValue = damage;
             TMP_Text tmp = obj.GetComponent<TMP_Text>();
             tmp.text = damage.ToString();
         }
+
+        public void CreateEdmgText(Vector3 pos, int damage)
+        {
+            var obj = PoolManager.Instance.Pop(EdamageTxt);
+            obj.transform.position = pos;
+
+            dmgValue = damage;
+            TMP_Text tmp = obj.GetComponent<TMP_Text>();
+            tmp.text = damage.ToString();
+        }
+
     }
 }
 

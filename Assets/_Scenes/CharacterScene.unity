@@ -23136,7 +23136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   dmgValue: 0
-  damageTxt: {fileID: 5120607990756835297, guid: 63b2e17fa9bb98a48bbb2d5e19e19253, type: 3}
+  PdamageTxt: {fileID: 5120607990756835297, guid: 997baa91899eb744a94d812c436130f3, type: 3}
+  EdamageTxt: {fileID: 5120607990756835297, guid: 63b2e17fa9bb98a48bbb2d5e19e19253, type: 3}
   damagePoolSize: 10
   damageTextPool: []
 --- !u!1 &1337346559

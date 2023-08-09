@@ -17,7 +17,7 @@ namespace Damage
                 
                 Vector3 pos = other.transform.position;
                 pos.y += other.GetComponent<CapsuleCollider>().height;
-                DamageFactory.Instance.CreateTMP(pos, damage);
+                DamageFactory.Instance.CreatePdmgText(pos, damage);
             }
             else if (other.CompareTag("EnemyBoss"))
             {
@@ -25,7 +25,7 @@ namespace Damage
 
                 Vector3 pos = other.transform.position;
                 pos.y += other.GetComponent<CapsuleCollider>().height;
-                DamageFactory.Instance.CreateTMP(pos, damage);
+                DamageFactory.Instance.CreatePdmgText(pos, damage);
             }
         }
     }
