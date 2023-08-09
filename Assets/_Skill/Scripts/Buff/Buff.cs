@@ -11,13 +11,20 @@ namespace Character.Buff
         protected float value;
         protected EValueType calType;
 
+        protected Coroutine routine;
+
         public void Init(float duration, float value, EValueType calType)
         {
             this.duration = duration;
             this.value = value;
             this.calType = calType;
 
-            StartCoroutine(onUseBuff());
+            if(routine != null)
+            {
+                StopCoroutine(routine);
+                offBuff();
+            }
+            routine = StartCoroutine(onUseBuff());
         }
 
         IEnumerator onUseBuff()

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Character.Buff;
 
 namespace Character.Ability
 {
@@ -8,11 +6,14 @@ namespace Character.Ability
     {
         public override void Use()
         {
-            Debug.Log("Hello");
+            BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Mana, this);
         }
         public override string GetDesc()
         {
-            return "yes";
+            return string.Format(data.skillDesc,
+                   data.mana[level],
+                   data.duration[level],
+                   data.value[level]);
         }
     }
 }

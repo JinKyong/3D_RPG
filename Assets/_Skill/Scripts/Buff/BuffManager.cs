@@ -21,8 +21,14 @@ namespace Character.Buff
         {
             buffPrefabs = new Dictionary<EBuffType, Buff>();
 
-            Buff buff = GetComponentInChildren<BuffSpeed>();
-            buffPrefabs.Add(EBuffType.Speed, buff);
+            Buff buffH = GetComponentInChildren<BuffHealth>();
+            buffPrefabs.Add(EBuffType.Health, buffH);
+            Buff buffM = GetComponentInChildren<BuffMana>();
+            buffPrefabs.Add(EBuffType.Mana, buffM);
+            Buff buffA = GetComponentInChildren<BuffAttack>();
+            buffPrefabs.Add(EBuffType.Attack, buffA);
+            Buff buffS = GetComponentInChildren<BuffSpeed>();
+            buffPrefabs.Add(EBuffType.Speed, buffS);
         }
 
         public void OnBuffBySkill(EBuffType buffType, Skill skill)

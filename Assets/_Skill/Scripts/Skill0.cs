@@ -1,4 +1,5 @@
 using Character.Buff;
+using UnityEngine;
 
 namespace Character.Ability
 {
@@ -6,7 +7,10 @@ namespace Character.Ability
     {
         public override void Use()
         {
-            BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Speed, this);
+            BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Health, this);
+
+            GameObject effect = Instantiate(data.effect);
+            effect.transform.position = Player.Instance.transform.position;
         }
         public override string GetDesc()
         {

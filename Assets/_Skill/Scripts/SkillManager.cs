@@ -28,11 +28,25 @@ namespace Character.Ability
             skillPoint = 0;
 
             AddSkill(0);
-            //AddSkill(1);
+            AddSkill(1);
+            AddSkill(2);
+            AddSkill(3);
 
-            Skill skill = transform.GetChild(0).GetComponent<Skill>();
-            skill.LevelUp();
-            list.AddSkillData(skill);
+            Skill skill0 = transform.GetChild(0).GetComponent<Skill>();
+            skill0.LevelUp();
+            list.AddSkillData(skill0);
+
+            Skill skill1 = transform.GetChild(1).GetComponent<Skill>();
+            skill1.LevelUp();
+            list.AddSkillData(skill1);
+
+            Skill skill2 = transform.GetChild(2).GetComponent<Skill>();
+            skill2.LevelUp();
+            list.AddSkillData(skill2);
+
+            Skill skill3 = transform.GetChild(3).GetComponent<Skill>();
+            skill3.LevelUp();
+            list.AddSkillData(skill3);
         }
 
         public void AddSkill(int num)
