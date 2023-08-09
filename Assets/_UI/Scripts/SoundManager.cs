@@ -15,14 +15,15 @@ namespace Soundmanager
             loading,
             Village,
             Game
-           
+
         }
         /*EScene scene;*/
 
         [SerializeField] AudioMixer audiomixer;
         [SerializeField] Slider volumeSlider;
         [SerializeField] Slider MasterSlider;
-        [SerializeField] Toggle Mute;
+        [SerializeField] Toggle bgmMute;
+        [SerializeField] Toggle masterMute;
 
         [SerializeField] List<Sound> bgmSounds;
 
@@ -30,21 +31,30 @@ namespace Soundmanager
 
         private Dictionary<string, AudioClip> bgmClips;
 
+
+
         [System.Serializable]
         public class Sound
         {
             public string name;
             public AudioClip clip;
+
         }
 
         private void Awake()
         {
-            
+
             RegisterInstance();
         }
 
         private void Start()
         {
+            masterMute.isOn = IsMasterMute();
+            masterMute.onValueChanged.AddListener(SetMasterMute);
+
+            bgmMute.isOn = IsBgmMute();
+            bgmMute.onValueChanged.AddListener(SetBgmMute);
+
             SceneManager.activeSceneChanged += OnSceneChanged;
             bgmClips = new Dictionary<string, AudioClip>();
 
@@ -55,16 +65,16 @@ namespace Soundmanager
         }
         private void OnSceneChanged(Scene prevScene, Scene nextScene)
         {
-            
+
             switch (nextScene.buildIndex)
-            {   
+            {
                 case (int)EScene.Main:
                     PlayBGM("Login");
                     break;
                 case (int)EScene.loading:
                     PlayBGM("Null");
                     break;
-                   
+
                 case (int)EScene.Village:
                     PlayBGM("Town");
                     break;
@@ -78,48 +88,72 @@ namespace Soundmanager
                     break;
             }
 
-           /* switch (nextScene.buildIndex)
-            {
-                case :
-                    PlayBGM("Login");
-                    break;
-                case 1:
-                    PlayBGM(null);
-                    break;
-                case 2:
-                    PlayBGM("Town");
-                    break;
-                case 3:
-                    PlayBGM("Battle");
-                    break;
-            }*/
+            /* switch (nextScene.buildIndex)
+             {
+                 case :
+                     PlayBGM("Login");
+                     break;
+                 case 1:
+                     PlayBGM(null);
+                     break;
+                 case 2:
+                     PlayBGM("Town");
+                     break;
+                 case 3:
+                     PlayBGM("Battle");
+                     break;
+             }*/
         }
         private void OnDestroy()
         {
             SceneManager.activeSceneChanged -= OnSceneChanged;
         }
-        
+
         public void SetVolume()
         {
             float value = volumeSlider.value;
             audiomixer.SetFloat("BGM", value);
         }
         public void SetMasterVolume()
-        {   
+        {
             float value = MasterSlider.value;
             audiomixer.SetFloat("Master", value);
 
         }
-        public void SetMute(bool isOn, bool isOff)
+        private bool IsMasterMute()
         {
-            
-            isOn = Mute.isOn;
+            audiomixer.GetFloat("Master", out float bgmVoluem);
+            return bgmVoluem <= -80f;
 
 
             /*bool Btn = anim.GetBool("VolumeBtn");
             anim.SetBool("VolumeBtn", !Btn);*/
-
         }
+        private void SetMasterMute(bool isMute)
+        {
+            audiomixer.SetFloat("Master", isMute ? -80f : 0f);
+
+            /*bool Btn = anim.GetBool("VolumeBtn");
+            anim.SetBool("VolumeBtn", !Btn);*/
+        }
+        private  bool IsBgmMute()
+        {
+            audiomixer.GetFloat("BGM", out float bgmVoluem);
+            return bgmVoluem <= -80f;
+
+
+            /*bool Btn = anim.GetBool("VolumeBtn");
+            anim.SetBool("VolumeBtn", !Btn);*/
+        }
+        private void SetBgmMute(bool isMute)
+        {
+            audiomixer.SetFloat("BGM", isMute ? -80f : 0f);
+
+            /*bool Btn = anim.GetBool("VolumeBtn");
+            anim.SetBool("VolumeBtn", !Btn);*/
+        }
+
+      
 
         public void PlayBGM(string _name)
         {
