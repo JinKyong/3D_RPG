@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Character;
+using Character.State;
 
 namespace Damage
 {
@@ -11,7 +11,7 @@ namespace Damage
 
         private void OnParticleCollision(GameObject other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && !PlayerController.Instance.IsDamaged)
             {
                 DamageFactory.Instance.CalculateDmgToPlayer(other, damage);
                 

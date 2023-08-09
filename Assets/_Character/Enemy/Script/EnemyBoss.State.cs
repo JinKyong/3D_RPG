@@ -43,7 +43,7 @@ namespace Character
             float AxeAtkDist = 2f;
             float roarAtkDist = 12f;
             float TornadoAtkDist = 5f;
-            float returnDistance = 20f;
+            float returnDistance = 30f;
             float moveSpeed = 7f;
             Vector3 dir;
 

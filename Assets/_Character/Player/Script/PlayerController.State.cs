@@ -371,6 +371,7 @@ namespace Character.State
 
             public override void OperateEnter(PlayerController p)
             {
+                Debug.Log("피격상태 진입");
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Damaged");
                 p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
