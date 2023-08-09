@@ -141,7 +141,7 @@ namespace Character
                     && e.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
                 {
                     e.IsDamaged = false;
-                    return e.dicState[EnemyState.Move];
+                    return e.dicState[EnemyState.Idle];
                 }
 
                 return this;

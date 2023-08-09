@@ -8,7 +8,7 @@ using Public;
 
 namespace Character.State
 {
-    public partial class PlayerController : MonoBehaviour
+    public partial class PlayerController : Singleton<PlayerController>
     {
         Vector3 dir;
         Rigidbody rb;
@@ -99,6 +99,16 @@ namespace Character.State
         private void FixedUpdate()
         {
             state.OperateUpdate(this);
+        }
+
+        public void TakeDamage()
+        {
+            if (state == dicState[PlayerState.Dead])
+            {
+                return;
+            }
+
+            IsDamaged = true;
         }
 
         private bool moveInput()

@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 112433010}
   - component: {fileID: 112433009}
   - component: {fileID: 112433008}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BossHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1944,7 +1944,6 @@ GameObject:
   - component: {fileID: 385971895}
   - component: {fileID: 387844761}
   - component: {fileID: 114844658071678603}
-  - component: {fileID: 114844658071678604}
   m_Layer: 7
   m_Name: Spiral_01.1 Tornado Custom
   m_TagString: Untagged
@@ -1999,6 +1998,7 @@ GameObject:
   - component: {fileID: 371847907}
   - component: {fileID: 385905471}
   - component: {fileID: 387918999}
+  - component: {fileID: 387919000}
   m_Layer: 7
   m_Name: particle master
   m_TagString: Tornado
@@ -10496,7 +10496,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 455
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -21161,6 +21161,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &387919000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372174941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2a6d1deaf525b4389631b1c6c89ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &397106334
 GameObject:
   m_ObjectHideFlags: 0
@@ -21267,7 +21280,6 @@ MonoBehaviour:
   hpSlider: {fileID: 397106336}
   maxHp: 100
   hp: 100
-  damage: 3
 --- !u!1 &558410977
 GameObject:
   m_ObjectHideFlags: 0
@@ -21320,7 +21332,7 @@ GameObject:
   - component: {fileID: 560045819}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21553,7 +21565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696632617}
   - component: {fileID: 696632616}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21645,9 +21657,9 @@ GameObject:
   - component: {fileID: 700260365}
   - component: {fileID: 700260370}
   - component: {fileID: 700260371}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: EnemyBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21732,7 +21744,7 @@ GameObject:
   - component: {fileID: 736719628}
   - component: {fileID: 736719630}
   - component: {fileID: 736719629}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21955,7 +21967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834173698}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22076,7 +22088,7 @@ GameObject:
   - component: {fileID: 857160909}
   - component: {fileID: 857160911}
   - component: {fileID: 857160910}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22471,7 +22483,7 @@ GameObject:
   - component: {fileID: 990285931}
   - component: {fileID: 990285930}
   - component: {fileID: 990285929}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BossState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22886,7 +22898,7 @@ GameObject:
   - component: {fileID: 1226086970}
   - component: {fileID: 1226086969}
   - component: {fileID: 1226086968}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23024,7 +23036,7 @@ GameObject:
   - component: {fileID: 476411014}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Enemy0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23121,7 +23133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283bfc97ea586cf49a251a65132c96a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageFactory: {fileID: 5120607990756835297, guid: 63b2e17fa9bb98a48bbb2d5e19e19253, type: 3}
+  target: {fileID: 0}
+  dmgValue: 0
+  damageTxt: {fileID: 5120607990756835297, guid: 63b2e17fa9bb98a48bbb2d5e19e19253, type: 3}
   damagePoolSize: 10
   damageTextPool: []
 --- !u!1 &1337346559
@@ -24012,7 +24026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4174312519965893}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_right_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24028,7 +24042,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4199851404860917}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24044,7 +24058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4929245023372145}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__wooden_back_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24061,7 +24075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4008121926811209}
   - component: {fileID: 137994896863259121}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15949
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24078,7 +24092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4209302501828163}
   - component: {fileID: 137009089105205961}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15957 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24094,7 +24108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4075371310296387}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHipEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24110,7 +24124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4738730041654023}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24126,7 +24140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4053904216466053}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24143,7 +24157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4058975045693525}
   - component: {fileID: 137034570215280715}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15815
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24159,7 +24173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916405368048525}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24175,7 +24189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525776504856243}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandRingEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24191,7 +24205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4325599485086377}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_left_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24208,7 +24222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4672648725520811}
   - component: {fileID: 137363864767228615}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group934
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24224,7 +24238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904523848948503}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24240,7 +24254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4362428514780619}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__wooden_back_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24256,7 +24270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4313871626355753}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24272,7 +24286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305418572701935}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24288,7 +24302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645520559529577}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24304,7 +24318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4796149602288405}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24320,7 +24334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4721613713102401}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24336,7 +24350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4647582842099969}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_right_axe_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24353,7 +24367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4966768825176387}
   - component: {fileID: 137529082538421663}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31644
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24369,7 +24383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4606438611430793}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_bottle_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24385,7 +24399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671587761519249}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24402,7 +24416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4237833027332267}
   - component: {fileID: 137736956731220289}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15959 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24418,7 +24432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4246759650560047}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_wood_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24434,7 +24448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4384236427782315}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24450,7 +24464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4463387952393215}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24466,7 +24480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4161345556054417}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_HeadEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24482,7 +24496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4172148550663731}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24498,7 +24512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167960339173409}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24515,7 +24529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4461816109993207}
   - component: {fileID: 4461816109993208}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandThumbEffector
   m_TagString: EnemyBoss
   m_Icon: {fileID: 0}
@@ -24531,7 +24545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4647172080184723}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24547,7 +24561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4360069670299869}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftAnkleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24563,7 +24577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4797228170898171}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_hammer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24579,7 +24593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4535952781497727}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_right_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24595,7 +24609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4173285359887949}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24611,7 +24625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4673677392998879}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24627,7 +24641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262476452092281}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24644,7 +24658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4734763153774815}
   - component: {fileID: 137385900178839303}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31634
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24660,7 +24674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022232190132115}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24677,7 +24691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4666367887770125}
   - component: {fileID: 137407978560138247}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group47746
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24693,7 +24707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4098211691377279}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24709,7 +24723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4238967640127561}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24725,7 +24739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4352922234144491}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__hair_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24741,7 +24755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4481290706031353}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24757,7 +24771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4957839284713867}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_jaw_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24773,7 +24787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4652405851381547}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24789,7 +24803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4690719519226485}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Head_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24805,7 +24819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247269290379801}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_wood_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24821,7 +24835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4440271924252229}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftFootEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24837,7 +24851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4936995446403999}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_right_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24854,7 +24868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4059084763372655}
   - component: {fileID: 137233325878851729}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15957
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24870,7 +24884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4981059721650667}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__wooden_back_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24886,7 +24900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4607049450053897}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24902,7 +24916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308674362796893}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__hair_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24918,7 +24932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4856562656114553}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24935,7 +24949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4828815351959551}
   - component: {fileID: 137714228499232813}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15821
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24952,7 +24966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4910304621191131}
   - component: {fileID: 95716039672333601}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork berserk prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24969,7 +24983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4255638702261165}
   - component: {fileID: 137105918216066645}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31633
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24985,7 +24999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4292491980361843}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_wood_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25001,7 +25015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4998648439788649}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__shoulder_toga_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25017,7 +25031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4286524527960587}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25034,7 +25048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4934918217569485}
   - component: {fileID: 137103366577545043}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group47436
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25050,7 +25064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305875289329009}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandMiddleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25067,7 +25081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908349704081811}
   - component: {fileID: 137207445800056923}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31818
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25083,7 +25097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4623828276421821}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25099,7 +25113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4637102513289477}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_left_axe_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25115,7 +25129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000067598951071}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_left_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25131,7 +25145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4847177759090729}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftKneeEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25147,7 +25161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022655990163179}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25163,7 +25177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4898327952619391}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25179,7 +25193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4944158165827745}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25195,7 +25209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455933495289087}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25212,7 +25226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4596470864593959}
   - component: {fileID: 137096819082737569}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15826
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25228,7 +25242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4223226783208481}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25244,7 +25258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4445942953917027}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_left_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25261,7 +25275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4787598575271029}
   - component: {fileID: 137408266215695395}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15827
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25277,7 +25291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4947717988612729}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__shoulder_toga_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25293,7 +25307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961188350191901}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25310,7 +25324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417443718521729}
   - component: {fileID: 137211794151353583}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15952
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25326,7 +25340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166588486374351}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25342,7 +25356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4719357176088289}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25358,7 +25372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4934783213796985}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25375,7 +25389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548619613114539}
   - component: {fileID: 137320154400522065}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group937
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25391,7 +25405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4604958363261339}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__hair_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25407,7 +25421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4602474683132727}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25423,7 +25437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4403919320591619}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25439,7 +25453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4409708459964223}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25455,7 +25469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943384370493153}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_wooden_knife_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25471,7 +25485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4189456524278233}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25487,7 +25501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475159159481081}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_wooden_knife_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25503,7 +25517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4774015511137393}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25519,7 +25533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4925915964792523}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_hammer_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25535,7 +25549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4566121040468101}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightKneeEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25551,7 +25565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215343398184055}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25567,7 +25581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4631571559612711}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_left_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25583,7 +25597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940355058160113}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25599,7 +25613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4190550662745263}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25616,7 +25630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4957484424909603}
   - component: {fileID: 137041360669118139}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15960 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25632,7 +25646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129849425335015}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25648,7 +25662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4884405935430173}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25665,7 +25679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4668399968069753}
   - component: {fileID: 137875037914490195}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15823
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25681,7 +25695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4125079857157261}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25697,7 +25711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978700549635699}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25713,7 +25727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4339607275459699}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25729,7 +25743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4060534154926741}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25745,7 +25759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4188753320770639}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25761,7 +25775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4842282482073105}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25777,7 +25791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4604632183007457}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_bottle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25793,7 +25807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4733324273711759}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25810,7 +25824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4341737974592303}
   - component: {fileID: 137186263667918069}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15828
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25826,7 +25840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4052976786451763}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25842,7 +25856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4565154716712461}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightShoulderEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25858,7 +25872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4306038334807531}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25874,7 +25888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4800755822605053}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25890,7 +25904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990247310145407}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25906,7 +25920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4411239311389637}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25922,7 +25936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4599682275217715}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25938,7 +25952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4582184545633063}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_right_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25954,7 +25968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4563264991379715}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25970,7 +25984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4263575562370897}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandPinkyEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25986,7 +26000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4480445905845137}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__wooden_back_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26003,7 +26017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4011216194799561}
   - component: {fileID: 137902969176874937}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15817
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26019,7 +26033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4320715764463417}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: axe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26035,7 +26049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4348080449366333}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26051,7 +26065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4695631396589963}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightFootEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26068,7 +26082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626471886084965}
   - component: {fileID: 137996141967038431}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15814
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26084,7 +26098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4221777208212349}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26100,7 +26114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4285818429513079}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26116,7 +26130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4074842039563375}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26132,7 +26146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4007791522982487}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26148,7 +26162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4130128883779351}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26164,7 +26178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4317760898156439}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightElbowEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26180,7 +26194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4093849538822101}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26196,7 +26210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4813435716272547}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26212,7 +26226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4630131453878125}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26228,7 +26242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414623226554811}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_wood_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26244,7 +26258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387889218758739}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26261,7 +26275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4960055374116155}
   - component: {fileID: 137294725074682029}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15960
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26278,7 +26292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4102265844440351}
   - component: {fileID: 137314013813482599}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31894
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26294,7 +26308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4845217301425493}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26310,7 +26324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4400686833866935}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26326,7 +26340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4024698882786595}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandRingEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26342,7 +26356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084133492935167}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26358,7 +26372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4144280085273047}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26374,7 +26388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4407385979239221}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26390,7 +26404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4509247948055849}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26406,7 +26420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4489299021118953}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26422,7 +26436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4065824487420867}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26438,7 +26452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262120196007403}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandPinkyEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26455,7 +26469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4754452731610593}
   - component: {fileID: 137655021427472645}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15946
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26472,7 +26486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4605589423909743}
   - component: {fileID: 137231208785650605}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15834
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26488,7 +26502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700266225297565}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26504,7 +26518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4020952674985475}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_ChestOriginEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26520,7 +26534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4548911957224709}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26536,7 +26550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4420812253125939}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26552,7 +26566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4131231249166217}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_frontleft_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26568,7 +26582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4151336054725067}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_toga_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26584,7 +26598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4799329468946591}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_bottle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26601,7 +26615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4018046847017211}
   - component: {fileID: 137605855571778045}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15819
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26617,7 +26631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4554581842739409}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26633,7 +26647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4293221761912141}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26649,7 +26663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4752549773792643}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26665,7 +26679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654762425275501}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26681,7 +26695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288857395814189}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26697,7 +26711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206835270413883}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26713,7 +26727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671495772005155}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26729,7 +26743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642648169798163}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightAnkleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26745,7 +26759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4460904818750065}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26761,7 +26775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4342535194018081}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26778,7 +26792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4919302957806727}
   - component: {fileID: 137398695578792883}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group931
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26794,7 +26808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4003126802508765}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26810,7 +26824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4541741250915473}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__hair_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26826,7 +26840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288373088229235}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__hair_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26842,7 +26856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4304928450930271}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandIndexEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26858,7 +26872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4754876517278271}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26874,7 +26888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4235582643024083}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_left_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26890,7 +26904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4708728559719659}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26907,7 +26921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529510178057409}
   - component: {fileID: 137749984672786709}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15830
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26923,7 +26937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4652764476842699}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_wooden_knife_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26939,7 +26953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4837204587266069}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_frontleft_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26955,7 +26969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4006678198971821}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26971,7 +26985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4722610940697269}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26987,7 +27001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4748559286358601}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27004,7 +27018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4303391096407593}
   - component: {fileID: 137978670839528653}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15835
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27020,7 +27034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4618403494743141}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27036,7 +27050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4077447340608057}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27052,7 +27066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4882824019797959}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27068,7 +27082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4808270059017239}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27084,7 +27098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4789757026597359}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_front_wood_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27100,7 +27114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4524005747759473}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27116,7 +27130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657458544790737}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_HipsEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27132,7 +27146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4254651463564857}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27148,7 +27162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4229023148668705}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27164,7 +27178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4420983899922553}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27180,7 +27194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4162904390908935}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27196,7 +27210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645261583058117}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27213,7 +27227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4080830568926511}
   - component: {fileID: 137324186185509269}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15833
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27229,7 +27243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380453698129391}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27245,7 +27259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600284534036981}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27261,7 +27275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4144555880869641}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27277,7 +27291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4159857261802935}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27293,7 +27307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675519993022511}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27309,7 +27323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4175926585208955}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27325,7 +27339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636509357631033}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_ChestEndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27342,7 +27356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4574557568626273}
   - component: {fileID: 137546678711076135}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15832
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27358,7 +27372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4871557340070261}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27374,7 +27388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4616635545272351}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27390,7 +27404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4830686550580977}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27406,7 +27420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572980713227955}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27422,7 +27436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4886449881982405}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27438,7 +27452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4132481061056267}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27455,7 +27469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4816624043699095}
   - component: {fileID: 137633997865854113}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15950
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27471,7 +27485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129692426251985}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandMiddleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27487,7 +27501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4609545182492265}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27503,7 +27517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4226310096495575}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27519,7 +27533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4755106302917787}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27535,7 +27549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512540756707283}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_left_axe_1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27551,7 +27565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4318587418536839}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftElbowEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27567,7 +27581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544410968829327}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27584,7 +27598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4489540881498875}
   - component: {fileID: 137695765442369749}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15820
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27600,7 +27614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4857813504852803}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27617,7 +27631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521203615291709}
   - component: {fileID: 137853290994499879}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15958 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27633,7 +27647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4678555068446857}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27649,7 +27663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4745579330019253}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27665,7 +27679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4207704294634225}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27681,7 +27695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237149761610113}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27697,7 +27711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429098454242173}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__shoulder_toga_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27714,7 +27728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4786119244411547}
   - component: {fileID: 137360334352482143}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31624
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27730,7 +27744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4445274063034949}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27746,7 +27760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666455157049801}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27762,7 +27776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4116884432275823}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27778,7 +27792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4368408754213467}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27794,7 +27808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515640159006931}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27810,7 +27824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843946504368815}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27826,7 +27840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4543325836562211}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftShoulderEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27842,7 +27856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4934290867027351}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27858,7 +27872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4467566738075641}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27874,7 +27888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4650303478544221}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27890,7 +27904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4027888174691941}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__wooden_back_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27906,7 +27920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4594880323058227}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27922,7 +27936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4528434091090507}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHipEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27938,7 +27952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4662006571522157}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27954,7 +27968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4041856911524185}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_jaw_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27970,7 +27984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4424134214096957}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_jaw_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27986,7 +28000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597836271476809}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftWristEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28002,7 +28016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4868667717461275}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28019,7 +28033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4697381445065071}
   - component: {fileID: 137373448047952553}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15948
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28035,7 +28049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4498347019998517}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28051,7 +28065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4629349340591861}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_frontleft_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28068,7 +28082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4256299969720453}
   - component: {fileID: 137649982267455839}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group158171
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28085,7 +28099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4257723063271079}
   - component: {fileID: 137034542428570035}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15822
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28102,7 +28116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090830506254955}
   - component: {fileID: 137394762216463777}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15947
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28118,7 +28132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4164440712843589}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_left_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28134,7 +28148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4222528532370441}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_left_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28150,7 +28164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4954822672563591}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28166,7 +28180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4090187207503721}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28182,7 +28196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4810263869186289}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_back_right_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28198,7 +28212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4565671189575247}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28214,7 +28228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4482377086628397}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28230,7 +28244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4132642082984171}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28247,7 +28261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4424846224976357}
   - component: {fileID: 4424846224976358}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandThumbEffector
   m_TagString: EnemyBoss
   m_Icon: {fileID: 0}
@@ -28264,7 +28278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4871236641831243}
   - component: {fileID: 137525222286150267}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15816
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28281,7 +28295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4987555081640007}
   - component: {fileID: 137974286863754777}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15951
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28297,7 +28311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4996694135516423}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28313,7 +28327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4420313327477071}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28329,7 +28343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4356518987748587}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandIndexEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28345,7 +28359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4804110241823239}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightShoulder_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28362,7 +28376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126925308131663}
   - component: {fileID: 137466678177420839}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15959
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28378,7 +28392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4060676916476193}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28394,7 +28408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4095369454469041}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28410,7 +28424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671829243482565}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28426,7 +28440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371603496319379}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28442,7 +28456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4325685514883905}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28458,7 +28472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4848674115784467}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_wooden_knife_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28475,7 +28489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4467865319357939}
   - component: {fileID: 137869777665178747}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group31635
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28491,7 +28505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4316509536683785}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28507,7 +28521,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4402868596286133}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28523,7 +28537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586194036316325}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_frontleft_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28539,7 +28553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4752740494744997}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28555,7 +28569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4460706616717387}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__shoulder_toga_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28571,7 +28585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4993310569681689}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: group1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28588,7 +28602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4725034560241645}
   - component: {fileID: 137903193555779167}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Group15958
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28605,7 +28619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4992817567759207}
   - component: {fileID: 137634160762997467}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15836
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28621,7 +28635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4897035181490499}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28637,7 +28651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4884050518587935}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_toga_right_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28653,7 +28667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4959182484911339}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_right_axe_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28669,7 +28683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4900261083225785}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28685,7 +28699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4035071370074309}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28702,7 +28716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558857698983823}
   - component: {fileID: 137477329877633897}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:ZBrush_defualt_group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28719,7 +28733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4293940691963641}
   - component: {fileID: 137557963249913245}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group21104
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28735,7 +28749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4024058338797135}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Character1_Ctrl_RightWristEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28751,7 +28765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4797677648047987}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28767,7 +28781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4577315968547117}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: defaultMat 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28783,7 +28797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4419359806940661}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork__shoulder_toga_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28800,7 +28814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4401883744337995}
   - component: {fileID: 137408317355132217}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base_mesh_no_bones:Base_mesh:Group15818
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28816,7 +28830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4883560002344815}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ork_rope_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33669,19 +33683,6 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
---- !u!114 &114844658071678604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371988977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!4 &127417883036076456
 Transform:
   m_ObjectHideFlags: 0
@@ -42456,7 +42457,7 @@ GameObject:
   - component: {fileID: 2629628209194415401}
   - component: {fileID: 9159431107347760949}
   - component: {fileID: 9159431107347760950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snow slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52363,7 +52364,7 @@ GameObject:
   - component: {fileID: 1591404277862042766}
   - component: {fileID: 2201760973707381644}
   - component: {fileID: 644566520145205107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63228,7 +63229,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 3
   m_Pivot: {x: 0, y: -0.16, z: 0.15}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -71634,7 +71635,7 @@ ParticleSystem:
     radiusScale: 0.05
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 455
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -85827,7 +85828,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 961
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -85843,8 +85844,7 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives:
-    - {fileID: 0}
+    primitives: []
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -86910,7 +86910,7 @@ GameObject:
   - component: {fileID: 6875809780612848752}
   m_Layer: 7
   m_Name: Flames
-  m_TagString: Flame
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86924,10 +86924,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6875809780612848751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6920565ff207cf443b9b098f0df32e14, type: 3}
+  m_Script: {fileID: 11500000, guid: ad2a6d1deaf525b4389631b1c6c89ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
 --- !u!1 &6875809780806618607
 GameObject:
   m_ObjectHideFlags: 0
@@ -87006,7 +87006,7 @@ GameObject:
   - component: {fileID: 7835755013813544714}
   - component: {fileID: 6724059120735648483}
   - component: {fileID: 3685563373316932470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87106,7 +87106,7 @@ GameObject:
   - component: {fileID: 6800148490766518865}
   - component: {fileID: 377314984478996557}
   - component: {fileID: 7486420579589798342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stone slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92114,7 +92114,7 @@ GameObject:
   - component: {fileID: 7971773671341340700}
   - component: {fileID: 6270344005362423321}
   - component: {fileID: 2256117936606942286}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92324,7 +92324,7 @@ GameObject:
   - component: {fileID: 5604201304453428365}
   - component: {fileID: 7600183611558683351}
   - component: {fileID: 2171454375568481084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StonesHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

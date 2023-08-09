@@ -6,7 +6,7 @@ using Character;
 
 namespace Character.State
 {
-    public partial class PlayerController : MonoBehaviour
+    public partial class PlayerController : Singleton<PlayerController>
     {
         public class IdleState : State<PlayerController>
         {
@@ -372,9 +372,8 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
-                // Player.Instance.Stat.runTimeHealth
                 p.anim.SetTrigger("Damaged");
-                 p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
+                p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
             }
 
             public override void OperateUpdate(PlayerController p)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Damage;
 
 namespace Character
 {
@@ -12,7 +12,6 @@ namespace Character
         GameObject player;
         Rigidbody rb;
         Animator anim;
-        CapsuleCollider bodyColider;
         [SerializeField] BoxCollider leftAxe;
         [SerializeField] BoxCollider rightAxe;
 
@@ -29,7 +28,7 @@ namespace Character
 
         #region Enemy Ω∫≈»
         [SerializeField] int maxHp = 100;
-        [SerializeField] int hp = 100;
+        public int hp = 100;
 
         #endregion
 
@@ -58,7 +57,6 @@ namespace Character
             player = GameObject.Find("Player");
             rb = GetComponent<Rigidbody>();
             anim = GetComponentInChildren<Animator>();
-            bodyColider = GetComponent<CapsuleCollider>();
 
             hpSlider = GetComponentInChildren<Slider>();
 
@@ -113,7 +111,7 @@ namespace Character
             eState.OperateUpdate(this);
         }
 
-        public void GetDamage(int damage)
+        public void TakeDamage()
         {
             if (eState == dicState[EnemyBossState.Dead])
             {
@@ -121,7 +119,6 @@ namespace Character
             }
 
             IsDamaged = true;
-            hp -= damage;
         }
     }
 }

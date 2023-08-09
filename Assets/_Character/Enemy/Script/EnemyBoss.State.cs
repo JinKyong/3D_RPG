@@ -10,6 +10,7 @@ namespace Character
         public class IdleState : State<EnemyBoss>
         {
             float findDistance = 16f;
+
             public override void OperateEnter(EnemyBoss b)
             {
             }
@@ -41,8 +42,8 @@ namespace Character
         {
             float AxeAtkDist = 2f;
             float roarAtkDist = 12f;
-            float TornadoAtkDist = 10f;
-            float returnDistance = 25f;
+            float TornadoAtkDist = 5f;
+            float returnDistance = 20f;
             float moveSpeed = 7f;
             Vector3 dir;
 
@@ -61,7 +62,8 @@ namespace Character
             }
 
             public override void OperateExit(EnemyBoss b)
-            { 
+            {
+                b.anim.SetBool("Move", false);
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
@@ -82,7 +84,7 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Attack1];
                 }
-                else if (Vector3.Distance(b.player.transform.position, b.transform.position) > returnDistance)
+                else if (Vector3.Distance(b.originPos, b.transform.position) > returnDistance)
                 {
                     return b.dicState[EnemyBossState.Return];
                 }
@@ -120,7 +122,7 @@ namespace Character
                 }
                 else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_AxeAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -149,7 +151,6 @@ namespace Character
 
             public override void OperateExit(EnemyBoss b)
             {
-                b.anim.SetBool("RoarAttack", false);
                 b.flame.SetActive(false);                    
             }
 
@@ -159,9 +160,9 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
-                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_RoarAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_RoarAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -204,7 +205,7 @@ namespace Character
                 }
                 else if (elapsedTime > 6f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -232,10 +233,10 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Dead];
                 }
-                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_GetHit") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_GetHit") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
                 {
                     b.IsDamaged = false;
-                    return b.dicState[EnemyBossState.Chase];
+                    return b.dicState[EnemyBossState.Idle];
                 }
 
                 return this;
@@ -249,17 +250,15 @@ namespace Character
 
             public override void OperateEnter(EnemyBoss b)
             {
+                b.anim.SetBool("Move", true);
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
                 // 원래 위치로 방향 틀고 이동
-                if (Vector3.Distance(b.transform.position, b.originPos) > 1f)
-                {
-                    dir = (b.originPos - b.transform.position).normalized;
-                    b.transform.forward = dir;
-                    b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
-                }
+                dir = (b.originPos - b.transform.position).normalized;
+                b.transform.forward = dir;
+                b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }
 
             public override void OperateExit(EnemyBoss b)
@@ -271,7 +270,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (Vector3.Distance(b.transform.position, b.originPos) < 1f)
+                if (Vector3.Distance(b.transform.position, b.originPos) < 0.5f)
                 {
                     return b.dicState[EnemyBossState.Idle];
                 }

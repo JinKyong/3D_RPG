@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Damage;
 
 
 namespace Character
@@ -12,7 +13,6 @@ namespace Character
         GameObject player;
         Rigidbody rb;
         Animator anim;
-        CapsuleCollider capsuleColider;
 
         [SerializeField] TMP_Text eStateText;
 
@@ -26,7 +26,6 @@ namespace Character
         #region Enemy Ω∫≈»
         [SerializeField] int maxHp = 100;
         public int hp = 100;
-        public int damage = 3;
         #endregion
 
 
@@ -53,7 +52,6 @@ namespace Character
             player = GameObject.Find("Player");
             rb = GetComponent<Rigidbody>();
             anim = GetComponentInChildren<Animator>();
-            capsuleColider = GetComponent<CapsuleCollider>();
 
             hpSlider = GetComponentInChildren<Slider>();
 
@@ -104,15 +102,14 @@ namespace Character
         }
 
 
-        public void GetDamage(int damage)
+        public void TakeDamage()
         {
             if (eState == dicState[EnemyState.Dead])
             {
                 return;
             }
 
-            IsDamaged = true;
-            hp -= damage;
+            IsDamaged = true; 
         }
     }
 }

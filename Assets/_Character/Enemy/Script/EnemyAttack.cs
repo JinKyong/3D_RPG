@@ -5,19 +5,21 @@ using Character;
 
 namespace Damage
 {
-    public class ParticleAttack : MonoBehaviour
+    public class EnemyAttack : MonoBehaviour
     {
         [SerializeField] int damage;
 
         private void OnParticleCollision(GameObject other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Player"))
             {
-                other.GetComponent<Enemy0>().GetDamage(damage);
+                DamageFactory.Instance.CalculateDmgToPlayer(other, damage);
+                
                 Vector3 pos = other.transform.position;
                 pos.y += other.GetComponent<CapsuleCollider>().height;
                 DamageFactory.Instance.CreateTMP(pos, damage);
             }
+
         }
     }
 }
