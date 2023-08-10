@@ -28,9 +28,9 @@ namespace LoginManager.UI
 
         public void InitializePrefab()
         {
-            id.text = "";
-            password.text = "";
-            notify.text = "";
+            /*id.text = "";
+            password.text = "";*/
+            notify.text = "초기화 완료!";
             /*  canvasGroup.alpha = 1f;*/
 
             PlayerPrefs.DeleteAll();                          // 초기화!
