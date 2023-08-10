@@ -26,6 +26,17 @@ namespace LoginManager.UI
             notify.text = "";       // 검사 텍스트 창을 비워준다.
         }
 
+        public void InitializePrefab()
+        {
+            id.text = "";
+            password.text = "";
+            notify.text = "";
+            /*  canvasGroup.alpha = 1f;*/
+
+            PlayerPrefs.DeleteAll();                          // 초기화!
+        }
+
+
         public void SaveUserData()                                  // 아이디와 패스워드 를 저장 하는 함수.
         {
             if (!CheckInput())                                          // 만일 입력 검사에 문제가 있을시 함수를 종료.

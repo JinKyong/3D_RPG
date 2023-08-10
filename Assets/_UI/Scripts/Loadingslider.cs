@@ -19,14 +19,17 @@ namespace LoadingSlider
              private float fillSpeed = 0.4f;
              private bool isPaused = false;*/
 
-        
 
+        public void InitializeScene()
+        { 
+        
+        }
 
         private void Start()
         {
             /*StartCoroutine(RandomPauseCoroutine());*/
             StartCoroutine(StartLoadingCoroutine(sceneNumber));
-            StopCoroutine(StartLoadingCoroutine(2));
+            /*StopCoroutine(StartLoadingCoroutine(2));*/
             
         }
 
