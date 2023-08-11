@@ -17,11 +17,12 @@ namespace Character.State
         [SerializeField] TMP_Text pStateText;
 
         public bool IsDamaged { get; set; }
+        public bool OnSkill { get; set; }
 
         //test
         AnimatorController controller;
-        AnimatorState testState;
-        public AnimationClip testClip;
+        AnimatorState skillState;
+        public AnimationClip skillClip;
 
         State<PlayerController> state;
 
@@ -36,12 +37,9 @@ namespace Character.State
             Jump,
             Fall,
             Attack,
-            Skill1,
-            Skill2,
-            Skill3,
+            Skill,
             Damaged,
             Dead,
-            test
         }
 
         private void Start()
@@ -55,9 +53,7 @@ namespace Character.State
             State<PlayerController> jump = new JumpState();
             State<PlayerController> fall = new FallState();
             State<PlayerController> attack = new AttackState();
-/*            State<PlayerController> skill1 = new Skill1State();
-            State<PlayerController> skill2 = new Skill2State();
-            State<PlayerController> skill3 = new Skill3State();*/
+            State<PlayerController> skill = new SkillState();
             State<PlayerController> damaged = new DamagedState();
             State<PlayerController> dead = new DeadState();
 
@@ -66,19 +62,15 @@ namespace Character.State
             dicState.Add(PlayerState.Jump, jump);
             dicState.Add(PlayerState.Fall, fall);
             dicState.Add(PlayerState.Attack, attack);
-/*            dicState.Add(PlayerState.Skill1, skill1);
-            dicState.Add(PlayerState.Skill2, skill2);
-            dicState.Add(PlayerState.Skill3, skill3);*/
+            dicState.Add(PlayerState.Skill, skill);
             dicState.Add(PlayerState.Damaged, damaged);
             dicState.Add(PlayerState.Dead, dead);
 
             state = idle;
 
-            //test
+            //skill state
             controller = anim.runtimeAnimatorController as AnimatorController;
-            testState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("testSkill")).state;
-            State<PlayerController> skill = new SkillState();
-            dicState.Add(PlayerState.test, skill);
+            skillState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("Skill")).state;
         }
 
         private void Update()

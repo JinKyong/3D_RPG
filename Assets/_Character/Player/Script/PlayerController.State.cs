@@ -27,11 +27,6 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    return p.dicState[PlayerState.test];
-                }
-
                 if (p.moveInput())
                 {
                     return p.dicState[PlayerState.Run];
@@ -48,18 +43,11 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                else if (Input.GetKeyDown(KeyCode.Alpha1))
+                else if (p.OnSkill)
                 {
-                    return p.dicState[PlayerState.Skill1];
+                    return p.dicState[PlayerState.Skill];
                 }
-                else if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    return p.dicState[PlayerState.Skill2];
-                }
-                else if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    return p.dicState[PlayerState.Skill3];
-                }
+ 
 
                 return this;
             }
@@ -110,6 +98,10 @@ namespace Character.State
                 else if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
+                }
+                else if (p.OnSkill)
+                {
+                    return p.dicState[PlayerState.Skill];
                 }
 
                 return this;
@@ -239,19 +231,25 @@ namespace Character.State
         {
             public override State<PlayerController> InputHandle(PlayerController t)
             {
+                if (t.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill")
+                    && t.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
+                {
+                    return t.dicState[PlayerState.Idle];
+                }
+
                 return this;
             }
 
             public override void OperateEnter(PlayerController t)
             {
-                Debug.Log(t.testState.name);
-                Debug.Log(t.testClip);
-                t.controller.SetStateEffectiveMotion(t.testState, t.testClip);
-                t.anim.SetBool("testSkill", true);
+                t.controller.SetStateEffectiveMotion(t.skillState, t.skillClip);
+                t.anim.SetBool("Skill", true);
             }
 
             public override void OperateExit(PlayerController t)
             {
+                t.OnSkill = false;
+                t.anim.SetBool("Skill", false);
             }
 
             public override void OperateUpdate(PlayerController t)

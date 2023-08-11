@@ -5,12 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Tornado
   - EnemyBoss
-  - Flame
   - Weapon
   - Enemy
   - Enemy0
+  - KeySlot
   layers:
   - Default
   - TransparentFX

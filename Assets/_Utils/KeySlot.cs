@@ -11,45 +11,39 @@ namespace UI.Slot
     {
         [SerializeField] KeySlotDTO dto;
 
-        Button btn;
         Image img;
-        Skill skill;
-        InvenItem item;
+        public Skill SlotSkill { get; private set; }
+        public InvenItem SlotItem { get; private set; }
 
         private void Start()
         {
-            btn = GetComponent<Button>();
             img = GetComponent<Image>();
         }
 
         public void FillWithSkill(Skill skill)
         {
-            this.skill = skill;
-            //btn.image.sprite = skill.Data.skillImage;
-            Debug.Log(img);
-            Debug.Log(skill);
+            this.SlotSkill = skill;
             img.sprite = skill.Data.skillImage;
         }
 
         public void FillWithItem(InvenItem item)
         {
-            this.item = item;
-            //btn.image.sprite = item.Data.itemImage;
+            this.SlotItem = item;
             img.sprite = item.Data.itemImage;
         }
 
         public ESlotType CanUse()
         {
-            if (skill != null)
+            if (SlotSkill != null)
             {
                 //필요 마나와 현재 마나 비교
-                float mana = skill.Data.mana[skill.Level];
+                float mana = SlotSkill.Data.mana[SlotSkill.Level];
                 if (Player.Instance.Stat.runTimeMana < mana) return ESlotType.None;
                 else return ESlotType.Skill;
             }
-            else if (item != null)
+            else if (SlotItem != null)
             {
-                var stack = item.GetComponent<Stackable>();
+                var stack = SlotItem.GetComponent<Stackable>();
                 //스택형 아이템일 경우
                 if (stack != null)
                 {
@@ -71,8 +65,8 @@ namespace UI.Slot
 
         public void Use()
         {
-            if (skill != null) skill.Use();
-            else if (item != null) item.Use();
+            if (SlotSkill != null) SlotSkill.Use();
+            else if (SlotItem != null) SlotItem.Use();
         }
     }
 }

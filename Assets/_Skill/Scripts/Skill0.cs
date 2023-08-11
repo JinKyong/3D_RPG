@@ -10,7 +10,9 @@ namespace Character.Ability
             BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Health, this);
 
             GameObject effect = Instantiate(data.effect);
-            effect.transform.position = Player.Instance.transform.position;
+            Vector3 pos = Player.Instance.transform.position;
+            pos.y -= 1f;
+            effect.transform.position = pos;
         }
         public override string GetDesc()
         {
