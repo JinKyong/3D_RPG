@@ -2569,6 +2569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7279432037660318932, guid: bc0956c9b3a9c6d45b9c983ff5cf8b6a, type: 3}
+      propertyPath: testClip
+      value: 
+      objectReference: {fileID: 4243662151557984732, guid: 20349140a3cb83e4d883e1456c7783d5, type: 3}
     - target: {fileID: 7279432037660318935, guid: bc0956c9b3a9c6d45b9c983ff5cf8b6a, type: 3}
       propertyPath: m_RootOrder
       value: 2

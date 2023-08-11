@@ -1,13 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
-using System.Linq;
 using TMPro;
 using Public;
 
 namespace Character.State
 {
+    public class AnimationClipOverrides : List<KeyValuePair<AnimationClip, AnimationClip>>
+    {
+        public AnimationClipOverrides(int capacity) : base(capacity) { }
+
+        public AnimationClip this[string name]
+        {
+            get { return this.Find(x => x.Key.name.Equals(name)).Value; }
+            set
+            {
+                int index = this.FindIndex(x => x.Key.name.Equals(name));
+                if (index != -1)
+                    this[index] = new KeyValuePair<AnimationClip, AnimationClip>(this[index].Key, value);
+            }
+        }
+    }
+
     public partial class PlayerController : Singleton<PlayerController>
     {
         Vector3 dir;
@@ -20,8 +34,8 @@ namespace Character.State
         public bool OnSkill { get; set; }
 
         //test
-        AnimatorController controller;
-        AnimatorState skillState;
+        AnimatorOverrideController overrideController;
+        AnimationClipOverrides clipOverrides;
         public AnimationClip skillClip;
 
         State<PlayerController> state;
@@ -69,8 +83,11 @@ namespace Character.State
             state = idle;
 
             //skill state
-            controller = anim.runtimeAnimatorController as AnimatorController;
-            skillState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("Skill")).state;
+            overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+            anim.runtimeAnimatorController = overrideController;
+
+            clipOverrides = new AnimationClipOverrides(overrideController.overridesCount);
+            overrideController.GetOverrides(clipOverrides);
         }
 
         private void Update()

@@ -66,8 +66,9 @@ namespace Character.Ability
 
         public SkillData GetSkillDataByNum(int num)
         {
-            string path = dataPath + $"/SkillData{num}.asset";
-            return AssetDatabase.LoadAssetAtPath<SkillData>(path);
+            //string path = dataPath + $"/SkillData{num}";
+            string path = $"SkillData{num}";
+            return Resources.Load<SkillData>(path);
         }
         public int GetLevelBySkillNum(int num)
         {

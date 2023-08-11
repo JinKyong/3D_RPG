@@ -37,8 +37,8 @@ namespace Public
         }
         public void RegisterInstance()
         {
-            var t = GameObject.FindObjectOfType<T>();
-            if (t != null)
+            var t = GameObject.FindObjectsOfType<T>();
+            if (t.Length >= 2)
             {
                 Destroy(gameObject);
             }
