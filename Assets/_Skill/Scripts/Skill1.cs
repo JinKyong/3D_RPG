@@ -1,20 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using Character.Buff;
 using UnityEngine;
 
 namespace Character.Ability
 {
     public class Skill1 : ActiveSkill
     {
-        public override bool Use()
+        public override void Use()
         {
-            Debug.Log("Hello");
+            BuffManager.Instance.OnBuffBySkill(BuffManager.EBuffType.Mana, this);
 
-            return false;
+            GameObject effect = Instantiate(data.effect);
+            Vector3 pos = Player.Instance.transform.position;
+            pos.y -= 1f;
+            effect.transform.position = pos;
         }
         public override string GetDesc()
         {
-            return "yes";
+            return string.Format(data.skillDesc,
+                   data.mana[level],
+                   data.duration[level],
+                   data.value[level]);
         }
     }
 }

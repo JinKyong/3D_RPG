@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Public;
 
 namespace LodingUi
 {
@@ -13,18 +14,18 @@ namespace LodingUi
         [SerializeField] CanvasGroup lodingCan;
         [SerializeField] CanvasGroup bgCan;
 
-        private void Start()
+        public void Start()
         {
             StartCoroutine(FadeInCoroutine());
         }
 
-        public void PadeInButton()
+        public void FadeInButton()
         {
             lodinUi.SetActive(true);
             StartCoroutine(FadeInCoroutine());
         }
 
-        private IEnumerator FadeInCoroutine()
+        public IEnumerator FadeInCoroutine()
         {
             float duration = 3f; // 페이드 아웃에 걸리는 시간 설정
 

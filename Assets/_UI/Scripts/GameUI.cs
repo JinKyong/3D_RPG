@@ -15,23 +15,23 @@ namespace gameUI
 
         private void Start()
         {
-            name.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.name;
-            level.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
-            coin.text += PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
+            name.text += DataManager.PlayerDataManager.Instance.nowPlayer.name;
+            level.text += DataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
+            coin.text += DataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
         }
         public void LevelUp()
         {
-            level.text = "레벨 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
+            level.text = "레벨 : " + DataManager.PlayerDataManager.Instance.nowPlayer.level.ToString();
         }
 
         public void CoinUp()
         {
-            level.text = "코인 : " + PlayerDataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
+            level.text = "코인 : " + DataManager.PlayerDataManager.Instance.nowPlayer.coin.ToString();
         }
         public void Save()
         {
 
-            PlayerDataManager.PlayerDataManager.Instance.SaveData();
+            DataManager.PlayerDataManager.Instance.SaveData();
         }
     }
 }    

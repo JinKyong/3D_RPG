@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Public;
 using System.IO;                 // ¿Œ«≤ æ∆øÙ«≤
+using TMPro;
 
 
 
@@ -18,7 +19,7 @@ using System.IO;                 // ¿Œ«≤ æ∆øÙ«≤
 
 // ΩΩ∑‘∫∞∑Œ ¥Ÿ∏£∞‘ ¿˙¿Â.
 
-namespace PlayerDataManager
+namespace DataManager
 {
     public class PlayerData
     {

@@ -28,6 +28,8 @@ namespace Item.Inven
                 if (i == activeIndex) itemListUI[i].SelectList();
                 else itemListUI[i].UnSelectList();
             }
+
+            //gameObject.SetActive(false);
         }
         private int getIndexByItem(InvenItem item, int index)
         {
@@ -88,6 +90,7 @@ namespace Item.Inven
         }
         public void PopItem(int invenNum, int index)
         {
+            itemList[invenNum][index].Use();
             Stackable stb = itemList[invenNum][index].GetComponent<Stackable>();
 
             //Stackable ¿©ºÎ

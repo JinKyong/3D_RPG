@@ -29,7 +29,15 @@ namespace Character.Ability.UI
             icon.sprite = skill.Data.skillImage;
             skillName.text = skill.Data.skillName;
             skillLevel.text = skill.Level.ToString();
-            skillDesc.text = skill.GetDesc();
+
+            if (skill.Level > 0)
+            {
+                skillDesc.text = skill.GetDesc();
+            }
+            else
+            {
+                skillDesc.text = "-";
+            }
         }
     }
 }

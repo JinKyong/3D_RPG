@@ -4,36 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Public;
 
 namespace LoadingSlider
 { 
-    public class Loadingslider : MonoBehaviour 
+    public class Loadingslider : Singleton<Loadingslider>
     {
         [SerializeField] int sceneNumber = 0;
         [SerializeField] Slider progressBar;
         [SerializeField] TMP_Text progressBarText;
+
+
+        /*     private float loadingProgress = 0f;
+             private float fillSpeed = 0.4f;
+             private bool isPaused = false;*/
+
+
+        public void InitializeScene()
+        { 
         
+        }
 
-   /*     private float loadingProgress = 0f;
-        private float fillSpeed = 0.4f;
-        private bool isPaused = false;*/
-
-
-    
-    
         private void Start()
         {
             /*StartCoroutine(RandomPauseCoroutine());*/
             StartCoroutine(StartLoadingCoroutine(sceneNumber));
-       
+            /*StopCoroutine(StartLoadingCoroutine(2));*/
+            
         }
 
-        private IEnumerator StartLoadingCoroutine(int num)
+        public IEnumerator StartLoadingCoroutine(int num)
         {
         
-            yield return new WaitForSeconds(2f); // 2초 대기
+            yield return new WaitForSeconds(5f); // 2초 대기
 
             AsyncOperation ao = SceneManager.LoadSceneAsync(num);
+            
 
             ao.allowSceneActivation = false;
             while(!ao.isDone)
@@ -44,9 +50,11 @@ namespace LoadingSlider
                 if (ao.progress >= 0.9f)
                 {
                     ao.allowSceneActivation = true;
+                  
                 }
                 yield return null;
             }
+            
        
         /*    while (loadingProgress < 1f )
             {
@@ -80,9 +88,11 @@ namespace LoadingSlider
          
            
             }
+        public void OnCklickReset()
+        {
+            
+            
+                progressBar.value = 0f;
         }
     }
-
-
-
-
+} 

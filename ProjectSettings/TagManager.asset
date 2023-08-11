@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - CloseBtn
+  - EnemyBoss
+  - Weapon
+  - Enemy
+  - Enemy0
+  - KeySlot
   layers:
   - Default
   - TransparentFX
@@ -14,9 +18,9 @@ TagManager:
   - Water
   - UI
   - ground
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PlayerDamaged
   - 
   - 
   - 
