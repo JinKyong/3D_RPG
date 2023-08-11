@@ -53,12 +53,14 @@ namespace UI.Slot
                 //스택형 아이템일 경우
                 if (stack != null)
                 {
+                    //현재 스택이 남아있으면 true, 아니면 false
                     if (stack.Count <= 0) return ESlotType.None;
                     else return ESlotType.Item;
                 }
                 //스택형 아이템이 아닐 경우
                 else
                 {
+                    //무조건 true
                     return ESlotType.Item;
                 }
             }

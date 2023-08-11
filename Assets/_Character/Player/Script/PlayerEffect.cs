@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerEffect : MonoBehaviour
 {
     [SerializeField] GameObject baseAtk;
-    [SerializeField] GameObject meteoAtk;
     [SerializeField] GameObject backhandAtk;
     [SerializeField] GameObject jumpAtk;
 
@@ -17,16 +16,6 @@ public class PlayerEffect : MonoBehaviour
     public void BaseAtkOff()
     {
         baseAtk.SetActive(false);
-    }
-
-    public void MeteoAtkOn()
-    {
-        meteoAtk.SetActive(true);
-    }
-
-    public void MeteoAtkOff()
-    {
-        meteoAtk.SetActive(false);
     }
 
     public void BackhandAtkOn()
