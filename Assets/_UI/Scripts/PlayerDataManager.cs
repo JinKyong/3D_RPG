@@ -42,7 +42,6 @@ namespace DataManager
             path = Application.persistentDataPath + "/save";
             print(path);
         }
-
         
         public string UseID { get; set; }
 
@@ -61,16 +60,19 @@ namespace DataManager
             }
             DontDestroyOnLoad(gameObject);
         }
+
         public void SaveData()
         {
             string data = JsonUtility.ToJson(nowPlayer);
             File.WriteAllText(path + nowSlot.ToString(), data);
         }
+
         public void LoadData()
         {
             string data = File.ReadAllText(path +  nowSlot.ToString());
             nowPlayer = JsonUtility.FromJson<PlayerData>(data);
         }
+
         public void DataClear()
         {
             nowSlot = -1;

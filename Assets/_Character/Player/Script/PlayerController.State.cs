@@ -203,8 +203,7 @@ namespace Character.State
         }
 
         public class AttackState : State<PlayerController>
-        {        
-
+        { 
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
@@ -236,7 +235,7 @@ namespace Character.State
             }
         }
 
-        public class TestSkillState : State<PlayerController>
+        public class SkillState : State<PlayerController>
         {
             public override State<PlayerController> InputHandle(PlayerController t)
             {
@@ -260,7 +259,7 @@ namespace Character.State
             }
         }
 
-        public class Skill1State : State<PlayerController>
+/*        public class Skill1State : State<PlayerController>
         {
             public override void OperateEnter(PlayerController p)
             {
@@ -282,23 +281,22 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                // 소환 애니메이션 끝나면 particleSystem 위치시키기
-                // normalized 최대값이 1이 아니라 보간정도에 따라 다를 수 있다고함
+                // normalized 최대값이 무조건 1이 아니라 보간정도에 따라 다를 수 있다고함
                 else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill1")
                     && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.75f)
                 {
-/*                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
+*//*                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
                         0f,
-                        p.transform.position.z + Camera.main.transform.forward.z * 20f);*/
+                        p.transform.position.z + Camera.main.transform.forward.z * 20f);*//*
 
                     return p.dicState[PlayerState.Idle];
                 }
 
                 return this;
             }
-        }
+        }*/
 
-        public class Skill2State : State<PlayerController>
+/*        public class Skill2State : State<PlayerController>
         {
             public override void OperateEnter(PlayerController p)
             {
@@ -323,10 +321,10 @@ namespace Character.State
 
                 return this;
             }
-        }
+        }*/
 
 
-        public class Skill3State : State<PlayerController>
+/*        public class Skill3State : State<PlayerController>
         {
             float moveSpeed = 2f;
 
@@ -356,7 +354,7 @@ namespace Character.State
 
                 return this;
             }
-        }
+        }*/
 
         public class DamagedState : State<PlayerController>
         {

@@ -51,6 +51,27 @@ namespace Character
             {
                 UseSlot(0);
             }
+/*            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                UseSlot(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                UseSlot(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                UseSlot(3);
+            }
+            else if  (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                UseSlot(4);
+            }*/
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                // 인벤토리 열기
+            }
         }
         // 인터페이스 창을 열 수 있도록 하는 내용들
         public void UseSlot(int index)
@@ -59,7 +80,7 @@ namespace Character
             {
                 case ESlotType.Skill:
                     //스킬사용
-                    //isski= true
+                    //isskill= true
                     slots[index].Use();
                     break;
                 case ESlotType.Item:

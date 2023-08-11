@@ -55,9 +55,9 @@ namespace Character.State
             State<PlayerController> jump = new JumpState();
             State<PlayerController> fall = new FallState();
             State<PlayerController> attack = new AttackState();
-            State<PlayerController> skill1 = new Skill1State();
+/*            State<PlayerController> skill1 = new Skill1State();
             State<PlayerController> skill2 = new Skill2State();
-            State<PlayerController> skill3 = new Skill3State();
+            State<PlayerController> skill3 = new Skill3State();*/
             State<PlayerController> damaged = new DamagedState();
             State<PlayerController> dead = new DeadState();
 
@@ -66,9 +66,9 @@ namespace Character.State
             dicState.Add(PlayerState.Jump, jump);
             dicState.Add(PlayerState.Fall, fall);
             dicState.Add(PlayerState.Attack, attack);
-            dicState.Add(PlayerState.Skill1, skill1);
+/*            dicState.Add(PlayerState.Skill1, skill1);
             dicState.Add(PlayerState.Skill2, skill2);
-            dicState.Add(PlayerState.Skill3, skill3);
+            dicState.Add(PlayerState.Skill3, skill3);*/
             dicState.Add(PlayerState.Damaged, damaged);
             dicState.Add(PlayerState.Dead, dead);
 
@@ -77,7 +77,7 @@ namespace Character.State
             //test
             controller = anim.runtimeAnimatorController as AnimatorController;
             testState = controller.layers[0].stateMachine.states.FirstOrDefault(s => s.state.name.Equals("testSkill")).state;
-            State<PlayerController> skill = new TestSkillState();
+            State<PlayerController> skill = new SkillState();
             dicState.Add(PlayerState.test, skill);
         }
 
