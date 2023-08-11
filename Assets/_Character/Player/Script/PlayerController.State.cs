@@ -380,7 +380,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Dead];
                 }
-                else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
+                else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
                     p.IsDamaged = false;
                     return p.dicState[PlayerState.Idle];

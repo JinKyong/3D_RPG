@@ -6,44 +6,13 @@ using LoadingSlider;
 using UnityEngine.UI;
 
 
-public class Potal : MonoBehaviour
+namespace Zone
 {
-
-    [SerializeField] GameObject PotalZone;
-    [SerializeField] GameObject window;
-    [SerializeField] int sceneNum;
-
-  
-
-
-    private void OnTriggerEnter(Collider other) // 트리거 버튼
+    public class Potal : Zone
     {
-        PotalZone.SetActive(true);
+        public void MoveMap()
+        {
+            GameSceneManager.Instance.LoadSceneAsync(1);
+        }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        PotalZone.SetActive(false);
-        /*Loadingslider.Instance.StopCoroutine();*/
-    }
-    public void OncklickGoVlige() // 수락 버튼
-    {
-        SceneManager.LoadSceneAsync(sceneNum);
-        
-        
-    }
-
- 
-    public void OncklickPotalOk() // 수락 버튼
-    {
-        
-        window.SetActive(true);
-
-        /*SceneManager.LoadSceneAsync(sceneNum);*/
-    }
-    public void OncklickPotalNo() // 취소 버튼
-    {
-        window.SetActive(false);
-    }
-
-}   
+}

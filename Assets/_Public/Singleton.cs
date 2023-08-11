@@ -37,9 +37,15 @@ namespace Public
         }
         public void RegisterInstance()
         {
-            // Make instance persistent.
-            DontDestroyOnLoad(Instance);
-            
+            var t = GameObject.FindObjectOfType<T>();
+            if (t != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(Instance);
+            }
         }
     }
 }

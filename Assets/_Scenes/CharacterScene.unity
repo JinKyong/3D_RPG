@@ -1673,7 +1673,7 @@ MonoBehaviour:
   target: {fileID: 0}
   dmgValue: 0
   PdamageTxt: {fileID: 5120607990756835297, guid: 997baa91899eb744a94d812c436130f3, type: 3}
-  EdamageTxt: {fileID: 5120607990756835297, guid: 63b2e17fa9bb98a48bbb2d5e19e19253, type: 3}
+  EdamageTxt: {fileID: 5120607990756835297, guid: b9a4ec71d3f0cc342b351b207e8d9d77, type: 3}
   damagePoolSize: 10
   damageTextPool: []
 --- !u!1 &1455794763

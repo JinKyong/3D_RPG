@@ -10,6 +10,7 @@ public class EnemyBossEffect : MonoBehaviour
 
     public void AxeAtkOn()
     {
+        Debug.Log("도끼공격");
         axeAtk.SetActive(true);
     }
 
@@ -20,6 +21,7 @@ public class EnemyBossEffect : MonoBehaviour
 
     public void RoarAtkOn()
     {
+        Debug.Log("불공격");
         roarAtk.SetActive(true);
     }
 

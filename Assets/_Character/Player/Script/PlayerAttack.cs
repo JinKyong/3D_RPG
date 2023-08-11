@@ -7,7 +7,7 @@ namespace Damage
 {
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField] int damage;
+        public int damage;
 
         private void OnParticleCollision(GameObject other)
         {

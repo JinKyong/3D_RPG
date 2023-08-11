@@ -1,3 +1,5 @@
+using Character;
+using Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +7,14 @@ using UnityEngine;
 public class PlayerEffect : MonoBehaviour
 {
     [SerializeField] GameObject baseAtk;
-    [SerializeField] GameObject meteoAtk;
+/*    [SerializeField] GameObject meteoAtk;
     [SerializeField] GameObject backhandAtk;
-    [SerializeField] GameObject jumpAtk;
+    [SerializeField] GameObject jumpAtk;*/
 
     public void BaseAtkOn()
     {
         baseAtk.SetActive(true);
+        baseAtk.GetComponent<PlayerAttack>().damage = (int)GetComponentInParent<Player>().Stat.runTimeAttack;
     }
 
     public void BaseAtkOff()
@@ -19,7 +22,7 @@ public class PlayerEffect : MonoBehaviour
         baseAtk.SetActive(false);
     }
 
-    public void MeteoAtkOn()
+ /*   public void MeteoAtkOn()
     {
         meteoAtk.SetActive(true);
     }
@@ -47,5 +50,5 @@ public class PlayerEffect : MonoBehaviour
     public void JumpAtkOff()
     {
         jumpAtk.SetActive(false);
-    }
+    }*/
 }

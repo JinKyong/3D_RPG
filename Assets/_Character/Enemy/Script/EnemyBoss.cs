@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Damage;
+using Public;
 
 namespace Character
 {
@@ -27,6 +28,8 @@ namespace Character
         public int hp = 100;
 
         #endregion
+
+        [SerializeField] GameEvent bossDead;
 
 
         private enum EnemyBossState

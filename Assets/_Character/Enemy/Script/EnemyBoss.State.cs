@@ -218,6 +218,7 @@ namespace Character
             {
                 if (b.hpSlider.value <= 0)
                 {
+                    b.bossDead.Raise();
                     return b.dicState[EnemyBossState.Dead];
                 }
                 else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_GetHit") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
