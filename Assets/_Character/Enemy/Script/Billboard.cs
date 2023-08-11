@@ -8,7 +8,7 @@ public class Billboard : MonoBehaviour
 
     private void Start()
     {
-        target = GameObject.Find("Player").transform;
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()

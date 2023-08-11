@@ -2,10 +2,11 @@ using Public;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Character;
 
 namespace Character.State
 {
-    public partial class PlayerController : MonoBehaviour
+    public partial class PlayerController : Singleton<PlayerController>
     {
         public class IdleState : State<PlayerController>
         {
@@ -26,7 +27,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.T))
                 {
                     return p.dicState[PlayerState.test];
                 }
@@ -35,7 +36,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Run];
                 }
-                else if (p.jumpInput())
+                else if (Input.GetKeyDown(KeyCode.Space))
                 {
                     return p.dicState[PlayerState.Jump];
                 }
@@ -43,7 +44,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Attack];
                 }   
-                else if (p.bDamaged)
+                else if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -106,7 +107,7 @@ namespace Character.State
                 {
                     return p.dicState[PlayerState.Attack];
                 }
-                else if (p.bDamaged)
+                else if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -145,7 +146,7 @@ namespace Character.State
                 dir.z = v;
                 p.dir = dir;
 
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -188,7 +189,7 @@ namespace Character.State
                 dir.z = v;
                 p.dir = dir;
 
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -202,8 +203,7 @@ namespace Character.State
         }
 
         public class AttackState : State<PlayerController>
-        {        
-
+        { 
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
@@ -222,7 +222,7 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
@@ -235,7 +235,7 @@ namespace Character.State
             }
         }
 
-        public class TestSkillState : State<PlayerController>
+        public class SkillState : State<PlayerController>
         {
             public override State<PlayerController> InputHandle(PlayerController t)
             {
@@ -259,13 +259,12 @@ namespace Character.State
             }
         }
 
-        public class Skill1State : State<PlayerController>
+/*        public class Skill1State : State<PlayerController>
         {
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill1");
-                p.mp -= 20;
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -278,51 +277,39 @@ namespace Character.State
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.bDamaged)
+                if (p.IsDamaged)
                 {
                     return p.dicState[PlayerState.Damaged];
                 }
-                // 소환 애니메이션 끝나면 particleSystem 위치시키기
-                // normalized 최대값이 1이 아니라 보간정도에 따라 다를 수 있다고함
+                // normalized 최대값이 무조건 1이 아니라 보간정도에 따라 다를 수 있다고함
                 else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill1")
                     && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.75f)
                 {
-/*                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
+*//*                    Vector3 pos = new Vector3 (p.transform.position.x + Camera.main.transform.forward.x * 20f,
                         0f,
-                        p.transform.position.z + Camera.main.transform.forward.z * 20f);*/
+                        p.transform.position.z + Camera.main.transform.forward.z * 20f);*//*
 
                     return p.dicState[PlayerState.Idle];
                 }
 
                 return this;
             }
-        }
+        }*/
 
-        public class Skill2State : State<PlayerController>
+/*        public class Skill2State : State<PlayerController>
         {
-            // Character.Ability.Data.SkillData 에서 데미지 받아서
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetTrigger("Skill2");
-                p.mp -= 10;
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill2") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
-                {
-                    p.skill2.gameObject.SetActive(true);
-                }
-
-
-                Debug.Log(p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
             }
 
             public override void OperateExit(PlayerController p)
             {
-                p.skill2.gameObject.SetActive(false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -334,17 +321,16 @@ namespace Character.State
 
                 return this;
             }
-        }
+        }*/
 
 
-        public class Skill3State : State<PlayerController>
+/*        public class Skill3State : State<PlayerController>
         {
             float moveSpeed = 2f;
 
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetTrigger("Skill3");
-                p.mp -= 10;
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -357,7 +343,6 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
-                p.skill3.gameObject.SetActive(false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -369,7 +354,7 @@ namespace Character.State
 
                 return this;
             }
-        }
+        }*/
 
         public class DamagedState : State<PlayerController>
         {
@@ -377,9 +362,8 @@ namespace Character.State
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;
-                p.hp -= p.damaged;
-                p.anim.SetTrigger("Damaged");
-                // p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
+                p.anim.SetBool("Damaged", true);
+                p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -388,18 +372,19 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
-                // p.gameObject.layer = LayerMask.NameToLayer("Player");
+                p.gameObject.layer = LayerMask.NameToLayer("Player");
+                p.anim.SetBool("Damaged", false);
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
             {
-                if (p.hpSlider.value <= 0)
+                if (Player.Instance.hpSlider.value <= 0)
                 {
                     return p.dicState[PlayerState.Dead];
                 }
                 else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f)
                 {
-                    p.bDamaged = false;
+                    p.IsDamaged = false;
                     return p.dicState[PlayerState.Idle];
                 }
 

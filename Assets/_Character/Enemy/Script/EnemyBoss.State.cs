@@ -10,6 +10,7 @@ namespace Character
         public class IdleState : State<EnemyBoss>
         {
             float findDistance = 16f;
+
             public override void OperateEnter(EnemyBoss b)
             {
             }
@@ -24,7 +25,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -41,26 +42,14 @@ namespace Character
         {
             float AxeAtkDist = 2f;
             float roarAtkDist = 12f;
-            float TornadoAtkDist = 10f;
-            float returnDistance = 25f;
+            float TornadoAtkDist = 5f;
+            float returnDistance = 30f;
             float moveSpeed = 7f;
             Vector3 dir;
 
-            AnimationClip clip;
-
             public override void OperateEnter(EnemyBoss b)
             {
-                if (clip == null)
-                {
-
-                }
-
                 b.anim.SetBool("Move", true);
-                foreach (var c in b.anim.GetCurrentAnimatorClipInfo(0))
-                    Debug.Log(c);
-
-                
-
             }
 
             public override void OperateUpdate(EnemyBoss b)
@@ -73,12 +62,13 @@ namespace Character
             }
 
             public override void OperateExit(EnemyBoss b)
-            { 
+            {
+                b.anim.SetBool("Move", false);
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
@@ -94,7 +84,7 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Attack1];
                 }
-                else if (Vector3.Distance(b.player.transform.position, b.transform.position) > returnDistance)
+                else if (Vector3.Distance(b.originPos, b.transform.position) > returnDistance)
                 {
                     return b.dicState[EnemyBossState.Return];
                 }
@@ -106,39 +96,28 @@ namespace Character
 
         public class AxeAtkState : State<EnemyBoss>
         {
-            float atkAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("AxeAttack");
-                b.leftAxe.enabled = true;
-                b.rightAxe.enabled = true;
-                elapsedTime = 0f;
-                atkAnimDuration = b.axeAtkClip.length;
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(EnemyBoss b)
             {
-                b.leftAxe.enabled = false;
-                b.rightAxe.enabled = false;
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
-                // 애니메이션 너무 느려서 3배속 했으므로 클립의 시간/3
-                else if (elapsedTime > atkAnimDuration/3)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_AxeAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -147,44 +126,32 @@ namespace Character
 
         public class RoarAtkState : State<EnemyBoss>
         {
-            float atkAnimDuration;
-            float elapsedTime;
             Vector3 dir;
 
             public override void OperateEnter(EnemyBoss b)
             {
-                atkAnimDuration = b.roarAtkClip.length;
-                elapsedTime = 0f;
-                dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
-                b.transform.forward = dir;
                 b.anim.SetTrigger("RoarAttack");
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime > atkAnimDuration / 3)
-                {
-                    b.flame.SetActive(true);
-                    // Physics.OverlapBox
-                }
+                dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
+                b.transform.forward = dir;
             }
 
             public override void OperateExit(EnemyBoss b)
-            {
-                b.anim.SetBool("RoarAttack", false);
-                b.flame.SetActive(false);                    
+            {        
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
-                else if (elapsedTime > atkAnimDuration)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_RoarAttack") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -202,7 +169,6 @@ namespace Character
                 b.anim.SetBool("TornadoAttack", true);
                 elapsedTime = 0f;                
                 // 위치 변경
-                b.tornado.gameObject.SetActive(true);
             }
 
             public override void OperateUpdate(EnemyBoss b)
@@ -216,18 +182,17 @@ namespace Character
             public override void OperateExit(EnemyBoss b)
             {
                 b.anim.SetBool("TornadoAttack", false);
-                b.tornado.gameObject.SetActive(false);
             }
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (b.bDamaged)
+                if (b.IsDamaged)
                 {
                     return b.dicState[EnemyBossState.Damaged];
                 }
                 else if (elapsedTime > 6f)
                 {
-                    return b.dicState[EnemyBossState.Idle];
+                    return b.dicState[EnemyBossState.Chase];
                 }
 
                 return this;
@@ -236,19 +201,13 @@ namespace Character
 
         public class DamagedState : State<EnemyBoss>
         {
-            float dmgAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(EnemyBoss b)
             {
                 b.anim.SetTrigger("Damaged");
-                elapsedTime = 0f;
-                dmgAnimDuration = b.dmgClip.length;
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(EnemyBoss b)
@@ -261,10 +220,10 @@ namespace Character
                 {
                     return b.dicState[EnemyBossState.Dead];
                 }
-                else if (elapsedTime >= dmgAnimDuration)
+                else if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Ork_GetHit") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
                 {
-                    b.bDamaged = false;
-                    return b.dicState[EnemyBossState.Chase];
+                    b.IsDamaged = false;
+                    return b.dicState[EnemyBossState.Idle];
                 }
 
                 return this;
@@ -278,17 +237,15 @@ namespace Character
 
             public override void OperateEnter(EnemyBoss b)
             {
+                b.anim.SetBool("Move", true);
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
                 // 원래 위치로 방향 틀고 이동
-                if (Vector3.Distance(b.transform.position, b.originPos) > 1f)
-                {
-                    dir = (b.originPos - b.transform.position).normalized;
-                    b.transform.forward = dir;
-                    b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
-                }
+                dir = (b.originPos - b.transform.position).normalized;
+                b.transform.forward = dir;
+                b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }
 
             public override void OperateExit(EnemyBoss b)
@@ -300,7 +257,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (Vector3.Distance(b.transform.position, b.originPos) < 1f)
+                if (Vector3.Distance(b.transform.position, b.originPos) < 0.5f)
                 {
                     return b.dicState[EnemyBossState.Idle];
                 }
@@ -310,19 +267,13 @@ namespace Character
 
         public class DeadState : State<EnemyBoss>
         {
-            float deadAnimDuration;
-            float elapsedTime;
-
             public override void OperateEnter(EnemyBoss b)
             {
-                b.anim.SetBool("Dead", true);
-                elapsedTime = 0f;
-                deadAnimDuration = b.deadClip.length;
+                b.anim.SetBool("Dead", true);    
             }
 
             public override void OperateUpdate(EnemyBoss b)
             {
-                elapsedTime += Time.deltaTime;
             }
 
             public override void OperateExit(EnemyBoss b)
@@ -331,7 +282,7 @@ namespace Character
 
             public override State<EnemyBoss> InputHandle(EnemyBoss b)
             {
-                if (elapsedTime >= deadAnimDuration)
+                if (b.anim.GetCurrentAnimatorStateInfo(0).IsName("Dead") && b.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
                 {
                     PoolManager.Instance.Push(b.gameObject);
                 }
