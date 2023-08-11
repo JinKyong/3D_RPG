@@ -6,6 +6,7 @@ using Character.State;
 using UnityEngine.UI;
 using TMPro;
 using UI.Slot;
+using Character.Ability;
 
 namespace Character
 {
@@ -14,6 +15,7 @@ namespace Character
         [Header("UI")]
         [SerializeField] Canvas skillUI;
         [SerializeField] GameObject dragObject;
+        [SerializeField] GameObject inventory;
 
         [Header("Stat")]
         [Space]
@@ -80,7 +82,7 @@ namespace Character
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                // 인벤토리 열기
+                inventory.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -94,9 +96,11 @@ namespace Character
             switch (slots[index].CanUse())
             {
                 case ESlotType.Skill:
+                    Skill skill = slots[index].SlotSkill;
                     //스킬사용
-                    playerController.skillClip = slots[index].SlotSkill.Data.animClip;
+                    playerController.skillClip = skill.Data.animClip;
                     playerController.OnSkill = true;
+                    Player.Instance.Stat.runTimeMana -= skill.Data.mana[skill.Level];
                     slots[index].Use();
                     break;
                 case ESlotType.Item:

@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
-{
-    [SerializeField] GameObject playerPrefab;
-    void Start()
+{    
+    public void LoadScene(int num)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene(num);
     }
 }
