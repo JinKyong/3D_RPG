@@ -6655,6 +6655,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1257742021}
     m_Modifications:
+    - target: {fileID: 8683534957963402680, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683534957963402680, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683534957963466800, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
+      propertyPath: lengthInSec
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683534957963466800, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683534957963466800, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8683534957981790036, guid: 1810e9f153ecd1f44ac3959c4f49fb2d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -14865,7 +14885,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 6
   far clip plane: 1000
   field of view: 20
   orthographic: 0
@@ -14907,6 +14927,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1257742021}
     m_Modifications:
+    - target: {fileID: 295645427342478513, guid: d8514feb55fac5e4e88a590789f4fc7d, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1929194281226094387, guid: d8514feb55fac5e4e88a590789f4fc7d, type: 3}
       propertyPath: m_Name
       value: Stones hit Custom
