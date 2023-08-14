@@ -50,8 +50,8 @@ namespace Character.Ability
             list.AddSkillData(skill3);
 
             Skill skill4 = transform.GetChild(4).GetComponent<Skill>();
-            skill3.LevelUp();
-            list.AddSkillData(skill3);
+            skill4.LevelUp();
+            list.AddSkillData(skill4);
         }
 
         public void AddSkill(int num)

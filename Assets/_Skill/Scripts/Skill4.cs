@@ -19,7 +19,6 @@ namespace Character.Ability
         {
             return string.Format(data.skillDesc,
                    data.mana[level],
-                   data.duration[level],
                    data.value[level]);
         }
     }
