@@ -14,6 +14,7 @@ namespace Character
         [SerializeField] float initMana;
         [SerializeField] float initAttack;
         [SerializeField] float initSpeed;
+        [SerializeField] float initJumpPower;
 
 
         //Runtime Value
@@ -26,6 +27,7 @@ namespace Character
 
         public float runTimeAttack;
         public float runTimeSpeed;
+        public float runTimeJumpPower;
 
         public void OnBeforeSerialize()
         {
@@ -41,6 +43,7 @@ namespace Character
 
             runTimeAttack = initAttack;
             runTimeSpeed = initSpeed;
+            runTimeJumpPower = initJumpPower;
         }
     }
 }

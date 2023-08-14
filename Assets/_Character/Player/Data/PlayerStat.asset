@@ -15,10 +15,12 @@ MonoBehaviour:
   initHealth: 300
   initMana: 100
   initAttack: 20
-  initSpeed: 5
+  initSpeed: 10
+  initJumpPower: 6
   runTimeMaxHealth: 300
   runTimeHealth: 300
   runTimeMaxMana: 100
   runTimeMana: 100
   runTimeAttack: 20
-  runTimeSpeed: 5
+  runTimeSpeed: 10
+  runTimeJumpPower: 6

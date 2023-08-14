@@ -55,8 +55,6 @@ namespace Character.State
 
         public class RunState : State<PlayerController>
         {
-            float moveSpeed = 10f;
-
             public override void OperateEnter(PlayerController p)
             {
 
@@ -64,7 +62,7 @@ namespace Character.State
 
             public override void OperateUpdate(PlayerController p)
             {
-                p.rb.transform.Translate(p.dir * moveSpeed * Time.deltaTime);
+                p.rb.transform.Translate(p.dir * Player.Instance.Stat.runTimeSpeed * Time.deltaTime);
             }
 
             public override void OperateExit(PlayerController p)
@@ -109,20 +107,18 @@ namespace Character.State
         }
 
         public class JumpState : State<PlayerController>
-        {
-            float jumpPower = 6f;
-            float jumpMoveSpeed = 6f;
+        {  
 
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetBool("Jump", true);
                 // Forcemode.Impulse 는 순간적으로 힘을 주어 점프가 약간 더 자연스럽다고는 함
-                p.rb.AddForce(new Vector3(0 , jumpPower, 0), ForceMode.Impulse);
+                p.rb.AddForce(new Vector3(0, Player.Instance.Stat.runTimeJumpPower, 0), ForceMode.Impulse);
             }
 
             public override void OperateUpdate(PlayerController p)
             {
-                p.rb.transform.Translate(p.dir * jumpMoveSpeed * Time.deltaTime);
+                p.rb.transform.Translate(p.dir * Player.Instance.Stat.runTimeSpeed / 2 * Time.deltaTime);
             }
 
             public override void OperateExit(PlayerController p)
@@ -153,7 +149,6 @@ namespace Character.State
 
         public class FallState : State<PlayerController>
         {
-            float fallMoveSpeed = 6f;
             public override void OperateEnter(PlayerController p)
             {
                 p.anim.SetBool("Fall", true);
@@ -164,7 +159,7 @@ namespace Character.State
 
             public override void OperateUpdate(PlayerController p)
             {
-                p.rb.transform.Translate(p.dir * fallMoveSpeed * Time.deltaTime);
+                p.rb.transform.Translate(p.dir * Player.Instance.Stat.runTimeSpeed / 2 * Time.deltaTime);
             }
 
             public override void OperateExit(PlayerController p)
@@ -229,7 +224,6 @@ namespace Character.State
 
         public class SkillState : State<PlayerController>
         {
-
             public override void OperateEnter(PlayerController t)
             {
                 t.clipOverrides["Skill"] = t.skillClip;
@@ -370,8 +364,9 @@ namespace Character.State
 
             public override void OperateExit(PlayerController p)
             {
-                p.gameObject.layer = LayerMask.NameToLayer("Player");
                 p.anim.SetBool("Damaged", false);
+                p.gameObject.layer = LayerMask.NameToLayer("Player");
+                p.IsDamaged = false;
             }
 
             public override State<PlayerController> InputHandle(PlayerController p)
@@ -382,7 +377,6 @@ namespace Character.State
                 }
                 else if (p.anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged") && p.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.95f)
                 {
-                    p.IsDamaged = false;
                     return p.dicState[PlayerState.Idle];
                 }
 

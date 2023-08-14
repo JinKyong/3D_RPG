@@ -15241,6 +15241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1768211950503909354, guid: 163150f6a9fc6f5478a7623934a0857c, type: 3}
+      propertyPath: m_text
+      value: Mp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768211951750987392, guid: 163150f6a9fc6f5478a7623934a0857c, type: 3}
+      propertyPath: m_text
+      value: Hp
+      objectReference: {fileID: 0}
     - target: {fileID: 1768211951960355099, guid: 163150f6a9fc6f5478a7623934a0857c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

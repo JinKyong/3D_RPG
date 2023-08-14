@@ -35,6 +35,9 @@ namespace Character
         {
             hpSlider.value = Stat.runTimeHealth / Stat.runTimeMaxHealth;
             mpSlider.value = Stat.runTimeMana / Stat.runTimeMaxMana;
+
+            HpText.text = $"Hp : {Stat.runTimeHealth} / {Stat.runTimeMaxHealth}";
+            MpText.text = $"Mp : {Stat.runTimeMana} / {Stat.runTimeMaxMana}";
         }
 
         private void Update()
