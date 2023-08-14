@@ -26,41 +26,72 @@ namespace Damage
 
         public void CalculateDmgToEnemy(GameObject other, int damage)
         {
+            var enemy0 = other.GetComponent<Enemy0>();
+            if (enemy0.IsDamaged)
+            {
+                return;
+            }
+
+            enemy0.TakeDamage();
+            // 데미지 전달
             target = other;
             dmgValue = damage;
-            other.GetComponent<Enemy0>().ControlStat(-damage);
-            other.GetComponent<Enemy0>().TakeDamage();
+            enemy0.ControlStat(-dmgValue);
+            // 데미지 텍스트 전달
+            Vector3 pos = other.transform.position;
+            pos.y += other.GetComponent<CapsuleCollider>().height;
+            createPdmgText(pos, dmgValue);            
         }
 
         public void CalculateDmgToBoss(GameObject other, int damage)
         {
+            var enemyBoss = other.GetComponent<EnemyBoss>();
+            if (enemyBoss.IsDamaged)
+            {
+                return;
+            }
+
+            enemyBoss.TakeDamage();
             target = other;
-            other.GetComponent<EnemyBoss>().ControlStat(-damage);
-            other.GetComponent<EnemyBoss>().TakeDamage();
-        }
-        public void CalculateDmgToPlayer(int damage)
-        {            
             dmgValue = damage;
-            Player.Instance.ControlStat(-damage, 0);
-            PlayerController.Instance.TakeDamage();
+            enemyBoss.ControlStat(-dmgValue);
+
+            Vector3 pos = other.transform.position;
+            pos.y += other.GetComponent<CapsuleCollider>().height;
+            createPdmgText(pos, dmgValue);
+
         }
 
-        public void CreatePdmgText(Vector3 pos, int damage)
+        public void CalculateDmgToPlayer(int damage)
+        {
+            if (PlayerController.Instance.IsDamaged)
+            {
+                return;
+            }
+
+            PlayerController.Instance.TakeDamage();
+            dmgValue = damage;
+            Player.Instance.ControlStat(-damage, 0);
+
+            Vector3 pos = Player.Instance.transform.position;
+            pos.y += Player.Instance.GetComponent<CapsuleCollider>().height;
+            createEdmgText(pos, dmgValue);
+        }
+
+        private void createPdmgText(Vector3 pos, int damage)
         {
             var obj = PoolManager.Instance.Pop(PdamageTxt);
             obj.transform.position = pos;
-
-            dmgValue = damage;
+            
             TMP_Text tmp = obj.GetComponent<TMP_Text>();
             tmp.text = damage.ToString();
         }
 
-        public void CreateEdmgText(Vector3 pos, int damage)
+        private void createEdmgText(Vector3 pos, int damage)
         {
             var obj = PoolManager.Instance.Pop(EdamageTxt);
             obj.transform.position = pos;
 
-            dmgValue = damage;
             TMP_Text tmp = obj.GetComponent<TMP_Text>();
             tmp.text = damage.ToString();
         }

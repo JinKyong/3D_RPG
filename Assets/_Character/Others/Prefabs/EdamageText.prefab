@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5120607990756835296}
   - component: {fileID: 5120607990756835309}
   - component: {fileID: 5120607990756835298}
-  - component: {fileID: 5120607990756835299}
   - component: {fileID: 5120607990756835308}
+  - component: {fileID: -2247127926707666342}
   m_Layer: 0
   m_Name: EdamageText
   m_TagString: Untagged
@@ -174,18 +174,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5120607990756835309}
   m_maskType: 0
---- !u!114 &5120607990756835299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5120607990756835297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b836c346ade53e4ea7cff4f657163ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5120607990756835308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +187,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transparencySpeed: 1
+--- !u!114 &-2247127926707666342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120607990756835297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b836c346ade53e4ea7cff4f657163ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

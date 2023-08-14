@@ -13,19 +13,11 @@ namespace Damage
         {
             if (other.CompareTag("Enemy0"))
             {
-                DamageFactory.Instance.CalculateDmgToEnemy(other, damage);
-                
-                Vector3 pos = other.transform.position;
-                pos.y += other.GetComponent<CapsuleCollider>().height;
-                DamageFactory.Instance.CreatePdmgText(pos, damage);
+                DamageFactory.Instance.CalculateDmgToEnemy(other, damage);               
             }
             else if (other.CompareTag("EnemyBoss"))
             {
                 DamageFactory.Instance.CalculateDmgToBoss(other, damage);
-
-                Vector3 pos = other.transform.position;
-                pos.y += other.GetComponent<CapsuleCollider>().height;
-                DamageFactory.Instance.CreatePdmgText(pos, damage);
             }
         }
     }

@@ -40,11 +40,11 @@ namespace Character
 
         public class ChaseState : State<EnemyBoss>
         {
-            float AxeAtkDist = 2f;
+            float AxeAtkDist = 1.5f;
             float roarAtkDist = 12f;
-            float TornadoAtkDist = 5f;
-            float returnDistance = 30f;
-            float moveSpeed = 7f;
+            float TornadoAtkDist = 6f;
+            float returnDistance = 20f;
+            float moveSpeed = 6f;
             Vector3 dir;
 
             public override void OperateEnter(EnemyBoss b)
@@ -56,7 +56,7 @@ namespace Character
             {
                 // 플레이어 쪽으로 방향 틀고 이동(플레이어와 보스의 y축 높이값이 다르므로 맞춰줌)
                 // dir은 월드 좌표고 translate은 로컬 좌표 기준으로 앞으로 움직이므로 같이 사용 불가
-                dir = new Vector3 (b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
+                dir = new Vector3(b.player.transform.position.x - b.transform.position.x, 0f, b.player.transform.position.z - b.transform.position.z).normalized;
                 b.transform.forward = dir;
                 b.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }

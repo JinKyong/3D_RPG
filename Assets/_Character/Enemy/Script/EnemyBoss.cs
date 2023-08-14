@@ -24,8 +24,8 @@ namespace Character
         public bool IsDamaged { get; set; }
 
         #region Enemy Ω∫≈»
-        [SerializeField] float maxHp = 100;
-        [SerializeField] float hp = 100;
+        [SerializeField] float maxHp = 200;
+        [SerializeField] float hp = 200;
 
         #endregion
 

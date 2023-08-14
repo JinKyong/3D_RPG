@@ -41,9 +41,9 @@ namespace Character
 
         public class ChaseState : State<Enemy0>
         {
-            float atkDistance = 2f;
-            float returnDistance = 25f;
-            float moveSpeed = 7f;
+            float atkDistance = 2.3f;
+            float returnDistance = 20f;
+            float moveSpeed = 1f;
             Vector3 dir;
 
             public override void OperateEnter(Enemy0 e)
@@ -52,10 +52,10 @@ namespace Character
             }
 
             public override void OperateUpdate(Enemy0 e)
-            {           
+            {
                 // 플레이어 쪽으로 방향 틀고 이동
                 // dir은 월드 좌표고 translate은 로컬 좌표 기준으로 앞으로 움직이므로 같이 사용 불가
-                dir = (e.player.transform.position - e.transform.position).normalized;
+                dir = new Vector3(e.player.transform.position.x - e.transform.position.x, 0f, e.player.transform.position.z - e.transform.position.z);
                 e.transform.forward = dir;
                 e.rb.transform.position += dir * moveSpeed * Time.deltaTime;
             }
