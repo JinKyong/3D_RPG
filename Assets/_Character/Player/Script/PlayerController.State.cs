@@ -229,6 +229,23 @@ namespace Character.State
 
         public class SkillState : State<PlayerController>
         {
+
+            public override void OperateEnter(PlayerController t)
+            {
+                t.clipOverrides["Skill"] = t.skillClip;
+                t.overrideController.ApplyOverrides(t.clipOverrides);
+                t.anim.SetBool("Skill", true);
+            }
+
+            public override void OperateUpdate(PlayerController t)
+            {
+            }
+            public override void OperateExit(PlayerController t)
+            {
+                t.OnSkill = false;
+                t.anim.SetBool("Skill", false);
+            }
+
             public override State<PlayerController> InputHandle(PlayerController t)
             {
                 if (t.anim.GetCurrentAnimatorStateInfo(0).IsName("Skill")
@@ -238,23 +255,6 @@ namespace Character.State
                 }
 
                 return this;
-            }
-
-            public override void OperateEnter(PlayerController t)
-            {
-                t.clipOverrides["Skill"] = t.skillClip;
-                t.overrideController.ApplyOverrides(t.clipOverrides);
-                t.anim.SetBool("Skill", true);
-            }
-
-            public override void OperateExit(PlayerController t)
-            {
-                t.OnSkill = false;
-                t.anim.SetBool("Skill", false);
-            }
-
-            public override void OperateUpdate(PlayerController t)
-            {
             }
         }
 

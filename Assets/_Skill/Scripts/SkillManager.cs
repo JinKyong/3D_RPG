@@ -31,6 +31,7 @@ namespace Character.Ability
             AddSkill(1);
             AddSkill(2);
             AddSkill(3);
+            AddSkill(4);
 
             Skill skill0 = transform.GetChild(0).GetComponent<Skill>();
             skill0.LevelUp();
@@ -45,6 +46,10 @@ namespace Character.Ability
             list.AddSkillData(skill2);
 
             Skill skill3 = transform.GetChild(3).GetComponent<Skill>();
+            skill3.LevelUp();
+            list.AddSkillData(skill3);
+
+            Skill skill4 = transform.GetChild(4).GetComponent<Skill>();
             skill3.LevelUp();
             list.AddSkillData(skill3);
         }

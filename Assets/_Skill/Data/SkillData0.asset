@@ -17,7 +17,7 @@ MonoBehaviour:
   skillName: "\uB545\uC758 \uAC00\uD638"
   skillDesc: "{0}\uC758 \uB9C8\uB098\uB97C \uC0AC\uC6A9\uD558\uC5EC {1}\uCD08 \uB3D9\uC548
     \uCCB4\uB825 +{2} \uC99D\uAC00"
-  skillType: 1
+  skillType: 0
   valueType: 0
   maxLevel: 10
   value:

@@ -167,8 +167,7 @@ namespace Character
             public override void OperateEnter(EnemyBoss b)
             {             
                 b.anim.SetBool("TornadoAttack", true);
-                elapsedTime = 0f;                
-                // 위치 변경
+                elapsedTime = 0f;
             }
 
             public override void OperateUpdate(EnemyBoss b)
