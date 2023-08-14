@@ -39,18 +39,21 @@ namespace Character
 
         private void Update()
         {
+            controlKey();
+        }
+
+        public void ControlStat(float health, float mana)
+        {
+            Stat.runTimeHealth += health;
+            Stat.runTimeMana += mana;
+            Stat.runTimeHealth = Mathf.Clamp(Stat.runTimeHealth, 0, Stat.runTimeMaxHealth);
+            Stat.runTimeMana = Mathf.Clamp(Stat.runTimeMana, 0, Stat.runTimeMaxMana);
+
             hpSlider.value = Stat.runTimeHealth / Stat.runTimeMaxHealth;
             mpSlider.value = Stat.runTimeMana / Stat.runTimeMaxMana;
 
             HpText.text = $"Hp : {Stat.runTimeHealth} / {Stat.runTimeMaxHealth}";
             MpText.text = $"Mp : {Stat.runTimeMana} / {Stat.runTimeMaxMana}";
-
-            controlKey();
-        }
-
-        public void Hurt()
-        {
-            playerController.IsDamaged = true;
         }
 
         private void controlKey()
@@ -100,7 +103,7 @@ namespace Character
                     //스킬사용
                     playerController.skillClip = skill.Data.animClip;
                     playerController.OnSkill = true;
-                    Player.Instance.Stat.runTimeMana -= skill.Data.mana[skill.Level];
+                    Player.Instance.ControlStat(0, -skill.Data.mana[skill.Level]);
                     slots[index].Use();
                     break;
                 case ESlotType.Item:

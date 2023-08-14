@@ -24,8 +24,8 @@ namespace Character
         public bool IsDamaged { get; set; }
 
         #region Enemy 스탯
-        [SerializeField] int maxHp = 100;
-        public int hp = 100;
+        [SerializeField] float maxHp = 100;
+        [SerializeField] float hp = 100;
 
         #endregion
 
@@ -81,7 +81,6 @@ namespace Character
             dicState.Add(EnemyBossState.Dead, dead);
 
             eState = idle;
-            hpSlider.value = (float)hp / (float)maxHp;
 
             // 초기 위치와 방향 저장
             originPos = transform.position;
@@ -101,8 +100,13 @@ namespace Character
             eState.OperateExit(this);
             eState = newState;
             eState.OperateEnter(this);
+        }
 
-            hpSlider.value = (float)hp / (float)maxHp;
+        public void ControlStat(float health)
+        {
+            hp += health;
+
+            hpSlider.value = hp / maxHp;
         }
 
         private void FixedUpdate()

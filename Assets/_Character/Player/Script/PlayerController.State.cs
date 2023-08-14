@@ -357,7 +357,6 @@ namespace Character.State
 
         public class DamagedState : State<PlayerController>
         {
-
             public override void OperateEnter(PlayerController p)
             {
                 p.rb.velocity = Vector3.zero;

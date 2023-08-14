@@ -24,8 +24,8 @@ namespace Character
         public bool IsDamaged { get; set; }
 
         #region Enemy Ω∫≈»
-        [SerializeField] int maxHp = 100;
-        public int hp = 100;
+        [SerializeField] float maxHp = 200;
+        [SerializeField] float hp = 200;
         #endregion
 
 
@@ -99,6 +99,13 @@ namespace Character
         private void FixedUpdate()
         {
             eState.OperateUpdate(this);
+        }
+
+        public void ControlStat(float health)
+        {
+            hp += health;
+
+            hpSlider.value = hp / maxHp;
         }
 
 

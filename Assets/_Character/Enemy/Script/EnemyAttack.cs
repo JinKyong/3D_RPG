@@ -13,7 +13,7 @@ namespace Damage
         {
             if (other.CompareTag("Player") && !PlayerController.Instance.IsDamaged)
             {
-                DamageFactory.Instance.CalculateDmgToPlayer(other, damage);
+                DamageFactory.Instance.CalculateDmgToPlayer(damage);
                 
                 Vector3 pos = other.transform.position;
                 pos.y += other.GetComponent<CapsuleCollider>().height;

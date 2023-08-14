@@ -28,21 +28,20 @@ namespace Damage
         {
             target = other;
             dmgValue = damage;
-            other.GetComponent<Enemy0>().hp -= damage;
+            other.GetComponent<Enemy0>().ControlStat(-damage);
             other.GetComponent<Enemy0>().TakeDamage();
         }
 
         public void CalculateDmgToBoss(GameObject other, int damage)
         {
             target = other;
-            dmgValue = damage;
-            other.GetComponent<EnemyBoss>().hp -= damage;
+            other.GetComponent<EnemyBoss>().ControlStat(-damage);
             other.GetComponent<EnemyBoss>().TakeDamage();
         }
-        public void CalculateDmgToPlayer(GameObject other, int damage)
+        public void CalculateDmgToPlayer(int damage)
         {            
             dmgValue = damage;
-            Player.Instance.Stat.runTimeHealth -= damage;
+            Player.Instance.ControlStat(-damage, 0);
             PlayerController.Instance.TakeDamage();
         }
 

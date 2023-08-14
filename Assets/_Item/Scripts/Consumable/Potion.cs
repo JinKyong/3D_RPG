@@ -21,10 +21,10 @@ namespace Item
             switch (data.type)
             {
                 case EPotionType.Health:
-                    Player.Instance.Stat.runTimeHealth += value;
+                    Player.Instance.ControlStat(value, 0);
                     break;
                 case EPotionType.Mana:
-                    Player.Instance.Stat.runTimeMana += value;
+                    Player.Instance.ControlStat(0, value);
                     break;
                 default:
                     break;
