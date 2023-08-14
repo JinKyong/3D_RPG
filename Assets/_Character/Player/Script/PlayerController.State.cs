@@ -355,7 +355,7 @@ namespace Character.State
             {
                 p.rb.velocity = Vector3.zero;
                 p.anim.SetBool("Damaged", true);
-                p.gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
+                p.StartCoroutine(p.GetInvincible(2f));
             }
 
             public override void OperateUpdate(PlayerController p)
@@ -365,7 +365,6 @@ namespace Character.State
             public override void OperateExit(PlayerController p)
             {
                 p.anim.SetBool("Damaged", false);
-                p.gameObject.layer = LayerMask.NameToLayer("Player");
                 p.IsDamaged = false;
             }
 

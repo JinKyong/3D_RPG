@@ -118,6 +118,15 @@ namespace Character.State
             IsDamaged = true;
         }
 
+        IEnumerator GetInvincible(float duration)
+        {
+            gameObject.layer = LayerMask.NameToLayer("PlayerDamaged");
+
+            yield return new WaitForSeconds(duration);
+            
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
+
         private bool moveInput()
         {
             float h = Input.GetAxis("Horizontal");
