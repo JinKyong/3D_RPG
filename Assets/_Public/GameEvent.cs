@@ -12,21 +12,23 @@ namespace Public
 
         public void Raise()
         {
-            for (int i = listeners.Count - 1; i >= 0; i--)
-            {
-                listeners[i].OnEventRaised();
-            }
+            foreach (var listener in listeners)
+                listener.OnEventRaised();
+        }
+
+        public void ConfirmListener()
+        {
+            foreach (var listener in listeners)
+                Debug.Log(listener.name);
         }
 
         public void RegisterListener(GameEventListener listener)
         {
             listeners.Add(listener);
         }
-
-        public void UnregisterListener(GameEventListener listener)
+        public void UnRegisterListener(GameEventListener listener)
         {
             listeners.Remove(listener);
         }
     }
-
 }
