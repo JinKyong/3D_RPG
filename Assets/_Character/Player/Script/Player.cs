@@ -98,7 +98,7 @@ namespace Character
                 case ESlotType.Skill:
                     Skill skill = slots[index].SlotSkill;
                     //스킬사용
-                    playerController.skillClip = skill.Data.animClip;
+                    playerController.clipOverrides["Skill"] = skill.Data.animClip;
                     playerController.OnSkill = true;
                     Player.Instance.Stat.runTimeMana -= skill.Data.mana[skill.Level];
                     slots[index].Use();

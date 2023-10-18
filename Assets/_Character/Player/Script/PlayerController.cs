@@ -35,8 +35,7 @@ namespace Character.State
 
         //test
         AnimatorOverrideController overrideController;
-        AnimationClipOverrides clipOverrides;
-        public AnimationClip skillClip;
+        public AnimationClipOverrides clipOverrides;
 
         State<PlayerController> state;
 

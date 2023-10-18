@@ -242,7 +242,6 @@ namespace Character.State
 
             public override void OperateEnter(PlayerController t)
             {
-                t.clipOverrides["Skill"] = t.skillClip;
                 t.overrideController.ApplyOverrides(t.clipOverrides);
                 t.anim.SetBool("Skill", true);
             }
