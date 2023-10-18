@@ -17,7 +17,7 @@ namespace Public
 
         private void OnDisable()
         {
-            gameEvent.UnregisterListener(this);
+            gameEvent.UnRegisterListener(this);
         }
 
         public void OnEventRaised()
